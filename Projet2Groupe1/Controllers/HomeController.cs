@@ -5,8 +5,16 @@ namespace Projet2Groupe1.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index(string id)
+       
         {
-            return View();
+            if (string.IsNullOrEmpty(id))
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
