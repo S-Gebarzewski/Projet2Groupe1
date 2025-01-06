@@ -2,7 +2,11 @@
 {
     public class UserService : IUserService
     {
-        private DataBaseContext _dbContext = Dal.getDbContext();
+        private DataBaseContext _dbContext;
+        public UserService()
+        {
+            _dbContext = Dal.getDbContext();
+        }
        
         public int CreateUser(string FirstName, string LastName, int Phone, string Email, string Password, UserRole Role)
         {
@@ -11,7 +15,7 @@
                 FirstName = FirstName,
                 LastName = LastName,
                 Phone = Phone,
-                Email = Email,
+                Mail = Email,
                 Password = Password,
                 Role = Role
             };
@@ -22,9 +26,23 @@
             return user.Id;
         }
 
-        public void Dispose()
+     
+
+        public User searchUser(int id)
+        {
+            return _dbContext.Users.FirstOrDefault(s => s.Id == id);
+        }
+
+        int IUserService.CreateUser(string FirstName, string LastName, int Phone, string Email, string Password, UserRole Role)
         {
             throw new NotImplementedException();
         }
+
+        public void Dispose()
+        {
+            this._dbContext.Dispose();
+
+        }
+        
     }
 }

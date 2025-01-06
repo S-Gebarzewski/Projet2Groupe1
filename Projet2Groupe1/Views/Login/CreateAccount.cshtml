@@ -1,0 +1,52 @@
+﻿@model Projet2Groupe1.Models.User
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+
+</head>
+
+<body>
+    <p> Veuillez remplir les champs ci-dessous pour créer votre compte :  </p>
+    @using (Html.BeginForm())
+
+
+    {
+
+        <div>
+            @Html.LabelFor(m => Model.FirstName) :
+            @Html.TextBoxFor(m => Model.FirstName)
+            @Html.ValidationMessageFor(m => Model.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.LastName) :
+            @Html.TextBoxFor(m => Model.LastName)
+            @Html.ValidationMessageFor(m => Model.LastName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Phone) :
+            @Html.TextBoxFor(m => Model.Phone)
+            @Html.ValidationMessageFor(m => Model.Phone)
+        </div>
+        <div>
+            @Html.LabelFor(m => Model.Password) :
+            @Html.PasswordFor(m => Model.Password)
+        </div>
+
+        //@Html.HiddenFor(m=>Model.Role,new{@value = "Lamba"})
+
+
+        <input type="submit" value="je crée mon compte" />
+
+    }
+
+</body>
+</html>
+
+
+
