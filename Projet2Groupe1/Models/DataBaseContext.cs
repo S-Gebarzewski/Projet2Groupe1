@@ -9,7 +9,7 @@ namespace Projet2Groupe1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // connexion BDD
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=P@ssw0rd;database=SoundTogether"); // modifer mdp
+            optionsBuilder.UseMySql("server=localhost;user id="+DotEnv.IdDb+";password="+DotEnv.Password+";database=SoundTogether"); // modifer mdp
         }
     }
 }
