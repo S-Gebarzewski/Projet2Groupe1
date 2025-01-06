@@ -1,3 +1,5 @@
+using Projet2Groupe1.Models;
+
 namespace Projet2Groupe1
 {
     public class Program
@@ -20,6 +22,13 @@ namespace Projet2Groupe1
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
             });
+
+
+            using (IDal Dal = new Dal())
+            {
+                Dal.DeleteCreateDb();
+                Dal.InitializeDb();
+            };
 
             app.Run();
         }
