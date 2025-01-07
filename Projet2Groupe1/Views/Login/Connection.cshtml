@@ -1,0 +1,35 @@
+﻿@model Projet2Groupe1.ViewModels.UserViewModel
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Connexion</title>
+
+</head>
+
+<body>
+    <p> Veuillez remplir les champs ci-dessous pour créer votre compte :  </p>
+    @using (Html.BeginForm())
+    {
+
+
+        <div>
+            @Html.LabelFor(m => Model.User.Mail) :
+            @Html.TextBoxFor(m => Model.User.Mail)
+            @Html.ValidationMessageFor(m => Model.User.Mail)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Password) :
+            @Html.PasswordFor(m => Model.User.Password)
+        </div>
+
+        <input type="submit" value="je me connecte " />
+
+    }
+
+</body>
+</html>
+

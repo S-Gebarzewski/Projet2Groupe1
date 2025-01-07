@@ -12,6 +12,8 @@ namespace Projet2Groupe1
 
             app.UseStaticFiles(); // use wwwroot
             app.UseRouting(); // use paths
+            app.UseAuthentication();    
+            app.UseAuthorization();
 
 
 
