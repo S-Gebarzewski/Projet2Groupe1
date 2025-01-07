@@ -41,20 +41,18 @@ namespace Projet2Groupe1.Controllers
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
+                Console.WriteLine("IsAuthenticated est a " + HttpContext.User.Identity.IsAuthenticated);
                 UserViewModel uvm = new UserViewModel
                 {
                     Authenticate = HttpContext.User.Identity.IsAuthenticated
                 };
-                Console.WriteLine("on est dans la merde" + uvm.Authenticate);
-               
-
-
-
+                              
             if (uvm.Authenticate)
                 {
-                    Console.WriteLine("je suis deja authentifier");
+                    Console.WriteLine("je suis deja authentifie");
                     uvm.User = ius.ObtainUser(HttpContext.User.Identity.Name);
-                }Console.WriteLine("on est dans la uvm");
+                }
+                
                 return View(uvm);
             }
 
@@ -62,22 +60,20 @@ namespace Projet2Groupe1.Controllers
         [HttpPost]
         public IActionResult Connection(UserViewModel userViewModel, string returnUrl)
         {
-            Console.WriteLine("on est juste dans le néant");
+
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
-                Console.WriteLine("on est vraiment dans la hess");
-
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
                     List<Claim> userClaims = new List<Claim>()
-         {
-             new Claim(ClaimTypes.Name, user.Id.ToString()),
-             new Claim(ClaimTypes.Role, user.Role.ToString()),
-             
-
-         };
+                    {
+                         new Claim(ClaimTypes.Name, user.Id.ToString()),
+                         new Claim(ClaimTypes.Role, user.Role.ToString()),
+                         
+                    };
+                    Console.WriteLine(userClaims);
 
                     var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
@@ -87,16 +83,13 @@ namespace Projet2Groupe1.Controllers
 
                     if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
-
-                        Console.WriteLine("on est dans le if");
                         return Redirect(returnUrl);
                     }
-                    Console.WriteLine("on est dans le else ");
                     return Redirect("/Home/Index/1");
                     
                 }
                 ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
-                Console.WriteLine("on est dans la UserViewModel");
+                Console.WriteLine("Mail ou mot de passe de " + user.Mail + " " + user.Password + "incorrects");
                 return View(userViewModel);
             }
            

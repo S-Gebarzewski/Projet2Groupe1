@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Projet2Groupe1.Models;
 
 namespace Projet2Groupe1
@@ -7,11 +8,19 @@ namespace Projet2Groupe1
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args); // recuperer le builder de l'appli
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Login/Connection";//On indique la route relative pour s'authentifier
+
+            });
+
             builder.Services.AddControllersWithViews(); // config le type d'app
             var app = builder.Build(); // 
 
             app.UseStaticFiles(); // use wwwroot
             app.UseRouting(); // use paths
+
             app.UseAuthentication();    
             app.UseAuthorization();
 

@@ -63,7 +63,7 @@ namespace Projet2Groupe1.Models
         public User Authentication(string Mail, string Password)
         {
             string PWDEncrypted = EncodeMD5(Password);
-            User user = this._dbContext.Users.FirstOrDefault(x => (x.Mail == Mail) && (x.Password== PWDEncrypted));
+            User user = this._dbContext.Users.FirstOrDefault(x => (x.Mail == Mail) && (x.Password == PWDEncrypted));
             return user;
         }
         
