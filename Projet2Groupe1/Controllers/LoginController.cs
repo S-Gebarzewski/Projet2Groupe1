@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Projet2Groupe1.Models;
 
@@ -15,11 +16,12 @@ namespace Projet2Groupe1.Controllers
         [HttpPost]  
         public IActionResult CreateAccount (User user)
         {
-            using (IUserService ius = new UserService())
+            using (IUserService ius = new UserService(new DataBaseContext()))
             {
+                Console.WriteLine("vérification du model state "+ModelState.IsValid);
                 if(ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    ius.CreateUser(user.FirstName, user.LastName,  user.Phone, user.Mail,  user.Password, user.Role);
+                    ius.CreateUser(user.FirstName, user.LastName,  user.Phone, /*user.Mail,*/  user.Password/*, user.Role*/);
                     Console.WriteLine("Création" + user.ToString());
                 }
                 return View();  

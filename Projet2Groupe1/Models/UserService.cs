@@ -1,23 +1,25 @@
-﻿namespace Projet2Groupe1.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Projet2Groupe1.Models
 {
     public class UserService : IUserService
     {
         private DataBaseContext _dbContext;
-        public UserService()
+        public UserService(DataBaseContext _dbContext)
         {
-            _dbContext = Dal.getDbContext();
+            this._dbContext = _dbContext;
         }
        
-        public int CreateUser(string FirstName, string LastName, int Phone, string Email, string Password, UserRole Role)
+        public int CreateUser(string FirstName, string LastName, int Phone/*, string Email*/, string Password/*, UserRole Role*/)
         {
             User user = new User()
             {
                 FirstName = FirstName,
                 LastName = LastName,
                 Phone = Phone,
-                Mail = Email,
+                //Mail = Email,
                 Password = Password,
-                Role = Role
+                //Role = Role
             };
 
             _dbContext.Users.Add(user); // ma DB, ma table, ma fonction
@@ -33,10 +35,10 @@
             return _dbContext.Users.FirstOrDefault(s => s.Id == id);
         }
 
-        int IUserService.CreateUser(string FirstName, string LastName, int Phone, string Email, string Password, UserRole Role)
-        {
-            throw new NotImplementedException();
-        }
+        //int IUserService.CreateUser(string FirstName, string LastName, int Phone/*, string Email*/, string Password/*, UserRole Role*/)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void Dispose()
         {
