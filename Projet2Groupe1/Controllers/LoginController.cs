@@ -21,7 +21,7 @@ namespace Projet2Groupe1.Controllers
                 Console.WriteLine("vérification du model state "+ModelState.IsValid);
                 if(ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    ius.CreateUser(user.FirstName, user.LastName,  user.Phone, /*user.Mail,*/  user.Password/*, user.Role*/);
+                    ius.CreateUser(user.FirstName, user.LastName,  user.Phone, user.Mail,  user.Password, user.Role);
                     Console.WriteLine("Création" + user.ToString());
                 }
                 return View();  

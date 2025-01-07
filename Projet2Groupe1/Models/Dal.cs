@@ -7,16 +7,6 @@ namespace Projet2Groupe1.Models
         private DataBaseContext _dbContext;
         private UserService _userService;
 
-        //public static DataBaseContext getDbContext()
-        //{
-        //    if (Dal._dbContext == null)
-        //    {
-        //        _dbContext = new DataBaseContext();
-        //    }
-        //    return _dbContext;
-
-        //}
-
         public Dal () 
         {
             _dbContext = new DataBaseContext();
@@ -37,8 +27,8 @@ namespace Projet2Groupe1.Models
 
         public void InitializeDb()
         {
-            //_userService.CreateUser("Raven", "Ethevenaux", 0612121212, "RE@gmail.com", "croquette", UserRole.ADMIN);
-            //_userService.CreateUser("Pere", "Noel", 0836656565, "pere-noel@laposte.net", "chefLutin_KDO6", UserRole.PROVIDER);
+            _userService.CreateUser("Raven", "Ethevenaux", 0612121212, "RE@gmail.com", "croquette", UserRole.ADMIN);
+            _userService.CreateUser("Pere", "Noel", 0836656565, "pere-noel@laposte.net", "chefLutin_KDO6", UserRole.PROVIDER);
         }
     }
 }

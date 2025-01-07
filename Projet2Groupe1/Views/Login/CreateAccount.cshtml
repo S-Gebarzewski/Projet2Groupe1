@@ -33,13 +33,17 @@
             @Html.TextBoxFor(m => Model.Phone)
             @Html.ValidationMessageFor(m => Model.Phone)
         </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Mail) :
+            @Html.TextBoxFor(m => Model.Mail)
+            @Html.ValidationMessageFor(m => Model.Mail)
+        </div>
+
         <div>
             @Html.LabelFor(m => Model.Password) :
             @Html.PasswordFor(m => Model.Password)
         </div>
-
-        //@Html.HiddenFor(m=>Model.Role,new{@value = "Lamba"})
-
 
         <input type="submit" value="je crée mon compte" />
 

@@ -2,6 +2,7 @@
 {
     public enum UserRole
     {
+        DEFAULT,
         ADMIN,
         ORGANIZER,
         PROVIDER,
