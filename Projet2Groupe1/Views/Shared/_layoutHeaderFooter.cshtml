@@ -7,18 +7,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/css/Layout.css" rel="stylesheet" />
+    <link href="~/css/LayoutHeaderFooter.css" rel="stylesheet" />
 
 </head>
 
 <body>
-    <div id="header">
-        <div class="header-container">
-            <div class="left-section">
+    <div id="header"> <!-- barre -->
+        <div class="header-container"> <!-- contenu de la barre -->
+			<div class="left-section"> <!-- logo et nom du site -->
                  <img src="~/images/logo.png" alt="Logo" class="logo-img"> 
-                <h1 class="brand-name">SOUNDTOGETHER</h1>
+                <h1 class="site-name">SOUNDTOGETHER</h1>
             </div>
-            <nav class="nav-menu">
+			<nav class="nav-menu">				<!-- menu -->
                 <div class="nav-links">
                 @Html.ActionLink("Catalogue", "Index", "Catalogue")
                 @Html.ActionLink("S'inscrire", "CreateAccount", "Login")
