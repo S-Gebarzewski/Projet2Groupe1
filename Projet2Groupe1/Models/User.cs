@@ -14,7 +14,7 @@
 
         public override String ToString()
         {
-            return ("Creation d'un User : " + Firstname, );
+            return $"Creation d'un User : {FirstName} {LastName}. Son id est : {Id}";
         }
     }
 }

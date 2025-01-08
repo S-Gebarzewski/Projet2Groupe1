@@ -16,7 +16,7 @@
 
 <body>
 
-    <h2>Inscrivez-vou gratuitement</h2>
+    <h2>Inscrivez-vous gratuitement</h2>
 
     @using (Html.BeginForm())
     {
@@ -52,7 +52,7 @@
 
         <div>
             @Html.LabelFor(m => Model.User.Password, "Mot de passe") :
-            @Html.TextBoxFor(m => Model.User.Password)
+            @Html.PasswordFor(m => Model.User.Password)
             @Html.ValidationMessageFor(m => Model.User.Password)
         </div>
 

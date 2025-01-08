@@ -9,5 +9,10 @@
         public bool IsPremium { get; set; }
         public int UserId { get; set; }
 
+
+        public override String ToString()
+        {
+            return $"Creation d'un Member : {Age} ans {IsPremium}. Son Userid est : {UserId}";
+        }
     }
 }

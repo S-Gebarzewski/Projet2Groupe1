@@ -20,14 +20,16 @@ namespace Projet2Groupe1.Controllers
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
                     ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
-                    Console.WriteLine("User cree : " + user.ToString());
+                    Console.WriteLine(user.ToString());
                 }
 
                 using (IMemberService ims = new MemberService(new DataBaseContext())) 
                 {
                     if (ModelState.IsValid) 
                     {
+                        Console.WriteLine("Avant inscirption de member, la cle etrangere UserId vaut " + user.Id);
                         ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, user.Id);
+                        Console.WriteLine(member.ToString());
                     }
 
                 }
