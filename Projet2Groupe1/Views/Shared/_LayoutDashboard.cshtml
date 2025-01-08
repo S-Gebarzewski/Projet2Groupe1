@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header id="mainHeader">
+        <a href="index.html">
+            <img src="~/images/logoSoundTogether.svg" alt="Logo de la plateforme" id="logo">
+        </a>
+        <nav id="mainNav">
+            <ul>
+                <li><a href=#>Catalogue</a></li>
+                <li><a href=#>Espace personnel</a></li>
+                <li><a href=#><img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="icone"></a></li>
+            </ul>
+        </nav>
+    </header><!--Ici se termine le mainHeader-->
+
+    <section id="pageContent" class="bigScreen">
+
+        <aside id="leftCol">
+            <nav id="dashNav">
+                <ul>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeEuro.png" alt="Icone Euro" id="icone">Historique d'achat</a></li>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" id="icone">Groupe de discussion</a></li>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeMessage.png" alt="Icone Message" id="icone">Messagerie privée</a></li>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" id="icone">Organiser session jam</a></li>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeMusic.png" alt="Icone Music" id="icone">Participer session jam</a></li>
+                    <li><a href=# class="buttonProfil"><img src="~/images/iconeProfil.png" alt="Icone Profil" id="icone">Profil</a></li>
+                </ul>
+            </nav>
+        </aside><!--Ici se termine leftCol-->
+
+        <main id="rightCol">
+            @RenderBody()
+        </main> <!--Ici se termine rightCol-->
+
+    </section> <!--Ici se termine le pageContent-->
+
+    <footer id="mainFooter">
+        <div id="footer">
+            <ul>
+                <li><a href=#>Mentions légales</a></li>
+                <li>SOUND TOGETHER &copy; 2024</li>
+                <li><a href=#>Contact</a></li>
+            </ul>
+        </div>
+    </footer> <!--Ici se termine le mainFooter-->
+
+</body> <!--Ici se termine la page-->
+
+</html>
