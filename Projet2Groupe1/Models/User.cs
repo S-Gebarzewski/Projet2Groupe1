@@ -9,7 +9,10 @@
         public int Phone { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
+        public bool Newsletter { get; set; }
         public UserRole Role { get; set; } // appel a mon enum 
-         
+        
+
+
     }
 }

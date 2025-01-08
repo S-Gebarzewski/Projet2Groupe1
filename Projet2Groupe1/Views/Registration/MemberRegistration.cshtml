@@ -1,0 +1,82 @@
+﻿@model Projet2Groupe1.ViewModels.MemberViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inscription adherent</title>
+
+</head>
+
+<body>
+
+    <h2>Inscrivez-vou gratuitement</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => Model.User.LastName, "Votre nom") :
+            @Html.TextBoxFor(m => Model.User.LastName)
+            @Html.ValidationMessageFor(m => Model.User.LastName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.FirstName, "Votre prenom") :
+            @Html.TextBoxFor(m => Model.User.FirstName)
+            @Html.ValidationMessageFor(m => Model.User.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Member.Age, "Votre age") :
+            @Html.TextBoxFor(m => Model.Member.Age)
+            @Html.ValidationMessageFor(m => Model.Member.Age)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Phone, "Votre numero de telephone") :
+            @Html.TextBoxFor(m => Model.User.Phone)
+            @Html.ValidationMessageFor(m => Model.User.Phone)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Mail, "Votre adresse mail") :
+            @Html.TextBoxFor(m => Model.User.Mail)
+            @Html.ValidationMessageFor(m => Model.User.Mail)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Password, "Mot de passe") :
+            @Html.TextBoxFor(m => Model.User.Password)
+            @Html.ValidationMessageFor(m => Model.User.Password)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Member.City, "Votre ville") :
+            @Html.TextBoxFor(m => Model.Member.City)
+            @Html.ValidationMessageFor(m => Model.Member.City)
+        </div>
+
+        <div>
+            @Html.Label("Activer le mode Premium pour plus  de fonctionnalités")
+            @Html.CheckBox("IsPremium")
+        </div>
+
+        //if (isPremium) afficher le paiement
+
+        <div>
+            @Html.LabelFor(m => m.User.Newsletter, "J’accepte de recevoir des offres de Soundtogether")
+            @Html.CheckBoxFor(m => m.User.Newsletter)
+        </div>
+
+        <input type="submit" value="Je m'inscris" />
+    }
+
+</body>
+
+</html>
