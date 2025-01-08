@@ -21,8 +21,8 @@ namespace Projet2Groupe1.Models
                 Phone = Phone,
                 Mail = Mail,
                 Password = EncodeMD5(Password),
-                Role = Role,
-                Newsletter = Newsletter
+                Newsletter = Newsletter,
+                Role = Role                
             };
 
             _dbContext.Users.Add(user); // ma DB, ma table, ma fonction

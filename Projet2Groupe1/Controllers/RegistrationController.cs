@@ -19,7 +19,7 @@ namespace Projet2Groupe1.Controllers
                 Console.WriteLine("vérification du model state " + ModelState.IsValid);
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
                     Console.WriteLine(user.ToString());
                 }
 
@@ -29,7 +29,6 @@ namespace Projet2Groupe1.Controllers
                     {
                         Console.WriteLine("Avant inscirption de member, la cle etrangere UserId vaut " + user.Id);
                         ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, user.Id);
-                        Console.WriteLine(member.ToString());
                     }
 
                 }

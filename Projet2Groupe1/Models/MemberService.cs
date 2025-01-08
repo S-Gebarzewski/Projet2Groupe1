@@ -20,7 +20,7 @@
 
             _dbContext.Members.Add(member);
             _dbContext.SaveChanges();
-
+            Console.WriteLine("Dans la methode create member apres savesChanges, userId vaut  " + UserId);
             return member.Id;
         }
 

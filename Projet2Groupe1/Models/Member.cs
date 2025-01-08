@@ -12,7 +12,7 @@
 
         public override String ToString()
         {
-            return $"Creation d'un Member : {Age} ans {IsPremium}. Son Userid est : {UserId}";
+            return $"Creation d'un Member : {Age} ans {IsPremium}. Son UserId est : {UserId}";
         }
     }
 }
