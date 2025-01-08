@@ -1,2 +1,91 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    color: white;
+    font-family: "Urbanist";
 }
+
+#rightCol {
+    color: black;
+}
+
+#mainHeader {
+    background-color: #ef188e;
+}
+
+#leftCol {
+    background-color: #191d37;
+}
+
+#mainFooter {
+    background-color: #191d37;
+    display: flex;
+    justify-content: center;
+}
+
+    #mainFooter ul {
+        display: flex;
+    }
+
+#logo {
+    height: 60px;
+}
+
+.icone {
+    height: 20px;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family: Zain, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    text-transform: none;
+}
+
+.buttonProfile {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttonProfile img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+}
+
+.bigScreen {
+    display: flex;
+}
+
+#mainHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#mainNav {
+    display: flex;
+    justify-content: end;
+}
+
+#mainNav ul {
+    display: flex;
+}
+
