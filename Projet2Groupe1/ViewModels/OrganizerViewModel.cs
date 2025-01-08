@@ -5,6 +5,7 @@ namespace Projet2Groupe1.ViewModels
     {
         public User User{ get; set; }
         public Organizer Organizer { get; set; }   
+        public Adress? Adress { get; set; }
        
     }
 }

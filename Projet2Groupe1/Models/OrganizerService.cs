@@ -8,7 +8,7 @@ namespace Projet2Groupe1.Models
         {
             this._dbContext = _dbContext;
         }
-        public int CreateOrganizer(string Function, string Denomination, string RIB, Adress Adress, int UserId)
+        public int CreateOrganizer(string Function, string Denomination, string RIB, Adress? Adress, int UserId)
         {
             Organizer organizer = new Organizer()
             {
@@ -18,9 +18,10 @@ namespace Projet2Groupe1.Models
                 Adress = Adress,
                 UserId = UserId
             };
+            Console.WriteLine("dans createorganizer,avant le add, organizer vaut  " + Function);
             _dbContext.Organizers.Add(organizer); // ma DB, ma table, ma fonction
             _dbContext.SaveChanges(); // save object user in object DB
-
+            Console.WriteLine("dans createorganizer,apres le add, organizer vaut  " + Function);
             return organizer.Id;
         }
 
@@ -37,7 +38,7 @@ namespace Projet2Groupe1.Models
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this._dbContext.Dispose();
         }
     }
 }

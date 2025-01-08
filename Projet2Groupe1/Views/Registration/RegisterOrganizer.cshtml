@@ -1,0 +1,118 @@
+﻿@model Projet2Groupe1.ViewModels.OrganizerViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inscription Organizer</title>
+
+</head>
+
+<body>
+
+    <h2>Inscrivez-vous gratuitement</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => Model.User.LastName, "Votre nom") :
+            @Html.TextBoxFor(m => Model.User.LastName)
+            @Html.ValidationMessageFor(m => Model.User.LastName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.FirstName, "Votre prenom") :
+            @Html.TextBoxFor(m => Model.User.FirstName)
+            @Html.ValidationMessageFor(m => Model.User.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Function, "Fonction au sein de l'entreprise") :
+            @Html.TextBoxFor(m => Model.Organizer.Function)
+            @Html.ValidationMessageFor(m => Model.Organizer.Function)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Phone, "Votre numero de telephone") :
+            @Html.TextBoxFor(m => Model.User.Phone)
+            @Html.ValidationMessageFor(m => Model.User.Phone)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Mail, "Votre adresse mail") :
+            @Html.TextBoxFor(m => Model.User.Mail)
+            @Html.ValidationMessageFor(m => Model.User.Mail)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Password, "Mot de passe") :
+            @Html.PasswordFor(m => Model.User.Password)
+            @Html.ValidationMessageFor(m => Model.User.Password)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Denomination, "Dénomination sociale") :
+            @Html.TextBoxFor(m => Model.Organizer.Denomination)
+            @Html.ValidationMessageFor(m => Model.Organizer.Denomination)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.RIB, "RIB") :
+            @Html.TextBoxFor(m => Model.Organizer.RIB)
+            @Html.ValidationMessageFor(m => Model.Organizer.RIB)
+        </div>
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.ZipCode, "Code postal") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.ZipCode)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.ZipCode)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.City, "Ville") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.City)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.City)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.StreetNumber, "Numéro de rue") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.StreetNumber)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.StreetNumber)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.StreetName, "Nom de la rue") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.StreetName)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.StreetName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.NamedPlace, "Lieu-dit") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.NamedPlace)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.NamedPlace)
+        </div>
+        <div>
+            @Html.LabelFor(m => Model.Organizer.Adress.StreetComplement, "Complement d'adresse") :
+            @Html.TextBoxFor(m => Model.Organizer.Adress.StreetComplement)
+            @Html.ValidationMessageFor(m => Model.Organizer.Adress.StreetComplement)
+        </div>
+    
+
+
+
+        <div>
+            @Html.LabelFor(m => m.User.Newsletter, "J’accepte de recevoir des offres de Soundtogether")
+            @Html.CheckBoxFor(m => m.User.Newsletter)
+        </div>
+
+        <input type="submit" value="S'inscrire" />
+    }
+
+</body>
+
+</html>
