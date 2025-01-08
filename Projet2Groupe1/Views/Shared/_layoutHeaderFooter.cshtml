@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+
+<html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/Layout.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="header">
+        <div class="header-container">
+            <div class="left-section">
+                 <img src="~/images/logo.png" alt="Logo" class="logo-img"> 
+                <h1 class="brand-name">SOUNDTOGETHER</h1>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-links">
+                @Html.ActionLink("Catalogue", "Index", "Catalogue")
+                @Html.ActionLink("S'inscrire", "CreateAccount", "Login")
+                @Html.ActionLink("Se Connecter", "Connection", "Login")
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="menu">
+            @*  @RenderSection("Menu") *@
+        </div>
+
+        <div id="contenu">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="footer-container">
+            @Html.ActionLink("Mention légales","Legal", "Home")
+            <span>SOUNDTOGETHER © @DateTime.Now.Year</span>
+           @Html.ActionLink("Contact","Contact", "Home",null, new { @class = "footer-link" })
+        </div>
+    </div>
+
+</body>
+
+</html>
