@@ -63,6 +63,12 @@
         </div>
 
         <div>
+            @Html.LabelFor(m => Model.Member.ZipCode, "Votre code postal") :
+            @Html.TextBoxFor(m => Model.Member.ZipCode)
+            @Html.ValidationMessageFor(m => Model.Member.ZipCode)
+        </div>
+
+        <div>
             @Html.Label("Activer le mode Premium pour plus  de fonctionnalités")
             @Html.CheckBox("IsPremium")
         </div>

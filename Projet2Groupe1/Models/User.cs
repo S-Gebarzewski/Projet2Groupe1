@@ -11,8 +11,10 @@
         public string Password { get; set; }
         public bool Newsletter { get; set; }
         public UserRole Role { get; set; } // appel a mon enum 
-        
 
-
+        public override String ToString()
+        {
+            return ("Creation d'un User : " + Firstname, );
+        }
     }
 }

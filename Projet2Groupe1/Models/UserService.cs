@@ -30,10 +30,12 @@ namespace Projet2Groupe1.Models
 
             return user.Id;
         }
+
         public User ObtainUser(int id)
         {
            return _dbContext.Users.Find(id);
         }
+
         public User ObtainUser(string idStr)
         {
             int id;
