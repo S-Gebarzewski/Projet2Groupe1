@@ -6,6 +6,7 @@ namespace Projet2Groupe1.Models
     {
         // CRUD, creation des tables, connexion BDD
         public DbSet<User> Users { get; set; } // creation d'une table 
+        public DbSet<Organizer> Organizers { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // connexion BDD
         {
