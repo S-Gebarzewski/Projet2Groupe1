@@ -6,7 +6,6 @@
 body {
     color: white;
     font-family: "Urbanist";
-    font-family: Zain, Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1rem;
 }
 
@@ -35,50 +34,93 @@ a {
     background-color: #ef188e;
     display: flex;
     justify-content: space-between;
+    height: 106px;
+    font-size: 1.6em;
+    font-weight: 700;
 }
 
 #logo {
-    height: 60px;
+    height: 86px;
+    margin-left: 120px;
+    margin-top: 10px;
 }
 
 #mainNav {
     display: flex;
     justify-content: end;
+    margin-right: 42px;
 }
 
 #mainNav ul {
     display: flex;
 }
 
+#mainNav li {
+    padding: 10px;
+}
+
+.buttonNav {
+/*    display: inline-flex;*/
+    align-items: center;
+    padding: 10px;
+    margin: 15px;
+    background-color: #ffffff;
+    color: #191D37;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 900;
+    cursor: pointer;
+    height: 45px;
+}
+
+#iconeNav {
+    height: 25px;
+    width: 30px;
+}
+
 
 /*styles applicables au bandeau vertical de navigation =====================================================================================================*/
 #leftCol {
     background-color: #191d37;
+    width: 328px;
+    height: 920px;
 }
 
 .buttonProfile {
     display: inline-flex;
     align-items: center;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
+    padding: 10px;
+    margin: 15px;
+    background-color: #ffffff;
+    color: #191D37;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 900;
     cursor: pointer;
+    width: 240px;
+    height: 45px;
 }
 
 .buttonProfile img {
-     width: 20px;
-     height: 20px;
-     margin-right: 8px;
+     width: 26px;
+     height: 26px;
+     margin-left: 10px;
+     margin-right: 20px;
 }
 
 
 /*styles applicables au contenu central ====================================================================================================================*/
 #rightCol {
-    color: black;
+    color: #191D37;
+    font-size: 2em;
+    display: flex;
+    align-content: center;
+    margin: 80px;
+    font-weight: 800;
 }
 
 
@@ -91,6 +133,12 @@ a {
 
 #mainFooter ul {
     display: flex;
+}
+
+#mainFooter li {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 20px;
 }
 
 
