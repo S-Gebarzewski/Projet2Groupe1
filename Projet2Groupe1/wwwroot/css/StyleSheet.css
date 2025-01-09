@@ -1,39 +1,13 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+﻿/*import d'une police depuis le site Google Fonts ==========================================================================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+/*styles génériques à toute la page ========================================================================================================================*/
 body {
     color: white;
     font-family: "Urbanist";
-}
-
-#rightCol {
-    color: black;
-}
-
-#mainHeader {
-    background-color: #ef188e;
-}
-
-#leftCol {
-    background-color: #191d37;
-}
-
-#mainFooter {
-    background-color: #191d37;
-    display: flex;
-    justify-content: center;
-}
-
-    #mainFooter ul {
-        display: flex;
-    }
-
-#logo {
-    height: 60px;
-}
-
-.icone {
-    height: 20px;
+    font-family: Zain, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
 }
 
 ul {
@@ -41,15 +15,45 @@ ul {
     list-style: none;
 }
 
-body {
-    font-family: Zain, Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1rem;
-}
-
 a {
     text-decoration: none;
     color: white;
     text-transform: none;
+}
+
+.icone {
+    height: 20px;
+}
+
+.bigScreen {
+    display: flex;
+}
+
+
+/*styles applicables au header =============================================================================================================================*/
+#mainHeader {
+    background-color: #ef188e;
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+    height: 60px;
+}
+
+#mainNav {
+    display: flex;
+    justify-content: end;
+}
+
+#mainNav ul {
+    display: flex;
+}
+
+
+/*styles applicables au bandeau vertical de navigation =====================================================================================================*/
+#leftCol {
+    background-color: #191d37;
 }
 
 .buttonProfile {
@@ -66,26 +70,30 @@ a {
 }
 
 .buttonProfile img {
-        width: 20px;
-        height: 20px;
-        margin-right: 8px;
+     width: 20px;
+     height: 20px;
+     margin-right: 8px;
 }
 
-.bigScreen {
+
+/*styles applicables au contenu central ====================================================================================================================*/
+#rightCol {
+    color: black;
+}
+
+
+/*styles applicables au footer =============================================================================================================================*/
+#mainFooter {
+    background-color: #191d37;
+    display: flex;
+    justify-content: center;
+}
+
+#mainFooter ul {
     display: flex;
 }
 
-#mainHeader {
-    display: flex;
-    justify-content: space-between;
-}
 
-#mainNav {
-    display: flex;
-    justify-content: end;
-}
 
-#mainNav ul {
-    display: flex;
-}
+
 
