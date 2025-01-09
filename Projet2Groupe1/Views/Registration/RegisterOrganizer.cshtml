@@ -1,27 +1,24 @@
 ﻿@model Projet2Groupe1.ViewModels.OrganizerViewModel
 
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
 
-<html>
+<html> 
 
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Inscription Organizer</title>
+ <head> 
+  <meta name="viewport" content="width=device-width" />  <title>Inscription Organizer</title> 
+     <link rel="stylesheet" type="text/css" href="~/css/RegisterOrganizerForm.css" /> 
+     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400&display=swap" rel="stylesheet"> 
 
-</head>
+</head> 
 
-<body>
+ <body>
 
     <h2>Inscrivez-vous gratuitement</h2>
 
     @using (Html.BeginForm())
     {
         <div>
-            @Html.LabelFor(m => Model.User.LastName, "Votre nom") :
+            @Html.LabelFor(m => Model.User.LastName, "Votre Nom") :
             @Html.TextBoxFor(m => Model.User.LastName)
             @Html.ValidationMessageFor(m => Model.User.LastName)
         </div>
@@ -97,7 +94,7 @@
             @Html.ValidationMessageFor(m => Model.Organizer.Adress.NamedPlace)
         </div>
         <div>
-            @Html.LabelFor(m => Model.Organizer.Adress.StreetComplement, "Complement d'adresse") :
+            @Html.LabelFor(m => Model.Organizer.Adress.StreetComplement, "Complément d'adresse") :
             @Html.TextBoxFor(m => Model.Organizer.Adress.StreetComplement)
             @Html.ValidationMessageFor(m => Model.Organizer.Adress.StreetComplement)
         </div>
@@ -113,6 +110,4 @@
         <input type="submit" value="S'inscrire" />
     }
 
-</body>
-
-</html>
+}
