@@ -2,7 +2,9 @@
 {
     public interface IUserService : IDisposable
     {
+
         public int CreateUser(string FirstName, string LastName, string Phone, string Mail, string Password, bool Newsletter, UserRole Role = UserRole.DEFAULT);
+
         public User searchUser(int id);
         public User ObtainUser(int id);
         public User ObtainUser(string idStr);

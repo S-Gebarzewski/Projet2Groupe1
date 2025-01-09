@@ -12,7 +12,9 @@ namespace Projet2Groupe1.Models
             this._dbContext = _dbContext;
         }
        
+
         public int CreateUser(string FirstName, string LastName, string Phone, string Mail, string Password, bool Newsletter, UserRole Role = UserRole.DEFAULT)
+
         {
             User user = new User()
             {
@@ -21,8 +23,10 @@ namespace Projet2Groupe1.Models
                 Phone = Phone,
                 Mail = Mail,
                 Password = EncodeMD5(Password),
+
                 Newsletter = Newsletter,
                 Role = Role                
+
             };
 
             _dbContext.Users.Add(user); // ma DB, ma table, ma fonction

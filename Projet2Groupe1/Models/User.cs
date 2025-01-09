@@ -10,6 +10,7 @@ namespace Projet2Groupe1.Models
         [MinLength(2, ErrorMessage = "Le prenom doit contenir au moins 2 caracteres.")]
         public string FirstName { get; set; }
 
+
         [Required(ErrorMessage = "Le nom de famille est obligatoire.")]
         [MinLength(2, ErrorMessage = "Le nom de famille doit contenir au moins 2 caracteres.")]
         public string LastName { get; set; }
