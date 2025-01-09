@@ -12,6 +12,7 @@ namespace Projet2Groupe1
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = "/Login/Connection";//On indique la route relative pour s'authentifier
+                options.LoginPath = "/Login/disconnection";
 
             });
 

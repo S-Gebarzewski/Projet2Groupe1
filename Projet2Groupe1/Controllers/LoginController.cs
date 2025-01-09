@@ -2,6 +2,8 @@
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
@@ -73,6 +75,7 @@ namespace Projet2Groupe1.Controllers
                          new Claim(ClaimTypes.Role, user.Role.ToString()),
                          
                     };
+                    
                     Console.WriteLine(userClaims);
 
                     var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
@@ -85,8 +88,8 @@ namespace Projet2Groupe1.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return Redirect("/Home/Index/1");
-                    
+                    //return Redirect("/Login/DashBoardAdmin");
+                    return Redirect(user.Role);
                 }
                 ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
                 Console.WriteLine("Mail ou mot de passe de " + user.Mail + " " + user.Password + "incorrects");
@@ -95,5 +98,40 @@ namespace Projet2Groupe1.Controllers
            
 
         }
+
+        [Authorize]
+        public IActionResult Redirect(UserRole dashboardType)
+        {
+            Console.WriteLine(dashboardType.ToString());
+            switch (dashboardType.ToString())
+            {
+                case "ADMIN":
+                    return View("DashBoardAdmin");
+
+                case "MEMBER":
+                    return View("DashBoardMember");
+
+                case "PREMIUM":
+                    return View("DashBoardPremium");
+                case "ORGANIZER":
+                    return View("DashBoardOrganizer");
+                case "PROVIDER":
+                    return View("DashBoardProvider");
+                default:
+                    Console.WriteLine("je suis la");
+
+
+                    return null;
+            }
+        }
+       
+        public IActionResult Disconnection()
+        {
+            HttpContext.SignOutAsync();
+          
+            return RedirectToAction("Connection", "Login");
+        }
+
+
     }
 }
