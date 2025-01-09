@@ -16,7 +16,7 @@ namespace Projet2Groupe1.Controllers
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
-                Console.WriteLine("vérification du model state " + ModelState.IsValid);
+                Console.WriteLine("ModelState de User " + ModelState.IsValid);
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
                     user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
@@ -25,9 +25,9 @@ namespace Projet2Groupe1.Controllers
 
                 using (IMemberService ims = new MemberService(new DataBaseContext())) 
                 {
+                    Console.WriteLine("ModelState de member " + ModelState.IsValid);
                     if (ModelState.IsValid) 
                     {
-                        Console.WriteLine("Avant inscirption de member, la cle etrangere UserId vaut " + user.Id);
                         ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, user.Id);
                     }
 

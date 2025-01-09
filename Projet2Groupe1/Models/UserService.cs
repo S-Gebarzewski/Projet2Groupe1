@@ -12,7 +12,7 @@ namespace Projet2Groupe1.Models
             this._dbContext = _dbContext;
         }
        
-        public int CreateUser(string FirstName, string LastName, int Phone, string Mail, string Password, bool Newsletter, UserRole Role = UserRole.DEFAULT)
+        public int CreateUser(string FirstName, string LastName, int? Phone, string Mail, string Password, bool Newsletter, UserRole Role = UserRole.DEFAULT)
         {
             User user = new User()
             {

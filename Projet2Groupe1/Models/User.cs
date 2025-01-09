@@ -1,13 +1,29 @@
-﻿namespace Projet2Groupe1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Projet2Groupe1.Models
 {
-    // cadre de mon user
     public class User
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Le prenom est obligatoire.")]
+        [MinLength(2, ErrorMessage = "Le prenom doit contenir au moins 2 caracteres.")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Le nom de famille est obligatoire.")]
+        [MinLength(2, ErrorMessage = "Le nom de famille doit contenir au moins 2 caracteres.")]
         public string LastName { get; set; }
-        public int Phone { get; set; }
+
+        [Required(ErrorMessage = "Le numero de telephone est obligatoire.")]
+        [Phone(ErrorMessage = "Veuillez entrer un format de telephone valide.")]
+        public int? Phone { get; set; }
+        [Required(ErrorMessage = "L'adresse mail est obligatoire.")]
+        [EmailAddress(ErrorMessage = "L'adresse mail doit avoir le format : exemple@exemple.com")]
         public string Mail { get; set; }
+
+        [Required(ErrorMessage = "Le mot de passe est obligatoire.")]
+        [RegularExpression("^[a-zA-Z!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~²³€£°§]{12,50}$", ErrorMessage = "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractere special.")]
+        [StringLength(50, MinimumLength = 12, ErrorMessage = "Le mot de passe doit comprendre entre 12 et 20 caracteres.")]
         public string Password { get; set; }
         public bool Newsletter { get; set; }
         public UserRole Role { get; set; } // appel a mon enum 

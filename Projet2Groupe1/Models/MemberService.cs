@@ -8,7 +8,7 @@
         {
             this._dbContext = _dbContext;
         }
-        public int CreateMember(int Age, string City, int ZipCode, bool IsPremium, int UserId)
+        public int CreateMember(int? Age, string City, string? ZipCode, bool IsPremium, int UserId)
         {
             Member member = new Member()
             {

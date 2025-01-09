@@ -27,7 +27,7 @@ namespace Projet2Groupe1.Models
 
         public void InitializeDb()
         {
-            _userService.CreateUser("Raven", "Ethevenaux", 0612121212, "RE@gmail.com", "croquette", true, UserRole.ADMIN);
+            _userService.CreateUser("Raven", "Ethevenaux", 0612121212, "RE@gmail.com", "croquetteKDO*", true, UserRole.ADMIN);
             _userService.CreateUser("Pere", "Noel", 0836656565, "pere-noel@laposte.net", "chefLutin_KDO6", true, UserRole.PROVIDER);
         }
     }
