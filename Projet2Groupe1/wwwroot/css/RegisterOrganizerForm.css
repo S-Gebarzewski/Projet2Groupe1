@@ -2,9 +2,21 @@
 body{
 
 }
-h2 {
-    font-family: 'Urbanist', sans-serif;
-    font-size: 36px;
+#leftColumn {
+    flex: 1;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+#rightColumn {
+    flex: 1;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 
 
