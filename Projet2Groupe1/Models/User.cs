@@ -15,8 +15,9 @@ namespace Projet2Groupe1.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Le numero de telephone est obligatoire.")]
-        [Phone(ErrorMessage = "Veuillez entrer un format de telephone valide.")]
-        public int? Phone { get; set; }
+        [RegularExpression(@"^0[1-9](\d{2}){4}$", ErrorMessage = "Veuillez entrer un numéro de téléphone valide au format français (ex : 0612345678).")]
+        public string Phone { get; set; }
+
         [Required(ErrorMessage = "L'adresse mail est obligatoire.")]
         [EmailAddress(ErrorMessage = "L'adresse mail doit avoir le format : exemple@exemple.com")]
         public string Mail { get; set; }

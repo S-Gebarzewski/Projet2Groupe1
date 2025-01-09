@@ -6,7 +6,7 @@ namespace Projet2Groupe1.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Veuillez preciser votre age.")]
-        [Range(18, 130, ErrorMessage = "Vous devez avoir au moins 18 ans pour vous inscrire.")]
+        [Range(16, 130, ErrorMessage = "Vous devez avoir au moins 18 ans pour vous inscrire.")]
         public int? Age {  get; set; }
         [Required(ErrorMessage = "Veuillez entrer votre ville pour selectionner des evenements proches de chez vous.")]
         [MinLength(2)]

@@ -69,19 +69,42 @@
         </div>
 
         <div>
-            @Html.Label("Activer le mode Premium pour plus  de fonctionnalités")
-            @Html.CheckBox("IsPremium")
+            @Html.CheckBoxFor(m => Model.Member.IsPremium)
+            @Html.LabelFor(m => Model.Member.IsPremium, "Activer le mode Premium pour plus  de fonctionnalités")
         </div>
 
-        //if (isPremium) afficher le paiement
+        <div id="paiementContent" style="display:none">
+            <h3>Coordonees de la carte</h3>
+            @* @Html.TextBoxFor(m => Model.Member.CreditCardNumber, new { placeholder = "Numero de carte"}) *@
+            @* @Html.TextBoxFor(m => Model.Member.ExpirationCardDate, new { placeholder = "MM/AA" }) *@
+            @* @Html.PasswordFor(m => Model.Member.VerificationCardNumber, new { placeholder = "CVV" }) *@
+            @* <h3>Titulaire de la carte</h3> *@
+            @* @Html.TextBoxFor(m => Model.Member.CardHolder, new { placeholder = "Prenom Nom" }) *@
+        </div>
 
         <div>
-            @Html.LabelFor(m => m.User.Newsletter, "J’accepte de recevoir des offres de Soundtogether")
-            @Html.CheckBoxFor(m => m.User.Newsletter)
+            @Html.CheckBoxFor(m => Model.User.Newsletter)
+            @Html.LabelFor(m => Model.User.Newsletter, "J'accepte de recevoir des offres de Soundtogether")
         </div>
 
         <input type="submit" value="Je m'inscris" />
     }
+
+    @* <script> *@
+    @*     document.getElementById("PremiumCheckBox").addEventListener("change", function() *@
+    @*     { *@
+    @*         let PaiementContent = document.getElementById("paiementContent"); *@
+    @*         console.log("je suis dans le sciprt"); *@
+    @*         var CheckBoxValue = document.getElementById("PremiumCheckBox"); *@
+    @*         if (this.checked) *@
+    @*         { *@
+    @*             PaiementContent.style.display = "block" *@
+    @*         } else *@
+    @*         { *@
+    @*             PaiementContent.style.display = "none"; *@
+    @*         } *@
+    @*     } *@
+    @* </script> *@
 
 </body>
 
