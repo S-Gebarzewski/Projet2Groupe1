@@ -1,10 +1,12 @@
+
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projet2Groupe1.Models
-{
+namespace Projet2Groupe1.Models;
+
     public class Adress
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Le code postal est obligatoire.")]
         [RegularExpression(@"^\d{5}$", ErrorMessage = "Le code postal doit comporter  5 chiffres.")]
         public int ZipCode { get; set; }
@@ -20,6 +22,7 @@ namespace Projet2Groupe1.Models
         [Required(ErrorMessage = "Le complément d'adresse est obligatoire.")]
         public string? StreetComplement { get; set; }
         
+
 
 
     }
