@@ -5,6 +5,9 @@
 }
 
 <!DOCTYPE html>
+<head>
+    <link href="~/css/RegisterMember.css" rel="stylesheet" />
+</head>
 
 <html>
 
@@ -15,97 +18,98 @@
 </head>
 
 <body>
+    <section id="FormMember">
+        @* Colonne de gauche *@
+        <div id="leftColumn"></div>
+        @* Colonne centrale *@
+        <div id="centralColumn">
+            <h2>Inscrivez-vous gratuitement</h2>
 
-    <h2>Inscrivez-vous gratuitement</h2>
+            @using (Html.BeginForm())
+            {
+                <div id="Input">
+                    <div id="FirstRow">
+                        <div id="FirstName">
+                            @Html.LabelFor(m => Model.User.FirstName, "votre prenom")
+                            @Html.TextBoxFor(m => Model.User.FirstName)
+                            @Html.ValidationMessageFor(m => Model.User.FirstName)
+                        </div>
 
-    @using (Html.BeginForm())
-    {
-        <div>
-            @Html.LabelFor(m => Model.User.LastName, "Votre nom") :
-            @Html.TextBoxFor(m => Model.User.LastName)
-            @Html.ValidationMessageFor(m => Model.User.LastName)
+                        <div id="LastName">
+                            @Html.LabelFor(m => Model.User.LastName, "votre nom")
+                            @Html.TextBoxFor(m => Model.User.LastName)
+                            @Html.ValidationMessageFor(m => Model.User.LastName)
+                        </div>
+                    </div>
+                    <div id="SecondRow">
+                        <div id="Age">
+                            @Html.LabelFor(m => Model.Member.Age, "votre age")
+                            @Html.TextBoxFor(m => Model.Member.Age)
+                            @Html.ValidationMessageFor(m => Model.Member.Age)
+                        </div>
+
+                        <div id="Phone">
+                            @Html.LabelFor(m => Model.User.Phone, "votre numero de telephone")
+                            @Html.TextBoxFor(m => Model.User.Phone)
+                            @Html.ValidationMessageFor(m => Model.User.Phone)
+                        </div>
+                    </div>
+                    <div id="ThirdRow">
+                        <div id="Mail">
+                            @Html.LabelFor(m => Model.User.Mail, "votre adresse mail")
+                            @Html.TextBoxFor(m => Model.User.Mail)
+                            @Html.ValidationMessageFor(m => Model.User.Mail)
+                        </div>
+
+                        <div id="Password">
+                            @Html.LabelFor(m => Model.User.Password, "mot de passe")
+                            @Html.PasswordFor(m => Model.User.Password)
+                            @Html.ValidationMessageFor(m => Model.User.Password)
+                        </div>
+                    </div>
+                    <div id="FourthRow">
+                        <div id="City">
+                            @Html.LabelFor(m => Model.Member.City, "votre ville")
+                            @Html.TextBoxFor(m => Model.Member.City)
+                            @Html.ValidationMessageFor(m => Model.Member.City)
+                        </div>
+
+                        <div id="ZipCode">
+                            @Html.LabelFor(m => Model.Member.ZipCode, "votre code postal")
+                            @Html.TextBoxFor(m => Model.Member.ZipCode)
+                            @Html.ValidationMessageFor(m => Model.Member.ZipCode)
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <div id="IsPremium">
+                        @Html.CheckBoxFor(m => Model.Member.IsPremium)
+                        @Html.LabelFor(m => Model.Member.IsPremium, "Activer le mode Premium pour plus  de fonctionnalités")
+                    </div>
+
+                    <div id="paiementContent" style="display:none">
+                        <h3>Coordonees de la carte</h3>
+                        @* @Html.TextBoxFor(m => Model.Member.CreditCardNumber, new { placeholder = "Numero de carte"}) *@
+                        @* @Html.TextBoxFor(m => Model.Member.ExpirationCardDate, new { placeholder = "MM/AA" }) *@
+                        @* @Html.PasswordFor(m => Model.Member.VerificationCardNumber, new { placeholder = "CVV" }) *@
+                        @* <h3>Titulaire de la carte</h3> *@
+                        @* @Html.TextBoxFor(m => Model.Member.CardHolder, new { placeholder = "Prenom Nom" }) *@
+                    </div>
+
+                    <div id="Newsletter">
+                        @Html.CheckBoxFor(m => Model.User.Newsletter)
+                        @Html.LabelFor(m => Model.User.Newsletter, "J'accepte de recevoir des offres de Soundtogether")
+                    </div>
+                </div>
+
+                <input id="btn" type="submit" value="Je m'inscris" />
+            }
         </div>
-
-        <div>
-            @Html.LabelFor(m => Model.User.FirstName, "Votre prenom") :
-            @Html.TextBoxFor(m => Model.User.FirstName)
-            @Html.ValidationMessageFor(m => Model.User.FirstName)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.Member.Age, "Votre age") :
-            @Html.TextBoxFor(m => Model.Member.Age)
-            @Html.ValidationMessageFor(m => Model.Member.Age)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.User.Phone, "Votre numero de telephone") :
-            @Html.TextBoxFor(m => Model.User.Phone)
-            @Html.ValidationMessageFor(m => Model.User.Phone)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.User.Mail, "Votre adresse mail") :
-            @Html.TextBoxFor(m => Model.User.Mail)
-            @Html.ValidationMessageFor(m => Model.User.Mail)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.User.Password, "Mot de passe") :
-            @Html.PasswordFor(m => Model.User.Password)
-            @Html.ValidationMessageFor(m => Model.User.Password)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.Member.City, "Votre ville") :
-            @Html.TextBoxFor(m => Model.Member.City)
-            @Html.ValidationMessageFor(m => Model.Member.City)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.Member.ZipCode, "Votre code postal") :
-            @Html.TextBoxFor(m => Model.Member.ZipCode)
-            @Html.ValidationMessageFor(m => Model.Member.ZipCode)
-        </div>
-
-        <div>
-            @Html.CheckBoxFor(m => Model.Member.IsPremium)
-            @Html.LabelFor(m => Model.Member.IsPremium, "Activer le mode Premium pour plus  de fonctionnalités")
-        </div>
-
-        <div id="paiementContent" style="display:none">
-            <h3>Coordonees de la carte</h3>
-            @* @Html.TextBoxFor(m => Model.Member.CreditCardNumber, new { placeholder = "Numero de carte"}) *@
-            @* @Html.TextBoxFor(m => Model.Member.ExpirationCardDate, new { placeholder = "MM/AA" }) *@
-            @* @Html.PasswordFor(m => Model.Member.VerificationCardNumber, new { placeholder = "CVV" }) *@
-            @* <h3>Titulaire de la carte</h3> *@
-            @* @Html.TextBoxFor(m => Model.Member.CardHolder, new { placeholder = "Prenom Nom" }) *@
-        </div>
-
-        <div>
-            @Html.CheckBoxFor(m => Model.User.Newsletter)
-            @Html.LabelFor(m => Model.User.Newsletter, "J'accepte de recevoir des offres de Soundtogether")
-        </div>
-
-        <input type="submit" value="Je m'inscris" />
-    }
-
-    @* <script> *@
-    @*     document.getElementById("PremiumCheckBox").addEventListener("change", function() *@
-    @*     { *@
-    @*         let PaiementContent = document.getElementById("paiementContent"); *@
-    @*         console.log("je suis dans le sciprt"); *@
-    @*         var CheckBoxValue = document.getElementById("PremiumCheckBox"); *@
-    @*         if (this.checked) *@
-    @*         { *@
-    @*             PaiementContent.style.display = "block" *@
-    @*         } else *@
-    @*         { *@
-    @*             PaiementContent.style.display = "none"; *@
-    @*         } *@
-    @*     } *@
-    @* </script> *@
-
+        @* Colonne de droite *@
+        <div id="rightColumn"></div> 
+    </section>
+    
 </body>
 
 </html>

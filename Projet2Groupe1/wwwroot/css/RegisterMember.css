@@ -1,0 +1,55 @@
+﻿#FormMember {
+    background-color:navajowhite;
+    display: flex;
+    flex-direction: row;
+}
+
+#FormMember #leftColumn, #rightColumn {
+    flex: 0.17;
+    padding: 10px
+}
+
+#FormMember #centralColumn {
+    flex: 0.66;
+    border:solid, 1px, black;
+    padding: 10px
+}
+
+#FormMember > div {
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    }
+
+#FormMember form #Input{
+    background-color:yellow;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+/*  refair edeux colonnes dedans avec le dsiplay flex
+    pour accoler les inputs  */
+
+#FormMember input, #btn {
+    border-radius: 12px;
+    border: solid black 3px;
+    height: 28px;
+}
+
+#FirstRow, #SecondRow, #ThirdRow, #FourthRow {
+    display: flex;
+    flex-direction: row;
+}
+
+#FirstRow > *,
+#SecondRow > *,
+#ThirdRow > *,
+#FourthRow > * {
+    display:flex;
+    flex-direction: column;
+}
+
+#IsPremium, #Newsletter {
+    display: flex;
+    align-items: center;;
+}
