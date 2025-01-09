@@ -1,0 +1,114 @@
+﻿@model Projet2Groupe1.ViewModels.ProviderViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inscription prestataire</title>
+
+</head>
+
+<body>
+
+    <h2>Inscrivez-vous gratuitement</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => Model.User.LastName, "Votre nom") :
+            @Html.TextBoxFor(m => Model.User.LastName)
+            @Html.ValidationMessageFor(m => Model.User.LastName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.FirstName, "Votre prenom") :
+            @Html.TextBoxFor(m => Model.User.FirstName)
+            @Html.ValidationMessageFor(m => Model.User.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Phone, "Votre numero de telephone") :
+            @Html.TextBoxFor(m => Model.User.Phone)
+            @Html.ValidationMessageFor(m => Model.User.Phone)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Mail, "Votre adresse mail") :
+            @Html.TextBoxFor(m => Model.User.Mail)
+            @Html.ValidationMessageFor(m => Model.User.Mail)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.User.Password, "Mot de passe") :
+            @Html.PasswordFor(m => Model.User.Password)
+            @Html.ValidationMessageFor(m => Model.User.Password)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.City, "Votre ville") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.City)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.City)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.ZipCode, "Votre code postal") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.ZipCode)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.ZipCode)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.StreetName, "Votre nom de voie") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.StreetName)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.StreetName)
+        </div>
+
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.StreetNumber, "Votre numéro de rue") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.StreetNumber)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.StreetNumber)
+        </div>
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.NamedPlace, "Votre lieu dit") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.NamedPlace)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.NamedPlace)
+        </div>
+        <div>
+            @Html.LabelFor(m => Model.Provider.Adress.StreetComplement, "Votre complement d'adresse") :
+            @Html.TextBoxFor(m => Model.Provider.Adress.StreetComplement)
+            @Html.ValidationMessageFor(m => Model.Provider.Adress.StreetComplement)
+        </div>
+
+  
+
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.Position, "Statut") 
+            @Html.TextBoxFor(m => Model.Provider.Position)
+            @Html.ValidationMessageFor(m => Model.Provider.Position)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => Model.Provider.ServiceType,"Type de service") :
+            @Html.TextBoxFor(m => Model.Provider.ServiceType)
+            @Html.ValidationMessageFor(m => Model.Provider.ServiceType)
+        </div>
+
+        <div>
+            @Html.CheckBoxFor(m => Model.User.Newsletter)
+            @Html.LabelFor(m => Model.User.Newsletter, "J'accepte de recevoir des offres de Soundtogether")
+        </div>
+
+        <input type="submit" value="Je m'inscris" />
+    }
+
+
+</body>
+
+</html>
