@@ -1,21 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Projet2Groupe1.Models
+﻿namespace Projet2Groupe1.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
-        public string EventType { get; set; }
-        public string EventName { get; set; }
-        public DateTime EventDate { get; set; }
+        public int Id { get; set; }
+        public TypeEvent TypeEvent { get; set; }
+        public string NameEvent { get; set; }
+        public DateTime StartEvent { get; set; }
+        public DateTime EndEvent { get; set; }
+        public Adress? Adress { get; set; }
+
+        //penser ajout depot image  ============================================================================================================
+
+        public Artist Artist {  get; set; }
+
+        public Ticket? Ticket { get; set; }
+
+        public Service? Service { get; set; }
 
         //[DataType(DataType.Time)]
         //public TimeSpan? EndTime { get; set; } // heure dde fin
 
-            //new DateTime(2025, 2, 20),
-            //new TimeSpan(20, 0, 0),
-            //new TimeSpan(23, 59, 0),
-
+        //new DateTime(2025, 2, 20),
+        //new TimeSpan(20, 0, 0),
+        //new TimeSpan(23, 59, 0),
     }
 
 }
