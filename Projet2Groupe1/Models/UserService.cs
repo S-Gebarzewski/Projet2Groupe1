@@ -35,17 +35,17 @@ namespace Projet2Groupe1.Models
             return user.Id;
         }
 
-        public User ObtainUser(int id)
+        public User GetUser(int id)
         {
            return _dbContext.Users.Find(id);
         }
 
-        public User ObtainUser(string idStr)
+        public User GetUser(string idStr)
         {
             int id;
             if (int.TryParse(idStr, out id))
             {
-                return this.ObtainUser(id);
+                return this.GetUser(id);
             }
             return null;
         }

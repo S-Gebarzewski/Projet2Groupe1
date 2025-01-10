@@ -52,7 +52,7 @@ namespace Projet2Groupe1.Controllers
             if (uvm.Authenticate)
                 {
                     Console.WriteLine("je suis deja authentifie");
-                    uvm.User = ius.ObtainUser(HttpContext.User.Identity.Name);
+                    uvm.User = ius.GetUser(HttpContext.User.Identity.Name);
                 }
                 
                 return View(uvm);
@@ -107,10 +107,8 @@ namespace Projet2Groupe1.Controllers
             {
                 case "ADMIN":
                     return View("DashBoardAdmin");
-
                 case "MEMBER":
                     return View("DashBoardMember");
-
                 case "PREMIUM":
                     return View("DashBoardPremium");
                 case "ORGANIZER":
@@ -119,8 +117,6 @@ namespace Projet2Groupe1.Controllers
                     return View("DashBoardProvider");
                 default:
                     Console.WriteLine("je suis la");
-
-
                     return null;
             }
         }

@@ -23,7 +23,7 @@ namespace Projet2Groupe1.Models
 
         public override String ToString()
         {
-            return $"Creation d'un Member : {Age} ans {IsPremium}. Son UserId est : {UserId}";
+            return $"Creation d'un Member : {Age} ans {IsPremium}. Son UserId est : {UserId} et IsPayed est a {IsPayed}";
         }
     }
 }
