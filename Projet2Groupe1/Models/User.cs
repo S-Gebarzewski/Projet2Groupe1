@@ -30,6 +30,8 @@ namespace Projet2Groupe1.Models
         public bool Newsletter { get; set; }
         public UserRole Role { get; set; } // appel a mon enum 
 
+        public byte[]? PhotoData { get; set; }
+
         public override String ToString()
         {
             return $"Creation d'un User : {FirstName} {LastName}. Son id est : {Id}";

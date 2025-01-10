@@ -16,7 +16,15 @@ namespace Projet2Groupe1
 
             });
 
-            builder.Services.AddControllersWithViews(); // config le type d'app
+            // config le type d'app
+            // Ajout des options pour pouvoir utiliser Json dans le projet
+            builder.Services.AddControllersWithViews()
+                .AddJsonOptions(o => 
+            {
+                o.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                o.JsonSerializerOptions.PropertyNamingPolicy = null;
+
+            }); 
             var app = builder.Build(); // 
 
             app.UseStaticFiles(); // use wwwroot
