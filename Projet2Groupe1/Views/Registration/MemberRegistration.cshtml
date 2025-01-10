@@ -84,17 +84,8 @@
                 </div>
                 <div>
                     <div id="IsPremium">
-                        @Html.CheckBoxFor(m => Model.Member.IsPremium)
+                        @Html.CheckBoxFor(m => Model.Member.IsPremium, new { id = "IsPremiumCheckbox"} )
                         @Html.LabelFor(m => Model.Member.IsPremium, "Activer le mode Premium pour plus  de fonctionnalités")
-                    </div>
-
-                    <div id="paiementContent" style="display:none">
-                        <h3>Coordonees de la carte</h3>
-                        @* @Html.TextBoxFor(m => Model.Member.CreditCardNumber, new { placeholder = "Numero de carte"}) *@
-                        @* @Html.TextBoxFor(m => Model.Member.ExpirationCardDate, new { placeholder = "MM/AA" }) *@
-                        @* @Html.PasswordFor(m => Model.Member.VerificationCardNumber, new { placeholder = "CVV" }) *@
-                        @* <h3>Titulaire de la carte</h3> *@
-                        @* @Html.TextBoxFor(m => Model.Member.CardHolder, new { placeholder = "Prenom Nom" }) *@
                     </div>
 
                     <div id="Newsletter">
@@ -107,9 +98,24 @@
             }
         </div>
         @* Colonne de droite *@
-        <div id="rightColumn"></div> 
+        <div id="rightColumn"></div>
     </section>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM entièrement chargé et analysé");
+            let IsPremium = document.getElementById("IsPremiumCheckbox");
+            let BlockPaiement = document.getElementById("paiementContent");
+
+            IsPremium.addEventListener('change', function() {
+                let PremiumChecked = IsPremium.checked;
+                if (PremiumChecked) {
+                    BlockPaiement.style.display = "block";
+                } else {
+                    BlockPaiement.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

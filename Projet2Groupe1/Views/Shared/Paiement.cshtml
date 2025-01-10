@@ -1,0 +1,34 @@
+﻿@model Projet2Groupe1.ViewModels.PaiementViewModel;
+
+@{
+    Layout = "_layoutHeaderFooter";
+    ViewBag.Title = "Paiement";
+}
+
+
+<div id="paiementContent">
+    <h3>Paiement</h3>
+    @using (Html.BeginForm("ValidationPaiement", "Paiement", FormMethod.Post))
+    {
+    <p>@ViewBag.Message</p>
+    <p>@ViewBag.MemberId</p>
+
+    <input type="hidden" name="MemberId" value="@ViewBag.MemberId" />
+    
+    <p>Coordonees bancaire</p>
+    @Html.LabelFor(m => Model.CreditCardNumber, "Numero de carte")
+    @Html.TextBoxFor(m => Model.CreditCardNumber, new { placeholder = "Numero de carte" })
+
+    @Html.LabelFor(m => Model.ExpirationDate, "Date d'expiration")
+    @Html.TextBoxFor(m => Model.ExpirationDate, new { placeholder = "MM/AA" })
+
+    @Html.LabelFor(m => Model.VerificationNumber, "CCV")
+    @Html.PasswordFor(m => Model.VerificationNumber, new { placeholder = "CVV" })
+    <p>Titulaire de la carte</p>
+    @Html.TextBoxFor(m => Model.CardHolder, new { placeholder = "Prenom Nom" })
+
+    <input id="btn" type="submit" value="Je valide le paiement" />
+    
+    }
+
+</div>
