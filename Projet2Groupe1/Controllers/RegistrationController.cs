@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 
@@ -17,6 +18,7 @@ namespace Projet2Groupe1.Controllers
         [HttpPost]
         public IActionResult MemberRegistration(User user, Member member)
         {
+                     
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
                 Console.WriteLine("ModelState de User " + ModelState.IsValid);
@@ -32,7 +34,20 @@ namespace Projet2Groupe1.Controllers
                     Console.WriteLine("ModelState de member " + ModelState.IsValid);
                     if (ModelState.IsValid)
                     {
-                        ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, user.Id);
+                        member.Id = ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, member.IsPayed, user.Id);
+
+                        Console.WriteLine("Member id est : " + member.Id + "Ispremium est  " + member.IsPremium + " et IsPayed est a " + member.IsPayed);
+
+                        if (member.IsPremium)
+                        {
+                            if (!member.IsPayed)
+                            {
+                                ViewBag.MemberId = member.Id; // via input hidden html
+                                Console.WriteLine("Apres l avoir mis dans le view bag member.Id vaut : " + member.Id);
+                                ViewBag.Message = "Veuillez effectuer le paiement pour finaliser votre inscription.";
+                                return View("Paiement");
+                            }
+                        }
 
                         UserRole dashboardRole = member.IsPremium ? UserRole.PREMIUM : UserRole.MEMBER;
                         return RedirectToAction("Redirect", "Login", new { dashboardType = dashboardRole });

@@ -18,6 +18,7 @@ namespace Projet2Groupe1.Models
         public string? ZipCode { get; set; }
 
         public bool IsPremium { get; set; }
+        public bool IsPayed { get; set; }
         public int UserId { get; set; }
 
         public override String ToString()
