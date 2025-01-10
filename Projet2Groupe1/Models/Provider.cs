@@ -9,7 +9,7 @@
         public Adress Adress { get; set; }
         public int UserId { get; set; }
 
-       
+        public byte[]? PhotoData { get; set; }
 
     }
 }

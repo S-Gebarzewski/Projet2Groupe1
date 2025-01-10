@@ -2,6 +2,7 @@
 {
     public class Event
     {
+
         public int Id { get; set; }
         public TypeEvent TypeEvent { get; set; }
         public string NameEvent { get; set; }
@@ -17,12 +18,16 @@
 
         public Service? Service { get; set; }
 
+        public byte[]? PhotoData { get; set; }
+       
+ 
         //[DataType(DataType.Time)]
         //public TimeSpan? EndTime { get; set; } // heure dde fin
 
         //new DateTime(2025, 2, 20),
         //new TimeSpan(20, 0, 0),
         //new TimeSpan(23, 59, 0),
+
     }
 
 }
