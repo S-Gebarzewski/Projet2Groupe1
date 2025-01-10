@@ -1,7 +1,8 @@
 
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projet2Groupe1.Models;
+namespace Projet2Groupe1.Models
+{ 
 
     public class Adress
     {

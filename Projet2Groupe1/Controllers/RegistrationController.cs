@@ -22,7 +22,8 @@ namespace Projet2Groupe1.Controllers
                 Console.WriteLine("ModelState de User " + ModelState.IsValid);
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role = UserRole.MEMBER);
+                    UserRole role = member.IsPremium ? UserRole.PREMIUM : UserRole.MEMBER;
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role = role);
                     Console.WriteLine(user.ToString());
                 }
 
@@ -32,6 +33,9 @@ namespace Projet2Groupe1.Controllers
                     if (ModelState.IsValid)
                     {
                         ims.CreateMember(member.Age, member.City, member.ZipCode, member.IsPremium, user.Id);
+
+                        UserRole dashboardRole = member.IsPremium ? UserRole.PREMIUM : UserRole.MEMBER;
+                        return RedirectToAction("Redirect", "Login", new { dashboardType = dashboardRole });
                     }
                 }
                 return View();
@@ -62,6 +66,7 @@ namespace Projet2Groupe1.Controllers
                     {
                         Console.WriteLine("dans le if ");
                         ios.CreateOrganizer(organizer.Function, organizer.Denomination, organizer.RIB, organizer.Adress,user.Id);
+                        return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.ORGANIZER });
                     }
                     Console.WriteLine("Apresle if de createOrganizer");
 
@@ -106,11 +111,23 @@ namespace Projet2Groupe1.Controllers
                                        provider.Adress,
                                        provider.UserId);
 
+                    return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.PROVIDER });
                 }
-                return View();
             }
 
+            return View();
 
+
+        }
+
+        public IActionResult IndividualRegistration()
+        {
+            return View();
+        }
+
+        public IActionResult ProfessionalRegistration()
+        {
+            return View();
         }
     }
 }

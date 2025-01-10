@@ -1,56 +1,18 @@
-﻿@model Projet2Groupe1.Models.User
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-
-</head>
-
-<body>
-    <p> Veuillez remplir les champs ci-dessous pour créer votre compte :  </p>
-    @using (Html.BeginForm())
+﻿@{
+    Layout = "_layoutHeaderFooter";
+    ViewBag.Title = "Index";
+}
 
 
-    {
+<div>Insciption </div>
 
-        <div>
-            @Html.LabelFor(m => Model.FirstName) :
-            @Html.TextBoxFor(m => Model.FirstName)
-            @Html.ValidationMessageFor(m => Model.FirstName)
-        </div>
+<h1>Choisissez votre inscription</h1>
 
-        <div>
-            @Html.LabelFor(m => Model.LastName) :
-            @Html.TextBoxFor(m => Model.LastName)
-            @Html.ValidationMessageFor(m => Model.LastName)
-        </div>
+<a href="/votre-page" class="button">
+    Cliquez ici
+</a>
 
-        <div>
-            @Html.LabelFor(m => Model.Phone) :
-            @Html.TextBoxFor(m => Model.Phone)
-            @Html.ValidationMessageFor(m => Model.Phone)
-        </div>
 
-        <div>
-            @Html.LabelFor(m => Model.Mail) :
-            @Html.TextBoxFor(m => Model.Mail)
-            @Html.ValidationMessageFor(m => Model.Mail)
-        </div>
-
-        <div>
-            @Html.LabelFor(m => Model.Password) :
-            @Html.PasswordFor(m => Model.Password)
-        </div>
-
-        <input type="submit" value="je crée mon compte" />
-
-    }
-
-</body>
-</html>
 
 
 

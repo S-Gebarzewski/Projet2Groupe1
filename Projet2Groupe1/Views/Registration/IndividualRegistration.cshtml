@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_layoutHeaderFooter";
+    ViewBag.Title = "Inscription";
+}
+
+
+<div>Inscription </div>
+
+
+
+<button class="individual" type="button">Particulier</button>
+
+@Html.ActionLink("Professionnel", "ProfessionalRegistration", "Registration", new { @class = "button" })
+    
+
+<div>Visiteur gratuit </div>
+@Html.ActionLink("Catalogue", "Catalog", "Event", new { @class = "button" })
+
+
+<div>Adhérent gratuit </div>
+@Html.ActionLink("S'inscrire", "MemberRegistration", "Registration", new { @class = "button" })
+   
+
+
