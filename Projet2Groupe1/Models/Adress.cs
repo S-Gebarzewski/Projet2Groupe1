@@ -22,4 +22,8 @@ namespace Projet2Groupe1.Models;
         [Required(ErrorMessage = "Le complément d'adresse est obligatoire.")]
         public string? StreetComplement { get; set; }
         
+
+
+
     }
+
