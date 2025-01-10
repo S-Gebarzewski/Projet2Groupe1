@@ -1,0 +1,94 @@
+﻿#HeroSection {
+    background-image: url('/images/HeroSection.svg');
+    background-repeat: no-repeat;
+    height: 71.99vh;
+    width: 100vw;
+    color:white;
+}
+
+#HeroSection h1 {
+    padding: 16vh 0vh 0vh 21vh;
+    font-size: 64px;
+    font-weight: 900;
+}
+
+#Particulier, #Professional {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+}
+
+#FeatureSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#FeatureSection h2 {
+    font-size: 48px;
+    margin: 7vh;
+}
+
+#FeatureSection a {
+    border: 4px solid black;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease-out
+}
+
+#FeatureSection a:hover {
+    transform: scale(1.05);
+}
+
+#Ticketing, #Community, #Evenment, #Service {
+    width: 38.738vw;
+    height: 31.57vh;
+    color: red;
+    align-content: end;
+    background-repeat: no-repeat;
+}
+
+#FeatureSection p {
+    padding: 2vh;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 0px 0px 7px 7px;
+    color: white;
+}
+
+#Ticketing {
+    background-image: url('/images/Billeterie_LandingPage.svg');
+}
+
+#Community {
+    background-image: url('/images/Communaute_LandingPage.svg');
+}
+
+#Evenment {
+    background-image: url('/images/Evenement_LandingPage.svg');
+}
+
+#Service {
+    background-image: url('/images/Service_LandingPage.svg');
+}
+
+#Ticketing p {
+    background-color: #FF8500;
+}
+
+#Community p {
+    background-color: #EF188E;
+}
+
+#Service p {
+    background-color: #63E6FC;
+}
+
+#Evenment p {
+    background-color: #1A6EE8;
+}
+
+#Professional {
+    margin-bottom: 7vh;
+}
