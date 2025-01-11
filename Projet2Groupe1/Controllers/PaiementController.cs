@@ -18,9 +18,10 @@ namespace Projet2Groupe1.Controllers
             using (IMemberService ims = new MemberService(new DataBaseContext())) 
             { 
                 Member Member = ims.GetMember(Paiement.MemberId);
+                Console.WriteLine("Le Member avant modification : " + Member.ToString());
                 Member.IsPayed = true;
                 Member UpdatedMember = ims.UpdateMember(Member);
-                Console.WriteLine("Le Member avant modification : " + Member.ToString());
+                
                 Console.WriteLine("Le Member apres modification : " + UpdatedMember.ToString());
 
             }
