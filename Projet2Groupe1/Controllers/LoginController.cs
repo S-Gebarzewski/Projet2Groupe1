@@ -102,7 +102,7 @@ namespace Projet2Groupe1.Controllers
         [Authorize]
         public IActionResult Redirect(UserRole dashboardType)
         {
-            Console.WriteLine(dashboardType.ToString());
+            Console.WriteLine("voici le dashboardtype : "+dashboardType.ToString());
             switch (dashboardType.ToString())
             {
                 case "ADMIN":
