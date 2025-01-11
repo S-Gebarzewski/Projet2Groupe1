@@ -4,8 +4,9 @@
     {
 
         public int CreateMember(int? Age, string City, string? ZipCode, bool IsPremium, bool IsPayed, int UserId);
-        public User searchMember(int id);
-        public User ObtainMember(int id);
-        public User ObtainMember(string idStr);
+        public Member searchMember(int id);
+        public Member GetMember(int id);
+        public Member GetMember(string idStr);
+        public Member UpdateMember(Member UpdatingMember);
     }
 }
