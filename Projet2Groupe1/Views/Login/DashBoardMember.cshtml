@@ -1,20 +1,16 @@
 ﻿@{
-    Layout = null;
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Profile de l'Adhérent !!";
+    ViewBag.Role = "MEMBER";
 }
 
-<!DOCTYPE html>
+@* @using System.Security.Claims *@
 
-<html>
+@* <div>Bonjour @User.FindFirst(ClaimTypes.Role)?.Value</div> *@
 
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DashBoardMember</title>
-
-</head>
-
-<body>
-    <div>Bonjour Member !</div>
-
-</body>
-
-</html>
+@section DashNav {
+    <ul>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+    </ul>
+}

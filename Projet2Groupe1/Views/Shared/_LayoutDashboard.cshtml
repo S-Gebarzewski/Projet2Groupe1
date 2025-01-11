@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header id="mainHeader">
+    <header id="mainHeader" id="@ViewBag.Role">
         <a href="index.html">
             <img src="~/images/logoSoundTogetherH.svg" alt="Logo de la plateforme" id="logo">
         </a>
@@ -19,7 +19,14 @@
             <ul>
                 <li><a href=#>Catalogue</a></li>
                 <li><a href=# class="buttonNav">Espace personnel</a></li>
-                <li><a href=# class="buttonNav"><img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav"></a></li>
+                @* <li><a href=# class="buttonNav"><img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav"></a></li> *@
+                <li>
+                    <a href="@Url.Action("Disconnection", "Login")" class="buttonNav">
+                        <img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav">
+                        @* <span>je me déconnecte</span> *@
+                    </a>
+                </li>
+
             </ul>
         </nav>
     </header><!--Ici se termine le mainHeader-->
@@ -28,14 +35,7 @@
 
         <aside id="leftCol">
             <nav id="dashNav">
-                <ul>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeMusic.png" alt="Icone Music" class="icone">Participer session jam</a></li>
-                    <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
-                </ul>
+                @RenderSection("DashNav")
             </nav>
         </aside><!--Ici se termine leftCol-->
 
