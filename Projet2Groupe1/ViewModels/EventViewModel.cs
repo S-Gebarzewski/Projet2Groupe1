@@ -13,6 +13,7 @@ namespace Projet2Groupe1.ViewModels
         public Service? Service { get; set; }
 
         public Ticket? Ticket { get; set; }
+        public TypeEvent TypeEvent { get; set; }
 
     }
 }
