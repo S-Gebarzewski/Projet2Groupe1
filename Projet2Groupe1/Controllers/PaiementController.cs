@@ -22,9 +22,10 @@ namespace Projet2Groupe1.Controllers
                 Member UpdatedMember = ims.UpdateMember(Member);
                 Console.WriteLine("Le Member avant modification : " + Member.ToString());
                 Console.WriteLine("Le Member apres modification : " + UpdatedMember.ToString());
+
             }
                 Console.WriteLine("Apres paiement valide - memberId vaut :" + Paiement.MemberId);
-            return View("Login/Connection");
+            return RedirectToAction("Connection", "Login");
         }
     }
 }
