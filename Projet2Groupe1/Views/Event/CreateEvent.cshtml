@@ -9,8 +9,10 @@
 </head>
 
 <body>
+
     <p>Veuillez remplir les champs ci-dessous pour créer votre compte :</p>
-    @using (Html.BeginForm())
+    //pour récupérer le fichier
+    @using (Html.BeginForm("CreateEvent","Event",FormMethod.Post, new {enctype = "multipart/form-data"}))
 
 
     {
