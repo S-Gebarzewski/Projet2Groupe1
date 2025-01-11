@@ -3,6 +3,6 @@
     public class EventFileUpload
     {
         public IFormFile EventPicture { get; set; }
-        public string EventId { get; set; }
+        public int EventId { get; set; }
     }
 }

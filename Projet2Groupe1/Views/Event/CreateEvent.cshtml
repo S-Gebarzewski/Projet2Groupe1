@@ -1,10 +1,11 @@
 ﻿@model Projet2Groupe1.ViewModels.EventViewModel
+
 @{
     Layout = "_LayoutDashboard";
     ViewBag.Title = "Profile de l'Admin !!";
 }
     
-    @using (Html.BeginForm())
+@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
 
     {

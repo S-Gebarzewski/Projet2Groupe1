@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 
@@ -7,10 +9,11 @@ namespace Projet2Groupe1.Models
     public class FileService : IDisposable
     {
         protected DataBaseContext _dbContext;
-
+       
         public FileService()
         {
             _dbContext = new DataBaseContext();
+
         }
 
         public User AddUser(User user)
@@ -44,13 +47,57 @@ namespace Projet2Groupe1.Models
         }
 
 
-        public Event AddEvent(Event eventItem)
+        public void SaveEventPicture(int eventId, byte[] imageData)
         {
-            Console.WriteLine("ajout User BDD");
-            this._dbContext.Events.Add(eventItem);
-            this._dbContext.SaveChanges();
-            return eventItem;
+            try
+            {
+                Console.WriteLine($"Début SaveEventPicture - EventId: {eventId}, imageData est null: {imageData == null}");
+                //trouver l'event avec l'id fourni dans le formulaire
+                Event eventItem = this._dbContext.Events.Find(eventId);
+                if (eventItem != null)
+                {
+                    Console.WriteLine($"Event trouvé, Type: {eventItem.TypeEvent}");
 
+                    if (imageData == null)
+                    {
+                        eventItem.PhotoData = null;
+                        this._dbContext.SaveChanges();
+                        Console.WriteLine("Image par défaut");
+                    }
+                      
+                     
+                     else  if (imageData != null)
+                    {
+                        eventItem.PhotoData = imageData;
+                        this._dbContext.SaveChanges();
+                        Console.WriteLine("Image sauvegardée");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur dans SaveEventPicture: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                throw;
+
+            }
+            
+        }
+
+        public string GetDefaultImagePath(TypeEvent type)
+        {
+            if (type == TypeEvent.CONCERT)
+            {
+                return "images/default-concert.jpg";
+            }
+
+            else
+            {
+
+                return "images/default-festival.jpg";
+            }  
+           
         }
 
         public Event GetEvent(int id)
