@@ -103,12 +103,15 @@ namespace Projet2Groupe1.Controllers
         public IActionResult Redirect(UserRole dashboardType)
         {
             Console.WriteLine("voici le dashboardtype : "+dashboardType.ToString());
+            TempData["Role"]=dashboardType;
             switch (dashboardType.ToString())
             {
                 case "ADMIN":
                     return View("DashBoardAdmin");
+
                 case "MEMBER":
                     return View("DashBoardMember");
+
                 case "PREMIUM":
                     return View("DashBoardPremium");
                 case "ORGANIZER":
@@ -117,6 +120,8 @@ namespace Projet2Groupe1.Controllers
                     return View("DashBoardProvider");
                 default:
                     Console.WriteLine("je suis la");
+
+
                     return null;
             }
         }
