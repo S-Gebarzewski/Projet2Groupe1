@@ -1,6 +1,6 @@
 ﻿namespace Projet2Groupe1.ViewModels
 {
-    public class PaiementViewModel
+    public class PaymentViewModel
     {
         public int CreditCardNumber { get; set; }
         public DateTime ExpirationDate { get; set; }

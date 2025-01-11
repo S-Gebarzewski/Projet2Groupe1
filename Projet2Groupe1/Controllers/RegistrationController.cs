@@ -42,10 +42,10 @@ namespace Projet2Groupe1.Controllers
                         {
                             if (!member.IsPayed)
                             {
-                                ViewBag.MemberId = member.Id; // via input hidden html
+                                TempData["MemberId"] = member.Id; 
                                 Console.WriteLine("Apres l avoir mis dans le view bag member.Id vaut : " + member.Id);
-                                ViewBag.Message = "Veuillez effectuer le paiement pour finaliser votre inscription.";
-                                return View("Paiement");
+                                TempData["Message"] = "Veuillez effectuer le paiement pour finaliser votre inscription.";
+                                return RedirectToAction("Payment", "Payment");
                             }
                         }
 
