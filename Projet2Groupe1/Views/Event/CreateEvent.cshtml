@@ -1,15 +1,9 @@
 ﻿@model Projet2Groupe1.ViewModels.EventViewModel
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Créer Evénement</title>
-</head>
-
-<body>
-    <p>Veuillez remplir les champs ci-dessous pour créer votre compte :</p>
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Profile de l'Admin !!";
+}
+    
     @using (Html.BeginForm())
 
 
@@ -22,37 +16,37 @@
 
         <div>
             @Html.LabelFor(m => Model.Event.StartEvent, "Heure de début") :
-            @Html.TextBoxFor(m => Model.Event.StartEvent, new { Type = "date" })
+            @Html.TextBoxFor(m => Model.Event.StartEvent, new { Type = "datetime-local",})
             @Html.ValidationMessageFor(m => Model.Event.StartEvent)
         </div>
 
         <div>
             @Html.LabelFor(m => Model.Event.EndEvent, "Heure de fin") :
-            @Html.TextBoxFor(m => Model.Event.EndEvent, new { Type = "date" })
+            @Html.TextBoxFor(m => Model.Event.EndEvent, new { Type = "datetime-local" })
             @Html.ValidationMessageFor(m => Model.Event.EndEvent)
         </div>
 
         @*Ici débute l'adresse ========================================================================*@
         <div>
-            @Html.LabelFor(m => Model.Event.Adress.StreetNumber, "Votre numéro de rue") :
+            @Html.LabelFor(m => Model.Event.Adress.StreetNumber, "Numéro de rue") :
             @Html.TextBoxFor(m => Model.Event.Adress.StreetNumber)
             @Html.ValidationMessageFor(m => Model.Event.Adress.StreetNumber)
         </div>
         
         <div>
-            @Html.LabelFor(m => Model.Event.Adress.StreetName, "Votre nom de voie") :
+            @Html.LabelFor(m => Model.Event.Adress.StreetName, "Nom de voie") :
             @Html.TextBoxFor(m => Model.Event.Adress.StreetName)
             @Html.ValidationMessageFor(m => Model.Event.Adress.StreetName)
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Adress.ZipCode, "Votre code postal") :
+            @Html.LabelFor(m => Model.Event.Adress.ZipCode, "Code postal") :
             @Html.TextBoxFor(m => Model.Event.Adress.ZipCode)
             @Html.ValidationMessageFor(m => Model.Event.Adress.ZipCode)
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Adress.City, "Votre ville") :
+            @Html.LabelFor(m => Model.Event.Adress.City, "Ville") :
             @Html.TextBoxFor(m => Model.Event.Adress.City)
             @Html.ValidationMessageFor(m => Model.Event.Adress.City)
         </div>
@@ -60,14 +54,18 @@
         @*Ici se termine l'adresse ======================================================================*@
 
         <div>
-            @Html.LabelFor(m => Model.Event.Artist.NickNameArtist, "Liste d'artistes") :
+            @Html.LabelFor(m => Model.Event.Artist.NickNameArtist, "Artiste(s)") :
             @Html.TextBoxFor(m => Model.Event.Artist.NickNameArtist)
             @Html.ValidationMessageFor(m => Model.Event.Artist.NickNameArtist)
         </div>
         
         <div>
             @Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement") :
-            @Html.TextBoxFor(m => Model.Event.TypeEvent)
+            @Html.DropDownListFor(
+                     m => Model.Event.TypeEvent,
+                     new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))),
+                     "Sélectionnez un type"
+                     )
             @Html.ValidationMessageFor(m => Model.Event.TypeEvent)
         </div>
 
@@ -79,7 +77,7 @@
 
 
         <div>
-            @Html.LabelFor(m => Model.Event.Ticket.Category, "Nom de la catégorie de billet") :
+            @Html.LabelFor(m => Model.Event.Ticket.Category, "Catégorie de billet") :
             @Html.TextBoxFor(m => Model.Event.Ticket.Category)
             @Html.ValidationMessageFor(m => Model.Event.Ticket.Category)
         </div>
@@ -91,19 +89,16 @@
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Service.TypeService, "Type service") :
+            @Html.LabelFor(m => Model.Event.Service.TypeService, "Type de service") :
             @Html.TextBoxFor(m => Model.Event.Service.TypeService)
             @Html.ValidationMessageFor(m => Model.Event.Service.TypeService)
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Service.QuantityService, "Quantité service") :
+            @Html.LabelFor(m => Model.Event.Service.QuantityService, "Quantité de service") :
             @Html.TextBoxFor(m => Model.Event.Service.QuantityService)
             @Html.ValidationMessageFor(m => Model.Event.Service.QuantityService)
         </div>
 
-        <input type="submit" value="je crée mon compte" />
+        <input type="submit" value="je crée mon événement" />
     }
-
-</body>
-</html>

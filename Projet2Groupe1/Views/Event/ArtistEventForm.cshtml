@@ -1,0 +1,53 @@
+﻿@model Projet2Groupe1.ViewModels.EventViewModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Formulaire Création d'evenement  !!";
+}
+    <p>Votre Evenement </p>
+    @using (Html.BeginForm())
+
+
+    {
+    <div>
+        @Html.LabelFor(m => Model.Event.NameEvent, "Nom de l'événement") :
+        @Html.TextBoxFor(m => Model.Event.NameEvent)
+        @Html.ValidationMessageFor(m => Model.Event.NameEvent)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.Event.StartEvent, "Heure de début") :
+        @Html.TextBoxFor(m => Model.Event.StartEvent, new { Type = "date" })
+        @Html.ValidationMessageFor(m => Model.Event.StartEvent)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.Event.EndEvent, "Heure de fin") :
+        @Html.TextBoxFor(m => Model.Event.EndEvent, new { Type = "date" })
+        @Html.ValidationMessageFor(m => Model.Event.EndEvent)
+    </div>
+
+    @*Ici débute l'adresse ========================================================================*@
+    <div>
+        @Html.LabelFor(m => Model.Event.Adress.StreetNumber, "Votre numéro de rue") :
+        @Html.TextBoxFor(m => Model.Event.Adress.StreetNumber)
+        @Html.ValidationMessageFor(m => Model.Event.Adress.StreetNumber)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.Event.Adress.StreetName, "Votre nom de voie") :
+        @Html.TextBoxFor(m => Model.Event.Adress.StreetName)
+        @Html.ValidationMessageFor(m => Model.Event.Adress.StreetName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.Event.Adress.ZipCode, "Votre code postal") :
+        @Html.TextBoxFor(m => Model.Event.Adress.ZipCode)
+        @Html.ValidationMessageFor(m => Model.Event.Adress.ZipCode)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.Event.Adress.City, "Votre ville") :
+        @Html.TextBoxFor(m => Model.Event.Adress.City)
+        @Html.ValidationMessageFor(m => Model.Event.Adress.City)
+    </div>
+    }
