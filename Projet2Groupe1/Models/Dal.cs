@@ -6,11 +6,15 @@ namespace Projet2Groupe1.Models
     {
         private DataBaseContext _dbContext;
         private UserService _userService;
+        private OrganizerService _organizerService;
+        private EventService _eventService;
 
         public Dal () 
         {
             _dbContext = new DataBaseContext();
             _userService = new UserService(_dbContext);
+            _organizerService = new OrganizerService(_dbContext);
+            _eventService = new EventService(_dbContext);   
         }
 
         public void DeleteCreateDb()
@@ -39,6 +43,42 @@ namespace Projet2Groupe1.Models
             _userService.CreateUser("Provider", "ISIKA", "0450452356", "provider@gmail.com", "1234", true, UserRole.PROVIDER);
             _userService.CreateUser("Member", "ISIKA", "0450452356", "member@gmail.com", "1234", true, UserRole.MEMBER);
             _userService.CreateUser("Premium", "ISIKA", "0450452356", "premium@gmail.com", "1234", true, UserRole.PREMIUM);
+            _organizerService.CreateOrganizer("PDG", "Les Jeux de Wacim", "XXXAAXXXAAXXXAAXXXAATRTTUHX", null, 5);
+            Artist artist = new Artist
+            {
+                Id = 1,
+                FirstNameArtist = "John",
+                LastNameArtist = "Doe",
+                NickNameArtist = "Johnny D"
+            };
+            Adress adress = new Adress
+            {
+                ZipCode = 75001,
+                City = "Paris",
+                StreetNumber = 12,
+                StreetName = "Rue de Rivoli",
+                NamedPlace = "Louvre Museum",
+                StreetComplement = "Near the pyramid"
+            };
+            Ticket ticket = new Ticket 
+              {
+
+                    Category = "VIP",
+                    NumberTotalTicket = 100,
+                    UnitPriceTicket = 150
+                };
+            Service service = new Service
+            {
+              
+                NameService = "Transportation",
+                TypeService = "Logistics",
+                QuantityService = 15
+            };
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), 
+                adress, artist, ticket, service,1);
+            
+            
+
         }
     }
 }

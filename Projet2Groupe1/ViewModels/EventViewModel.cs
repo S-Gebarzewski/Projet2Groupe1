@@ -14,6 +14,7 @@ namespace Projet2Groupe1.ViewModels
 
         public Ticket? Ticket { get; set; }
         public TypeEvent TypeEvent { get; set; }
+        public List<Event>? Events { get; set; }
 
     }
 }

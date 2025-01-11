@@ -66,11 +66,25 @@ namespace Projet2Groupe1.Controllers
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
+                if (!ModelState.IsValid)
+                {
+                    foreach (var field in ModelState)
+                    {
+                        string fieldName = field.Key; // Nom du champ
+                        var errors = field.Value.Errors; // Liste des erreurs associées
+
+                        foreach (var error in errors)
+                        {
+                            Console.WriteLine($"Champ : {fieldName}, Erreur : {error.ErrorMessage}");
+                        }
+                    }
+                }
                 Console.WriteLine("vérification du model state " + ModelState.IsValid);
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password,user.Newsletter, user.Role);
-                    Console.WriteLine("Création" + user.Id);
+                    Console.WriteLine("Le role est " + user.Role);
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password,user.Newsletter, user.Role = UserRole.ORGANIZER);
+                    Console.WriteLine("Le role est " + user.Role);
                 }
                 Console.WriteLine("Apres le if de createuser");
 
@@ -80,7 +94,10 @@ namespace Projet2Groupe1.Controllers
                     if (ModelState.IsValid)
                     {
                         Console.WriteLine("dans le if ");
-                        ios.CreateOrganizer(organizer.Function, organizer.Denomination, organizer.RIB, organizer.Adress,user.Id);
+                        organizer.Id = ios.CreateOrganizer(organizer.Function, organizer.Denomination, organizer.RIB, organizer.Adress,user.Id);
+                      
+                        ius.UpdateUser(user);
+                       
                         return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.ORGANIZER });
                     }
                     Console.WriteLine("Apresle if de createOrganizer");
@@ -113,6 +130,7 @@ namespace Projet2Groupe1.Controllers
                      user.Mail,
                      user.Password,
                      user.Newsletter,
+                   
                      user.Role = UserRole.PROVIDER);
             }
 

@@ -49,6 +49,26 @@ namespace Projet2Groupe1.Models
             }
             return null;
         }
+        public User UpdateUser(User user)
+        {
+            User ExistingUser = _dbContext.Users.Find(user.Id);
+            if (ExistingUser != null)
+            {
+                ExistingUser.Id = user.Id;
+                ExistingUser.FirstName = user.FirstName;
+                ExistingUser.LastName = user.LastName;  
+                ExistingUser.Phone = user.Phone;
+                ExistingUser.Mail = user.Mail;  
+                ExistingUser.Password = user.Password;  
+                ExistingUser.Newsletter = user.Newsletter;
+                ExistingUser.Role= user.Role;
+                _dbContext.Users.Update(ExistingUser);
+                _dbContext.SaveChanges();
+            }
+            return ExistingUser;
+
+        }
+        
 
 
 
@@ -62,6 +82,7 @@ namespace Projet2Groupe1.Models
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(SaltPassword)));
         }
 
+
         public void Dispose()
         {
             this._dbContext.Dispose();
@@ -73,6 +94,7 @@ namespace Projet2Groupe1.Models
             User user = this._dbContext.Users.FirstOrDefault(x => (x.Mail == Mail) && (x.Password == PWDEncrypted));
             return user;
         }
+
         
     }
 }

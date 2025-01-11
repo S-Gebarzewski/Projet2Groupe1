@@ -3,7 +3,9 @@ using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 using Newtonsoft.Json;
 using Projet2Groupe1.Models;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 
 namespace Projet2Groupe1.Controllers
@@ -67,8 +69,35 @@ namespace Projet2Groupe1.Controllers
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
+                    // Retrieve the ClaimsPrincipal from HttpContext
+                    var userPrincipal = HttpContext.User;
 
-                    int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service);
+                    // Get all ClaimsIdentities associated with the user
+                    var identities = userPrincipal.Identities;
+
+                    // If you know there's only one identity or want the first one
+                    var claimIdentity = userPrincipal.Identity as ClaimsIdentity;
+                    String userId = null;
+                    // Retrieve the user.Id value from the Name claim
+                    if (claimIdentity != null)
+                    {
+                        var userIdClaim = claimIdentity.FindFirst(ClaimTypes.Name);
+                        if (userIdClaim != null)
+                        {
+                            userId = userIdClaim.Value; // This is the user.Id value
+                            Console.WriteLine($"User ID: {userId}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("User ID claim not found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No ClaimsIdentity found.");
+                    }
+
+                    int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
                     Console.WriteLine("Création" + eventViewModel.Event.ToString());
                     // si l'event est enregistré on redirige vers la page de détails de l'even où il peut choisir l'image et je passe à cette vue l'id de l'event
                     return RedirectToAction("DetailsEvent", new { id = eventId });
@@ -151,5 +180,53 @@ namespace Projet2Groupe1.Controllers
             }
         }
 
-    }
+
+        [HttpGet]
+        public IActionResult UpdateEvent(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+                string user_id = HttpContext.Session.GetString("user_id");
+                eventViewModel.Events = ies.searchEventList(int.Parse(user_id));
+                eventViewModel.Events.ForEach(e =>
+                {
+                    Console.WriteLine("TEST evenement recupéré: " + e.NameEvent);
+                });
+
+                return View(eventViewModel);
+            };
+
+        }
+
+        [HttpPost]
+        public IActionResult UpdateEvents(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+                Console.WriteLine("requete de modification d'evenementssssssssssssssss" + eventViewModel);
+
+                //ies.UpdateEvent( eventViewModel.Event.Id,eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service);
+
+            };
+
+
+            return View(eventViewModel);
+        }
+ //       public IActionResult Details(int id)
+ //       {
+ //           var eventDetails = _dbcontext.Events
+ //.Include(e => e.Organizer)
+ //.FirstOrDefault(e => e.Id == id);
+ //           if (eventDetails == null)
+ //           {
+ //               return NotFound();
+ //           }
+
+ //           return View(eventDetails);
+
+
+        
+    } 
 }
+
+
