@@ -1,12 +1,84 @@
-﻿@{
+﻿
+@using Projet2Groupe1.Models;
+@model List<Projet2Groupe1.Models.Event>
+@{
     Layout = "_layoutHeaderFooter";
     ViewBag.Title = "Catalogue";
 }
 
 
-<div>Catalogue </div>
 
-<h1>Je suis le catalogue !</h1>
-<div>Je suis un billet</div>
-@Html.ActionLink("Voir les 5 évènements", "TicketDetail", "Event", new { @class = "button" })
+<header class="search-container">
+ @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
+    @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
+	{
+	
+    <nav class="filters-wrapper">
+    @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
+						"Catégories",
+                        new { onchange = "this.Form.submit()" })
+    @Html.DropDownList("city", new SelectList(Model.Select(e => e.Adress.City).Distinct()),
+						"Villes", 
+                        new { onchange = "this.Form.submit()" })
+    
+     <div class="search-bar">
+         <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
+				@Html.TextBox("search",
+                null,
+                new { placeholder = "Evenement, artiste " })
+		<button type="submit" class="search-button">
+            Rechercher
+        </button>
+     </div>
+     </nav>
+    }
+</header>
+
+<main class="events-container">
+	
+	
+        @foreach (var eventItem in Model)
+        {
+        <div class="event-card">
+            <section class="left-section">
+			<div class="event-card-picture">
+				
+	    	@if (eventItem.PhotoData != null)
+            {
+                <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" src="data:image.jpg;base64," + Convert.ToBase64String(eventItem.PhotoData); />
+             }
+             else
+             {
+			 <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" 
+              src = "@Url.Action("GetDefaultImage", "Event", new { type = eventItem.TypeEvent })"/>
+                       
+              }
+            </div>
+                
+            <div class="info-event">
+                    <h2 class="event-card-title">@eventItem.NameEvent </h2>
+                <p class="event-card-date">@eventItem.StartEvent.ToString("dd/MM/yyyy") - @eventItem.EndEvent.ToString("dd/MM/yyyy")</p>
+			<p class="event-card-location">@eventItem.Adress.City</p>
+            </div>
+            </section>
+             <section class="right-section">
+				<p class="price"> à partir de  @eventItem.Ticket.UnitPriceTicket €</p>
+                @Html.ActionLink("Voir les évènements", "TicketDetail", "Event", new { id = eventItem.Id }, new { @class = "button" })
+            </section>
+        </div>
+        }
+         
+ 
+
+      
+      
+            
+
+</main>
+
+
+
+
+
+
 

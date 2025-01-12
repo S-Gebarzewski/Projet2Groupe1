@@ -12,9 +12,15 @@ namespace Projet2Groupe1.Controllers
     {
 
 
-        public IActionResult Catalog()
+        public IActionResult Catalog(string category, string city, string search)
         {
-            return View();
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+               List<Event> events = ies.GetFilteredEvents(category,city,search);
+                return View(events);
+
+            }
+           ;
         }
 
         public IActionResult TicketDetail()
@@ -43,8 +49,6 @@ namespace Projet2Groupe1.Controllers
         {
 
             using (IEventService ies = new EventService(new DataBaseContext()))
-
-
 
 
             {

@@ -6,6 +6,10 @@
 
         public Event searchEvent(int id);
 
+        public List<Event> GetAllEvents();
+
+        public List<Event> GetFilteredEvents(string category = null, string city = null, string search = null);
+
         //pensez à ajouter le depot d'image =================================================================================================================
     }
 }

@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string? FirstNameArtist { get; set; }
         public string? LastNameArtist { get; set; }
-        public string NickNameArtist { get; set; }
+        public string? NickNameArtist { get; set; }
     }
 }
