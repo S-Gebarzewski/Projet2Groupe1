@@ -8,6 +8,7 @@
         public int UpdateEvent(int id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service);
 
         public List<Event> searchEventList(int userId);
+        public void DeleteEvent(int id);
 
 
         //pensez à ajouter le depot d'image =================================================================================================================

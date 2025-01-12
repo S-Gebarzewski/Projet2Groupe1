@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
-using Newtonsoft.Json;
-using Projet2Groupe1.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using Microsoft.Extensions.Configuration.UserSecrets;
 
 
 namespace Projet2Groupe1.Controllers
@@ -45,94 +41,44 @@ namespace Projet2Groupe1.Controllers
         {
 
             using (IEventService ies = new EventService(new DataBaseContext()))
-
-
-
-
             {
-
-                if (!ModelState.IsValid)
-                {
-                    foreach (var field in ModelState)
-                    {
-                        string fieldName = field.Key; // Nom du champ
-                        var errors = field.Value.Errors; // Liste des erreurs associées
-
-                        foreach (var error in errors)
-                        {
-                            Console.WriteLine($"Champ : {fieldName}, Erreur : {error.ErrorMessage}");
-                        }
-                    }
-                }
-
 
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
-                    // Retrieve the ClaimsPrincipal from HttpContext
-                    var userPrincipal = HttpContext.User;
-
-                    // Get all ClaimsIdentities associated with the user
-                    var identities = userPrincipal.Identities;
-
-                    // If you know there's only one identity or want the first one
-                    var claimIdentity = userPrincipal.Identity as ClaimsIdentity;
-                    String userId = null;
-                    // Retrieve the user.Id value from the Name claim
-                    if (claimIdentity != null)
+                    String userId = retrieveUserIdFromContext();
+                    if (userId != null)
                     {
-                        var userIdClaim = claimIdentity.FindFirst(ClaimTypes.Name);
-                        if (userIdClaim != null)
-                        {
-                            userId = userIdClaim.Value; // This is the user.Id value
-                            Console.WriteLine($"User ID: {userId}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("User ID claim not found.");
-                        }
+
+                        ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
+                        Console.WriteLine("Création" + eventViewModel.Event.ToString());
                     }
                     else
                     {
-                        Console.WriteLine("No ClaimsIdentity found.");
+                        Console.WriteLine("Erreur Création Event userId : " + userId);
                     }
-
-                    int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
-                    Console.WriteLine("Création" + eventViewModel.Event.ToString());
-                    // si l'event est enregistré on redirige vers la page de détails de l'even où il peut choisir l'image et je passe à cette vue l'id de l'event
-                    return RedirectToAction("DetailsEvent", new { id = eventId });
-
                 }
-                //passer le event view model en paramètre permet de renvoyer le formulaire avec les données saisies
-                return View(eventViewModel);
+                return View();
             }
         }
 
-        //get pour afficher l'événement et le formulaire d'upload
-        public IActionResult DetailsEvent(int id) //route GET pour ajouter un User avec une image
+        private String retrieveUserIdFromContext()
         {
-            using (IEventService ies = new EventService(new DataBaseContext()))
+            var userPrincipal = HttpContext.User;
+
+            ClaimsIdentity claimIdentity = (ClaimsIdentity)HttpContext.User.Identity;
+            String userId = null;
+            
+            if (claimIdentity != null)
             {
-                Event eventItem = ies.searchEvent(id);
-
-                EventViewModel eventViewModel = new EventViewModel();
-                if (eventItem != null)
+                var userIdClaim = claimIdentity.FindFirst(ClaimTypes.Name);
+                if (userIdClaim != null)
                 {
-                    {
-                        eventViewModel.Event = eventItem;
-                        
-                    };
-                    
-                    return View(eventViewModel);
+                    userId = userIdClaim.Value; 
                 }
-                return RedirectToAction("CreateEvent",eventViewModel);
             }
-        }
-        public IActionResult GetDefaultImage(TypeEvent type)
-        {
-            var fileService = new FileService();
-            string imagePath = fileService.GetDefaultImagePath(type);
-            return File(imagePath, "image/png");
+
+            return userId;
         }
 
 
@@ -186,12 +132,8 @@ namespace Projet2Groupe1.Controllers
         {
             using (IEventService ies = new EventService(new DataBaseContext()))
             {
-                string user_id = HttpContext.Session.GetString("user_id");
+                string user_id = retrieveUserIdFromContext();
                 eventViewModel.Events = ies.searchEventList(int.Parse(user_id));
-                eventViewModel.Events.ForEach(e =>
-                {
-                    Console.WriteLine("TEST evenement recupéré: " + e.NameEvent);
-                });
 
                 return View(eventViewModel);
             };
@@ -203,26 +145,31 @@ namespace Projet2Groupe1.Controllers
         {
             using (IEventService ies = new EventService(new DataBaseContext()))
             {
-                Console.WriteLine("requete de modification d'evenementssssssssssssssss" + eventViewModel);
-
-                //ies.UpdateEvent( eventViewModel.Event.Id,eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service);
+               
+                Event eventToUpdate = ies.searchEvent(eventViewModel.Event.Id);
+                eventToUpdate.Artist.NickNameArtist = eventViewModel.Event.Artist.NickNameArtist;
+                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Ticket, eventToUpdate.Service);
 
             };
 
-
-            return View(eventViewModel);
+            return RedirectToAction("UpdateEvent", eventViewModel);
         }
- //       public IActionResult Details(int id)
- //       {
- //           var eventDetails = _dbcontext.Events
- //.Include(e => e.Organizer)
- //.FirstOrDefault(e => e.Id == id);
- //           if (eventDetails == null)
- //           {
- //               return NotFound();
- //           }
 
- //           return View(eventDetails);
+        [HttpPost]
+        public IActionResult DeleteEvent(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+             
+                ies.DeleteEvent(eventViewModel.Event.Id);
+                
+
+            }
+            return RedirectToAction("UpdateEvent",eventViewModel);  
+
+        }
+
+ 
 
 
         

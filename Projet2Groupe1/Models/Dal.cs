@@ -75,9 +75,14 @@ namespace Projet2Groupe1.Models
                 QuantityService = 15
             };
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), 
-                adress, artist, ticket, service,1);
-            
-            
+                adress, artist, ticket, service,5);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3),
+    adress, artist, ticket, service, 5);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3),
+                adress, artist, ticket, service, 5);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3),
+    adress, artist, ticket, service, 5);
+
 
         }
     }

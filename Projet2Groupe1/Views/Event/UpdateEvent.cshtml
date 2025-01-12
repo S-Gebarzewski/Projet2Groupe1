@@ -4,35 +4,169 @@
     ViewBag.Title = "Profile de l'Admin !!";
 }
 
-<h2>Update Event</h2>
+<h2>Manage Event</h2>
+<head>
+    <style>
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
 
-<form asp-action="UpdateEvent" method="post">
-    <input type="hidden" asp-for="Id" />
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
 
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
+        tr.selected {
+            background-color: #f0f8ff; 
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<form id="eventForm" method="post" action="@Url.Action("UpdateEvents", "Event")">
+    <input type="hidden" id="eventId" name="Event.Id"   />
+    <input type="hidden" id="eventName" name="Event.NameEvent" />
+    <input type="hidden" id="typeEvent" name="Event.TypeEvent" />
+    <input type="hidden" id="startEvent" name="Event.StartEvent" />
+    <input type="hidden" id="endEvent" name="Event.EndEvent" />
+    <input type="hidden" id="artistName" name="Event.Artist.NickNameArtist" />
+<table id="eventTable">
+    <thead>
+        <tr>
+            <th>Nom de l'évenement</th>
+            <th>Type Evenement</th>
+            <th>Date de l'évenement</th>
+            <th>Etat de la demande</th>
+            <th>Artiste</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+                <tr data-id="@item.Id">
+                <td>@item.NameEvent</td>
+                <td>@item.TypeEvent</td>
+                <td>@item.StartEvent</td>
+                <td>@item.EndEvent</td>
+                <td>@item.Artist.NickNameArtist</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" id="editButton">Editer Evenement</button>
+        <button type="button" id="deleteButton">Supprimer Evenement</button>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Date"></label>
-        <input asp-for="Date" class="form-control" type="date" />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
-    @foreach (var item in Model.Events)
-    {
-        <div>
-            <!-- Label for each item's name -->
-            @Html.LabelFor(m => item.NameEvent, $"Label for {item.NameEvent}")
-        </div>
-    }
-    <button type="submit" class="btn btn-primary">Save</button>
-
 </form>
+
+
+<script>
+       let selectedRow = null;
+  
+    document.querySelectorAll('#eventTable tbody tr').forEach(row => {
+        row.addEventListener('click', function () {
+            if (selectedRow) {
+                selectedRow.classList.remove('selected');
+            }
+
+            
+            selectedRow = this;
+            this.classList.add('selected');
+            const eventId = selectedRow.getAttribute('data-id');
+            document.getElementById('eventId').value = eventId;
+        });
+    });
+
+    
+    document.getElementById('editButton').addEventListener('click', function (event) {
+        document.getElementById('deleteButton').disabled=true;
+        console.log('Selected Row:'+ selectedRow);
+        if (!selectedRow) {
+            alert('Selectionner un évenement a modifier');
+            return;
+        }
+
+        const cells = selectedRow.querySelectorAll('td');
+
+        if (this.textContent === 'Editer Evenement') {
+            cells.forEach((cell, index) => {
+                const currentValue = cell.innerText;
+                if (index === 1) {
+                    cell.innerHTML = `
+                        <select>
+                            <option value="CONCERT" ${currentValue === 'CONCERT' ? 'selected' : ''}>CONCERT</option>
+                            <option value="FESTIVAL" ${currentValue === 'FESTIVAL' ? 'selected' : ''}>FESTIVAL</option>
+                            <option value="SIGNINGSESSION" ${currentValue === 'SIGNINGSESSION' ? 'selected' : ''}>SIGNINGSESSION</option>
+                        </select>
+                    `;
+                } else {
+                    cell.innerHTML = `<input type="text" value="${currentValue}" />`;
+                }
+            });
+
+            this.textContent = 'Enregistrer';
+        } else {
+
+            cells.forEach((cell, index) => {
+
+                if(index === 0) {
+                    const input = cell.querySelector('input');
+                    const value = input.value;
+                    document.getElementById('eventName').value = value;
+                    console.log(" document.getElementById('eventName')"+value);
+                }
+                else if (index === 1) {
+                    const select = cell.querySelector('select');
+                    const value = select.value;
+                    cell.innerHTML = value;
+                    document.getElementById('typeEvent').value = value;
+                    console.log(" document.getElementById('typeEvent')"+value);
+                }
+                else if (index === 2) {
+                    const input = cell.querySelector('input');
+                    const value = input.value;
+                    document.getElementById('startEvent').value = value;
+                    console.log(" document.getElementById('startEvent')"+value);
+                }
+                else if (index === 3) {
+                    const input = cell.querySelector('input');
+                    const value = input.value;
+                    document.getElementById('endEvent').value = value;
+                    console.log(" document.getElementById('endEvent')"+value);
+                }
+                else {
+                    const input = cell.querySelector('input');
+                    const value = input.value;
+                    document.getElementById('artistName').value = value;
+                    console.log(" document.getElementById('artistName')"+value);
+                }
+            });
+
+            document.getElementById('eventForm').submit();
+            this.textContent = 'Editer Evenement';
+            selectedRow.classList.remove('selected');
+            selectedRow = null;
+        }
+        event.preventDefault();
+    });
+    
+    document.getElementById('deleteButton').addEventListener('click', function () {
+        if (!selectedRow) {
+            alert('Selectionner un évenement à supprimer');
+            return;
+        }
+
+        if (confirm('Voulez-vous vraiment supprimer cet événement?')) {
+            document.getElementById('eventForm').action = '@Url.Action("DeleteEvent", "Event")';
+            document.getElementById('eventForm').submit();
+        }
+    });
+
+</script>
