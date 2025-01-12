@@ -32,7 +32,7 @@ a {
 
 /*styles applicables au header =============================================================================================================================*/
 #mainHeader {
-    background-color: #ef188e;
+/*    background-color: #ef188e;*/
     display: flex;
     justify-content: space-between;
     height: 106px;
@@ -82,25 +82,25 @@ a {
 }
 
 /*styles personnalisés du header =============================================================================================================================*/
-/*#ADMIN {
+body .ADMIN {
     background-color: #a0f993;
 }
 
-#ORGANIZER {
+body .ORGANIZER {
     background-color: #1a6ee8;
 }
 
-#PROVIDER {
+body .PROVIDER {
     background-color: #63e6fc;
 }
 
-#MEMBER {
+body .MEMBER {
     background-color: #ff8500;
 }
 
-#PREMIUM {
+body .PREMIUM {
     background-color: #ef188e;
-}*/
+}
 
 /*styles applicables au bandeau vertical de navigation =====================================================================================================*/
 #leftCol {
