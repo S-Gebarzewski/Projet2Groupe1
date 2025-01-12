@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 using System.Security.Claims;
@@ -50,8 +51,9 @@ namespace Projet2Groupe1.Controllers
                     if (userId != null)
                     {
 
-                        ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
+                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
+                        return RedirectToAction("DetailsEvent", new { id = eventId });
                     }
                     else
                     {
@@ -60,6 +62,33 @@ namespace Projet2Groupe1.Controllers
                 }
                 return View();
             }
+        }
+
+        //get pour afficher l'événement et le formulaire d'upload
+        public IActionResult DetailsEvent(int id) //route GET pour ajouter un User avec une image
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+                Event eventItem = ies.searchEvent(id);
+
+                EventViewModel eventViewModel = new EventViewModel();
+                if (eventItem != null)
+                {
+                    {
+                        eventViewModel.Event = eventItem;
+
+                    };
+
+                    return View(eventViewModel);
+                }
+                return RedirectToAction("CreateEvent", eventViewModel);
+            }
+        }
+        public IActionResult GetDefaultImage(TypeEvent type)
+        {
+            var fileService = new FileService();
+            string imagePath = fileService.GetDefaultImagePath(type);
+            return File(imagePath, "image/png");
         }
 
         private String retrieveUserIdFromContext()
