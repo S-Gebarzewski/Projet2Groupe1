@@ -15,6 +15,13 @@
             return FilteredUsersByStatus;
         }
 
+        public List<Event> GetEventsByStatus(statusRegistration StatusRegistration)
+        {
+            List<Event> FilteredEventsByStatus = _dbContext.Events.Where(u => u.StatusRegistration == StatusRegistration).ToList();
+            Console.WriteLine($"{FilteredEventsByStatus.Count} events found for {StatusRegistration}");
+            return FilteredEventsByStatus;
+        }
+
         public int CreateAdmin(LevelAdmin LevelAdmin, int UserId)
         {
             Admin admin = new Admin()

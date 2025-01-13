@@ -19,6 +19,8 @@
         public Service? Service { get; set; }
 
         public byte[]? PhotoData { get; set; }
+
+        public statusRegistration StatusRegistration { get; set; }
         public int userId { get; set; }
 
 

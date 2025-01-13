@@ -1,0 +1,66 @@
+﻿@model Projet2Groupe1.ViewModels.HandlerEventViewModel
+@using System.Security.Claims
+@using Projet2Groupe1.Models
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Administrateur - Gestion des evenements";
+}
+
+@section DashNav {
+    <ul>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconePrinter.png" alt="Icone Printer" class="icone">Imprimer rapport</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
+        <li><a href="/Administration/ShowEvent" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Valider une demande d'événement</a></li>
+        <li><a href="/Administration/ShowRegistration/" class="buttonProfile"><img src="~/images/iconePen.png" alt="Icone Pen" class="icone">Traiter une demande d'inscription</a></li>
+        <li><a href="/Login/Redirect" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+    </ul>
+}
+<div id="OrganizerTable">
+    <h2>Gestion de la validation des Evenements</h2>
+    @if (Model.EventStatusPending.Count() > 0)
+    {
+        <table border="1" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom de l'evenement</th>
+                    <th>Type d'evenement</th>
+                    <th>Photo de l'evenement</th>
+                    <th>Etat de la demande</th>
+                    <th>Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var evenment in Model.EventStatusPending)
+                {
+                    @using (Html.BeginForm("HandlerEvent", "Administration", FormMethod.Post))
+                    {
+                        <tr>
+                            <td>@evenment.Id</td>
+                            <td>@evenment.NameEvent</td>
+                            <td>@evenment.TypeEvent</td>
+                            <td>@evenment.PhotoData</td>
+                            <td>
+                                <select id="StatusRegistration" name="StatusRegistration">
+                                    <option value="" disabled selected>@evenment.StatusRegistration.ToString()</option>
+                                    <option value="@statusRegistration.ACCEPTED">Accepter</option>
+                                    <option value="@statusRegistration.REFUSED">Refuser</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" name="Id" value="@evenment.Id" />
+                                <button type="submit">Mettre à jour</button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div>Aucune demande de validation en attente</div>
+    }
+</div>

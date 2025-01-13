@@ -68,22 +68,7 @@ namespace Projet2Groupe1.Models
             return ExistingUser;
 
         }
-        
-
-        // Recupere un user, reecris toutes ses informations et
-        // l'enregsitre avec ses nouvelles informations
-        public User UpdateUserByStatus(User UpdatingUser)
-        {
-            User ExistingUser = GetUser(UpdatingUser.Id);
-
-            ExistingUser.StatusRegistration = UpdatingUser.StatusRegistration;
-
-            _dbContext.Users.Update(ExistingUser);
-            _dbContext.SaveChanges();
-
-            return ExistingUser;
-        }
-
+     
         public User UpdateUserStatus(User UpdatingUser)
         {
             User ExistingUser = GetUser(UpdatingUser.Id);

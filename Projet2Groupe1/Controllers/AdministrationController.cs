@@ -48,5 +48,43 @@ namespace Projet2Groupe1.Controllers
                 return View(handlerRegistrationViewModel);
             }
         }
+
+        public IActionResult HandlerEvent(Event evenment) 
+        {
+            Console.WriteLine("Je suis dans la methode HandlerRegistration");
+
+            Console.WriteLine("Event gere: " + evenment.NameEvent);
+
+            using (IEventService ies = new EventService(new DataBaseContext())) 
+            {
+                Event evenmentUptader = ies.UpdateEventStatus(evenment);
+            }
+
+            using (IAdminService ias = new AdminService(new DataBaseContext()))
+            {
+                List<Event> EventStatusPending = ias.GetEventsByStatus(statusRegistration.PENDING);
+
+                HandlerEventViewModel handlerEventViewModel = new HandlerEventViewModel()
+                {
+                    EventStatusPending = EventStatusPending
+                };
+                Console.WriteLine("list de pending organizer : " + handlerEventViewModel.EventStatusPending.Count());
+                return View("ShowEvent", handlerEventViewModel);
+            }
+        }
+        public IActionResult ShowEvent()
+        {
+            using (IAdminService ias = new AdminService(new DataBaseContext()))
+            {
+                List<Event> EventStatusPending = ias.GetEventsByStatus(statusRegistration.PENDING);
+
+                HandlerEventViewModel handlerEventViewModel = new HandlerEventViewModel()
+                {
+                    EventStatusPending = EventStatusPending
+                };
+                Console.WriteLine("list de pending organizer : " + handlerEventViewModel.EventStatusPending.Count());
+                return View(handlerEventViewModel);
+            }
+        }
     }
 }

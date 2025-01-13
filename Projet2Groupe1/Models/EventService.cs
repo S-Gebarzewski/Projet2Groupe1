@@ -12,9 +12,8 @@ namespace Projet2Groupe1.Models
         {
             this._dbContext = _dbContext;
         }
-
-
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Ticket? Ticket, Service? Service)
+        
+        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Ticket? Ticket, Service? Service, statusRegistration StatusRegistration)
         { 
             Adress adress = new Adress()
             {
@@ -49,18 +48,18 @@ namespace Projet2Groupe1.Models
                 Adress = adress,
                 Artist = artist,
                 Ticket = ticket,
-                Service = Service
+                Service = Service,
+                StatusRegistration = StatusRegistration
             };
 
             _dbContext.Events.Add(newEvent);
-
             _dbContext.SaveChanges();
 
             return newEvent.Id;
         }
 
 
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId)
+        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
         {
 
             Event newEvent = new Event()
@@ -75,12 +74,11 @@ namespace Projet2Groupe1.Models
                 Artist = Artist,
                 Ticket = Ticket,
                 Service = Service,
-                userId = userId
-
+                userId = userId,
+                StatusRegistration = StatusRegistration
             };
 
             _dbContext.Events.Add(newEvent);
-
             _dbContext.SaveChanges();
 
             return newEvent.Id;
@@ -113,6 +111,27 @@ namespace Projet2Groupe1.Models
             }
             return newEvent.Id;
 
+        }
+
+        // Recupere un user, reecris toutes ses informations et
+        // l'enregsitre avec ses nouvelles informations
+        public Event UpdateEventStatus(Event UpdatingEvent)
+        {
+            Event ExistingEvent = GetEvent(UpdatingEvent.Id);
+
+            ExistingEvent.StatusRegistration = UpdatingEvent.StatusRegistration;
+
+            _dbContext.Events.Update(ExistingEvent);
+            _dbContext.SaveChanges();
+
+            return ExistingEvent;
+        }
+
+        
+
+        public Event GetEvent(int id) 
+        {
+            return _dbContext.Events.Find(id);
         }
 
         public List<Event> searchEventList(int userId)
