@@ -25,7 +25,8 @@ namespace Projet2Groupe1.Controllers
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
                     UserRole role = member.IsPremium ? UserRole.PREMIUM : UserRole.MEMBER;
-                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role = role);
+                    statusRegistration statusAccepted = statusRegistration.ACCEPTED;
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, statusAccepted, user.Role = role);
                     Console.WriteLine(user.ToString());
                 }
 
@@ -69,7 +70,8 @@ namespace Projet2Groupe1.Controllers
                 Console.WriteLine("vérification du model state " + ModelState.IsValid);
                 if (ModelState.IsValid && ius.searchUser(user.Id) == null)
                 {
-                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password,user.Newsletter, user.Role);
+                    statusRegistration StatusPending = statusRegistration.PENDING;
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password,user.Newsletter, user.StatusRegistration = StatusPending, user.Role = UserRole.ORGANIZER);
                     Console.WriteLine("Création" + user.Id);
                 }
                 Console.WriteLine("Apres le if de createuser");
@@ -105,15 +107,11 @@ namespace Projet2Groupe1.Controllers
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
-                if(ModelState.IsValid && ius.searchUser(user.Id) == null)
-                     user.Id = ius.CreateUser(
-                     user.FirstName,
-                     user.LastName,
-                     user.Phone,
-                     user.Mail,
-                     user.Password,
-                     user.Newsletter,
-                     user.Role = UserRole.PROVIDER);
+                if (ModelState.IsValid && ius.searchUser(user.Id) == null)
+                {
+                    statusRegistration StatusPending = statusRegistration.PENDING;
+                    user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.StatusRegistration = StatusPending, user.Role = UserRole.PROVIDER);
+                }
             }
 
             using (IProviderService ips = new ProviderService(new DataBaseContext()))
@@ -121,18 +119,13 @@ namespace Projet2Groupe1.Controllers
                 provider.UserId = user.Id;
                 if (ModelState.IsValid)
                 {
-                    ips.CreateProvider(provider.Position,
-                                       provider.ServiceType,
-                                       provider.Adress,
-                                       provider.UserId);
+                    ips.CreateProvider(provider.Function, provider.ServiceType, provider.Adress, provider.UserId);
 
                     return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.PROVIDER });
                 }
             }
 
             return View();
-
-
         }
 
         public IActionResult IndividualRegistration()

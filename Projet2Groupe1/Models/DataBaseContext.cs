@@ -12,6 +12,8 @@ namespace Projet2Groupe1.Models
 
         public DbSet<Provider> Providers { get; set; }
 
+        public DbSet<Admin> Admins { get; set; }
+
         public DbSet<Event> Events { get; set; }
 
 

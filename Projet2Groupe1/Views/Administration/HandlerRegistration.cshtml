@@ -1,0 +1,47 @@
+﻿@model Projet2Groupe1.ViewModels.HandlerRegistrationViewModel
+@using System.Security.Claims
+@using Projet2Groupe1.Models
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Dashboard Administrateur";
+}
+
+<div id="OrganizerTable">
+    <h2>Gestion des inscriptions Organisateur en attente</h2>
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Role</th>
+                <th>Etat de la demande</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.OrganizerStatusPending)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <select id="StatusRegistration" name="StatusRegistration">
+                            <option value="" disabled selected>@user.StatusRegistration.ToString()</option>
+                            <option value="ACCEPTED">Accepter</option>
+                            <option value="REFUSED">Refuser</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="hidden" name="UserId" value="@user.Id" />
+                        <button type="submit">Mettre à jour</button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

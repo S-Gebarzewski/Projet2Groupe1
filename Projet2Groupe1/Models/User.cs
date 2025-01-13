@@ -29,7 +29,7 @@ namespace Projet2Groupe1.Models
         public string Password { get; set; }
         public bool Newsletter { get; set; }
         public UserRole Role { get; set; } // appel a mon enum 
-
+        public statusRegistration StatusRegistration { get; set; }
         public byte[]? PhotoData { get; set; }
 
         public override String ToString()

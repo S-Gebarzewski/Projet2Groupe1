@@ -8,22 +8,22 @@
             this._dbContext = _dbContext;
         }
 
-        public int CreateProvider(string position, string serviceType, Adress adressData, int userId)
+        public int CreateProvider(string function, string serviceType, Adress adress, int userId)
         {
-            Adress adress = new Adress
+            Adress Adress = new Adress
             {
-                ZipCode = adressData.ZipCode,
-                City = adressData.City,
-                StreetName = adressData.StreetName,
-                StreetNumber = adressData.StreetNumber,
-                NamedPlace = adressData.NamedPlace,
-                StreetComplement = adressData.StreetComplement
+                ZipCode = adress.ZipCode,
+                City = adress.City,
+                StreetName = adress.StreetName,
+                StreetNumber = adress.StreetNumber,
+                NamedPlace = adress.NamedPlace,
+                StreetComplement = adress.StreetComplement
             };
             Provider provider = new Provider
             {
-                Position = position,
+                Function = function,
                 ServiceType = serviceType,
-                Adress = adress,
+                Adress = Adress,
                 UserId = userId
             };
             _dbContext.Providers.Add(provider);

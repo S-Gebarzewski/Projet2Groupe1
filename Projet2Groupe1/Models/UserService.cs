@@ -11,10 +11,8 @@ namespace Projet2Groupe1.Models
         {
             this._dbContext = _dbContext;
         }
-       
 
-        public int CreateUser(string FirstName, string LastName, string Phone, string Mail, string Password, bool Newsletter, UserRole Role = UserRole.DEFAULT)
-
+        public int CreateUser(string FirstName, string LastName, string Phone, string Mail, string Password, bool Newsletter, statusRegistration statusRegistration = statusRegistration.ACCEPTED, UserRole Role = UserRole.DEFAULT)
         {
             User user = new User()
             {
@@ -23,10 +21,9 @@ namespace Projet2Groupe1.Models
                 Phone = Phone,
                 Mail = Mail,
                 Password = EncodeMD5(Password),
-
                 Newsletter = Newsletter,
+                StatusRegistration = statusRegistration,
                 Role = Role                
-
             };
 
             _dbContext.Users.Add(user); // ma DB, ma table, ma fonction
@@ -50,7 +47,27 @@ namespace Projet2Groupe1.Models
             return null;
         }
 
+        // Recupere un user, reecris toutes ses informations et
+        // l'enregsitre avec ses nouvelles informations
+        public User UpdateUser(User UpdatingUser)
+        {
+            Console.WriteLine("Lastname du user : " + UpdatingUser.LastName);
+            User ExistingUser = GetUser(UpdatingUser.Id);
 
+            ExistingUser.FirstName = UpdatingUser.FirstName;
+            ExistingUser.LastName = UpdatingUser.LastName;
+            ExistingUser.Phone = UpdatingUser.Phone;
+            ExistingUser.Mail = UpdatingUser.Mail;
+            ExistingUser.Password = UpdatingUser.Password;
+            ExistingUser.Role = UpdatingUser.Role;
+            ExistingUser.StatusRegistration = UpdatingUser.StatusRegistration;
+            ExistingUser.PhotoData = UpdatingUser.PhotoData;
+
+            _dbContext.Users.Update(ExistingUser);
+            _dbContext.SaveChanges();
+
+            return ExistingUser;
+        }
 
         public User searchUser(int id)
         {
@@ -62,17 +79,17 @@ namespace Projet2Groupe1.Models
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(SaltPassword)));
         }
 
-        public void Dispose()
-        {
-            this._dbContext.Dispose();
 
-        }
         public User Authentication(string Mail, string Password)
         {
             string PWDEncrypted = EncodeMD5(Password);
             User user = this._dbContext.Users.FirstOrDefault(x => (x.Mail == Mail) && (x.Password == PWDEncrypted));
             return user;
         }
-        
+        public void Dispose()
+        {
+            this._dbContext.Dispose();
+
+        }
     }
 }
