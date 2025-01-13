@@ -41,7 +41,7 @@ namespace Projet2Groupe1.Models
             _userService.CreateUser("Admin", "ISIKA", "0450452356", "admin@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ADMIN);
 
             _userService.CreateUser("Organizer", "OG", "0612092937", "og@gmail.com", "1234", true, statusRegistration.PENDING, UserRole.ORGANIZER);
-            //
+
 
             _userService.CreateUser("Admin", "ISIKA", "0450452356", "admin@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ADMIN);
             _userService.CreateUser("Organizer", "ISIKA", "0450452356", "organizer@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ORGANIZER);
@@ -147,7 +147,8 @@ namespace Projet2Groupe1.Models
                 bercy,
                 orelsan,
                 ticketConcertStandard,
-                null
+                null,
+                statusRegistration.PENDING
             );
 
             _eventService.CreateEvent(
@@ -158,7 +159,8 @@ namespace Projet2Groupe1.Models
                 olympiaAddress,
                 stromae,
                 ticketConcertVIP,
-                null
+                null,
+                statusRegistration.PENDING
             );
 
             _eventService.CreateEvent(
@@ -176,7 +178,8 @@ namespace Projet2Groupe1.Models
                 },
                 iggyPop,
                 ticketFestival,
-                null
+                null,
+                statusRegistration.PENDING
             );
 
             _eventService.CreateEvent(
@@ -194,7 +197,8 @@ namespace Projet2Groupe1.Models
                 },
                 bowie,
                 ticketConcertVIP,
-                null
+                null,
+                statusRegistration.PENDING
             );
 
             _eventService.CreateEvent(
@@ -205,12 +209,13 @@ namespace Projet2Groupe1.Models
                 zenithAddress,
                 indochine,
                 ticketConcertStandard,
-                null
+                null,
+                statusRegistration.PENDING
             );
 
 
-
             _organizerService.CreateOrganizer("PDG", "Les Jeux de Wacim", "XXXAAXXXAAXXXAAXXXAATRTTUHX", null, 5);
+
             Artist artist = new Artist
             {
                 FirstNameArtist = "John",
@@ -228,7 +233,6 @@ namespace Projet2Groupe1.Models
             };
             Ticket ticket = new Ticket 
               {
-
                     Category = "VIP",
                     NumberTotalTicket = 100,
                     UnitPriceTicket = 150
@@ -240,15 +244,13 @@ namespace Projet2Groupe1.Models
                 TypeService = "Logistics",
                 QuantityService = 15
             };
+
+
            // (TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId)
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), 
-                adress, artist, ticket, service,5);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3),
-    adress, artist, ticket, service, 5);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3),
-                adress, artist, ticket, service, 5);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3),
-    adress, artist, ticket, service, 5);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
         }
     }
 }
