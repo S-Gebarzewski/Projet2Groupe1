@@ -14,32 +14,27 @@ namespace Projet2Groupe1.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpGet]
-        public IActionResult CreateAccount()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult CreateAccount(User user)
-        {
-            using (IUserService ius = new UserService(new DataBaseContext()))
-            {
-                Console.WriteLine("vérification du model state " + ModelState.IsValid);
-                if (ModelState.IsValid && ius.searchUser(user.Id) == null)
-                {
-                    ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
-                    Console.WriteLine("Création" + user.ToString());
-                }
-                return View();
-            }
-
-
-
-
-        }
+        //[HttpGet]
+        //public IActionResult CreateAccount()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        ////public IActionResult CreateAccount(User user)
+        ////{
+        ////    using (IUserService ius = new UserService(new DataBaseContext()))
+        ////    {
+        ////        Console.WriteLine("vérification du model state " + ModelState.IsValid);
+        ////        if (ModelState.IsValid && ius.searchUser(user.Id) == null)
+        ////        {
+        ////            ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
+        ////            Console.WriteLine("Création" + user.ToString());
+        ////        }
+        ////        return View();
+        ////    }
+        ////}
       
         public IActionResult Connection()
-
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
@@ -124,18 +119,17 @@ namespace Projet2Groupe1.Controllers
         }
 
         [Authorize]
-        public IActionResult Redirect(UserRole dashboardType)
+        public IActionResult Redirect(UserRole DashboardType)
         {
-            Console.WriteLine("voici le dashboardtype : "+dashboardType.ToString());
-            TempData["Role"]=dashboardType;
-            switch (dashboardType.ToString())
+            
+            Console.WriteLine("voici le dashboardtype : " + DashboardType.ToString());
+            TempData["Role"] = DashboardType;
+            switch (DashboardType.ToString())
             {
                 case "ADMIN":
                     return View("DashBoardAdmin");
-
                 case "MEMBER":
                     return View("DashBoardMember");
-
                 case "PREMIUM":
                     return View("DashBoardPremium");
                 case "ORGANIZER":
@@ -143,11 +137,9 @@ namespace Projet2Groupe1.Controllers
                 case "PROVIDER":
                     return View("DashBoardProvider");
                 default:
-                    Console.WriteLine("je suis la");
-
-
+                    Console.WriteLine("je suis en role par defaut");
                     return null;
-            }
+                }
         }
        
         public IActionResult Disconnection()
