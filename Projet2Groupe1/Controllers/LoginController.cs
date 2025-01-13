@@ -69,11 +69,11 @@ namespace Projet2Groupe1.Controllers
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
+
                     List<Claim> userClaims = new List<Claim>()
                     {
                          new Claim(ClaimTypes.Name, user.Id.ToString()),
                          new Claim(ClaimTypes.Role, user.Role.ToString()),
-                         
                     };
                     
                     Console.WriteLine(userClaims);
@@ -88,6 +88,30 @@ namespace Projet2Groupe1.Controllers
                     {
                         return Redirect(returnUrl);
                     }
+                    // Retrieve the ClaimsIdentity (assuming there's one identity)
+                    var claimIdentity = userPrincipal.Identity as ClaimsIdentity;
+
+                    // Retrieve the user.Id value from the Name claim
+                    if (claimIdentity != null)
+                    {
+                        var userIdClaim = claimIdentity.FindFirst(ClaimTypes.Name);
+                        if (userIdClaim != null)
+                        {
+                            var userId = userIdClaim.Value; // This is the user.Id value
+                            Console.WriteLine($"User ID: {userId}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("User ID claim not found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No ClaimsIdentity found.");
+                    }
+
+
+
                     //return Redirect("/Login/DashBoardAdmin");
                     return Redirect(user.Role);
                 }

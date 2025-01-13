@@ -19,8 +19,9 @@
         public Service? Service { get; set; }
 
         public byte[]? PhotoData { get; set; }
-       
- 
+        public int userId { get; set; }
+
+
         //[DataType(DataType.Time)]
         //public TimeSpan? EndTime { get; set; } // heure dde fin
 

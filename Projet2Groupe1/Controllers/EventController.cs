@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
-using Newtonsoft.Json;
-using Projet2Groupe1.Models;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Security.Claims;
 
 
 namespace Projet2Groupe1.Controllers
@@ -50,36 +49,25 @@ namespace Projet2Groupe1.Controllers
 
             using (IEventService ies = new EventService(new DataBaseContext()))
 
-
             {
-
-                if (!ModelState.IsValid)
-                {
-                    foreach (var field in ModelState)
-                    {
-                        string fieldName = field.Key; // Nom du champ
-                        var errors = field.Value.Errors; // Liste des erreurs associées
-
-                        foreach (var error in errors)
-                        {
-                            Console.WriteLine($"Champ : {fieldName}, Erreur : {error.ErrorMessage}");
-                        }
-                    }
-                }
-
 
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
+                    String userId = retrieveUserIdFromContext();
+                    if (userId != null)
+                    {
 
-                    int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service);
-                    Console.WriteLine("Création" + eventViewModel.Event.ToString());
-                    // si l'event est enregistré on redirige vers la page de détails de l'even où il peut choisir l'image et je passe à cette vue l'id de l'event
-                    return RedirectToAction("DetailsEvent", new { id = eventId });
-
+                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
+                        Console.WriteLine("Création" + eventViewModel.Event.ToString());
+                        return RedirectToAction("DetailsEvent", new { id = eventId });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Erreur Création Event userId : " + userId);
+                    }
                 }
-                //passer le event view model en paramètre permet de renvoyer le formulaire avec les données saisies
-                return View(eventViewModel);
+                return View();
             }
         }
 
@@ -95,12 +83,12 @@ namespace Projet2Groupe1.Controllers
                 {
                     {
                         eventViewModel.Event = eventItem;
-                        
+
                     };
-                    
+
                     return View(eventViewModel);
                 }
-                return RedirectToAction("CreateEvent",eventViewModel);
+                return RedirectToAction("CreateEvent", eventViewModel);
             }
         }
         public IActionResult GetDefaultImage(TypeEvent type)
@@ -108,6 +96,25 @@ namespace Projet2Groupe1.Controllers
             var fileService = new FileService();
             string imagePath = fileService.GetDefaultImagePath(type);
             return File(imagePath, "image/png");
+        }
+
+        private String retrieveUserIdFromContext()
+        {
+            var userPrincipal = HttpContext.User;
+
+            ClaimsIdentity claimIdentity = (ClaimsIdentity)HttpContext.User.Identity;
+            String userId = null;
+            
+            if (claimIdentity != null)
+            {
+                var userIdClaim = claimIdentity.FindFirst(ClaimTypes.Name);
+                if (userIdClaim != null)
+                {
+                    userId = userIdClaim.Value; 
+                }
+            }
+
+            return userId;
         }
 
 
@@ -155,5 +162,54 @@ namespace Projet2Groupe1.Controllers
             }
         }
 
-    }
+
+        [HttpGet]
+        public IActionResult UpdateEvent(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+                string user_id = retrieveUserIdFromContext();
+                eventViewModel.Events = ies.searchEventList(int.Parse(user_id));
+
+                return View(eventViewModel);
+            };
+
+        }
+
+        [HttpPost]
+        public IActionResult UpdateEvents(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+               
+                Event eventToUpdate = ies.searchEvent(eventViewModel.Event.Id);
+                eventToUpdate.Artist.NickNameArtist = eventViewModel.Event.Artist.NickNameArtist;
+                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Ticket, eventToUpdate.Service);
+
+            };
+
+            return RedirectToAction("UpdateEvent", eventViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteEvent(EventViewModel eventViewModel)
+        {
+            using (IEventService ies = new EventService(new DataBaseContext()))
+            {
+             
+                ies.DeleteEvent(eventViewModel.Event.Id);
+                
+
+            }
+            return RedirectToAction("UpdateEvent",eventViewModel);  
+
+        }
+
+ 
+
+
+        
+    } 
 }
+
+

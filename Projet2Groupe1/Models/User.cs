@@ -28,9 +28,11 @@ namespace Projet2Groupe1.Models
         [StringLength(50, MinimumLength = 12, ErrorMessage = "Le mot de passe doit comprendre entre 12 et 20 caracteres.")]
         public string Password { get; set; }
         public bool Newsletter { get; set; }
+    
         public UserRole Role { get; set; } // appel a mon enum 
-
+      
         public byte[]? PhotoData { get; set; }
+      
 
         public override String ToString()
         {
