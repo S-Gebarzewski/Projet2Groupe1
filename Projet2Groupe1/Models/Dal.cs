@@ -214,7 +214,6 @@ namespace Projet2Groupe1.Models
             _organizerService.CreateOrganizer("PDG", "Les Jeux de Wacim", "XXXAAXXXAAXXXAAXXXAATRTTUHX", null, 5);
             Artist artist = new Artist
             {
-                Id = 1,
                 FirstNameArtist = "John",
                 LastNameArtist = "Doe",
                 NickNameArtist = "Johnny D"
