@@ -16,6 +16,8 @@ namespace Projet2Groupe1.Models
 
         public DbSet<Event> Events { get; set; }
 
+        public DbSet<Ticket> Tickets { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // connexion BDD
         {
