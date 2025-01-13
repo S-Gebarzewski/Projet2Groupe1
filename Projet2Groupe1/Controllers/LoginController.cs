@@ -97,36 +97,25 @@ namespace Projet2Groupe1.Controllers
         [Authorize]
         public IActionResult Redirect(UserRole DashboardType)
         {
-            using (IAdminService ias = new AdminService(new DataBaseContext()))
+            
+            Console.WriteLine("voici le dashboardtype : " + DashboardType.ToString());
+            TempData["Role"] = DashboardType;
+            switch (DashboardType.ToString())
             {
-                List<User> OrganizerStatusPending = ias.GetUsersByStatus(statusRegistration.PENDING, UserRole.ORGANIZER);
-                List<User> ProvierStatusPending = ias.GetUsersByStatus(statusRegistration.PENDING, UserRole.PROVIDER);
-
-                HandlerRegistrationViewModel handlerRegistrationViewModel = new HandlerRegistrationViewModel()
-                {
-                    OrganizerStatusPending = OrganizerStatusPending,
-                    ProviderStatusPending = ProvierStatusPending,
-                };
-                Console.WriteLine("list de pending organizer : " + handlerRegistrationViewModel.OrganizerStatusPending.Count);
-                Console.WriteLine("voici le dashboardtype : " + DashboardType.ToString());
-                TempData["Role"] = DashboardType;
-                switch (DashboardType.ToString())
-                {
-                    case "ADMIN":
-                        return View("DashBoardAdmin", handlerRegistrationViewModel);
-                    case "MEMBER":
-                        return View("DashBoardMember");
-                    case "PREMIUM":
-                        return View("DashBoardPremium");
-                    case "ORGANIZER":
-                        return View("DashBoardOrganizer");
-                    case "PROVIDER":
-                        return View("DashBoardProvider");
-                    default:
-                        Console.WriteLine("je suis en role par defaut");
-                        return null;
+                case "ADMIN":
+                    return View("DashBoardAdmin");
+                case "MEMBER":
+                    return View("DashBoardMember");
+                case "PREMIUM":
+                    return View("DashBoardPremium");
+                case "ORGANIZER":
+                    return View("DashBoardOrganizer");
+                case "PROVIDER":
+                    return View("DashBoardProvider");
+                default:
+                    Console.WriteLine("je suis en role par defaut");
+                    return null;
                 }
-            }
         }
        
         public IActionResult Disconnection()

@@ -51,7 +51,6 @@ namespace Projet2Groupe1.Models
         // l'enregsitre avec ses nouvelles informations
         public User UpdateUser(User UpdatingUser)
         {
-            Console.WriteLine("Lastname du user : " + UpdatingUser.LastName);
             User ExistingUser = GetUser(UpdatingUser.Id);
 
             ExistingUser.FirstName = UpdatingUser.FirstName;
