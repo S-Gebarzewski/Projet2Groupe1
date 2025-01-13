@@ -13,27 +13,7 @@ using Projet2Groupe1.ViewModels;
 namespace Projet2Groupe1.Controllers
 {
     public class LoginController : Controller
-    {
-        //[HttpGet]
-        //public IActionResult CreateAccount()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        ////public IActionResult CreateAccount(User user)
-        ////{
-        ////    using (IUserService ius = new UserService(new DataBaseContext()))
-        ////    {
-        ////        Console.WriteLine("vérification du model state " + ModelState.IsValid);
-        ////        if (ModelState.IsValid && ius.searchUser(user.Id) == null)
-        ////        {
-        ////            ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password, user.Newsletter, user.Role);
-        ////            Console.WriteLine("Création" + user.ToString());
-        ////        }
-        ////        return View();
-        ////    }
-        ////}
-      
+    {    
         public IActionResult Connection()
         {
             using (IUserService ius = new UserService(new DataBaseContext()))
@@ -104,22 +84,24 @@ namespace Projet2Groupe1.Controllers
                     {
                         Console.WriteLine("No ClaimsIdentity found.");
                     }
-
-
-
                     //return Redirect("/Login/DashBoardAdmin");
+                    if (user.StatusRegistration == statusRegistration.PENDING) {
+                        Console.WriteLine("Le role est En attente. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
+                        return RedirectToAction("Error", "Error", new { Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
+                    } else if (user.StatusRegistration == statusRegistration.REFUSED) {
+                        Console.WriteLine("Le role est Refused. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
+                        return RedirectToAction("Error", "Error", new { errorCode = 1, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
+                    }
                     return Redirect(user.Role);
                 }
                 ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
                 return View(userViewModel);
             }
-           
-
         }
 
         [Authorize(Roles = "ORGANIZER")]
         public IActionResult DashBoardOrganizer(UserRole DashboardType)
-        { 
+        {
             ViewData["Role"] = "ORGANIZER";
             return View();
         }
@@ -151,9 +133,11 @@ namespace Projet2Groupe1.Controllers
         [Authorize]
         public IActionResult Redirect(UserRole DashboardType)
         {
-            
             Console.WriteLine("voici le dashboardtype : " + DashboardType.ToString());
             TempData["Role"] = DashboardType;
+            
+
+
             switch (DashboardType.ToString())
             {
                 case "ADMIN":
