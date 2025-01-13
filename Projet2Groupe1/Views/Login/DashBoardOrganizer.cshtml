@@ -1,11 +1,9 @@
 ﻿@{
     Layout = "_LayoutDashboard";
     ViewBag.Title = "Profile de l'Organisateur !!";
-    ViewBag.Role = "ORGANIZER";
-
 }
 
-<div>Bonjour @ViewBag.Role</div>
+<div>Bonjour @ViewData["Role"]</div>
 
 
 @section DashNav {

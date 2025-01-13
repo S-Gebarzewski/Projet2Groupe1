@@ -111,13 +111,43 @@ namespace Projet2Groupe1.Controllers
                     return Redirect(user.Role);
                 }
                 ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
-                Console.WriteLine("Mail ou mot de passe de " + user.Mail + " " + user.Password + "incorrects");
                 return View(userViewModel);
             }
            
 
         }
 
+        [Authorize(Roles = "ORGANIZER")]
+        public IActionResult DashBoardOrganizer(UserRole DashboardType)
+        { 
+            ViewData["Role"] = "ORGANIZER";
+            return View();
+        }
+
+        [Authorize(Roles = "ADMIN")]
+        public IActionResult DashBoardAdmin(UserRole DashboardType)
+        {
+            ViewData["Role"] = "ADMIN";
+            return View();
+        }
+        [Authorize(Roles = "PROVIDER")]
+        public IActionResult DashBoardProvider(UserRole DashboardType)
+        {
+            ViewData["Role"] = "PROVIDER";
+            return View();
+        }
+        [Authorize(Roles = "MEMBER")]
+        public IActionResult DashBoardMEMBER(UserRole DashboardType)
+        {
+            ViewData["Role"] = "MEMBER";
+            return View();
+        }
+        [Authorize(Roles = "PREMIUM")]
+        public IActionResult DashBoardPREMIUM(UserRole DashboardType)
+        {
+            ViewData["Role"] = "PREMIUM";
+            return View();
+        }
         [Authorize]
         public IActionResult Redirect(UserRole DashboardType)
         {
