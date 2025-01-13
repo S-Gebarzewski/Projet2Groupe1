@@ -14,7 +14,7 @@ namespace Projet2Groupe1.Controllers
             Console.WriteLine("Lastname est " + user.LastName);
             using (IUserService ius = new UserService(new DataBaseContext())) 
             {
-                User UpdatedUser = ius.UpdateUser(user);
+                User UpdatedUser = ius.UpdateUserStatus(user);
             }
 
             using (IAdminService ias = new AdminService(new DataBaseContext()))

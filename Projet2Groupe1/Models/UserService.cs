@@ -68,6 +68,18 @@ namespace Projet2Groupe1.Models
             return ExistingUser;
         }
 
+        public User UpdateUserStatus(User UpdatingUser)
+        {
+            User ExistingUser = GetUser(UpdatingUser.Id);
+
+            ExistingUser.StatusRegistration = UpdatingUser.StatusRegistration;
+
+            _dbContext.Users.Update(ExistingUser);
+            _dbContext.SaveChanges();
+
+            return ExistingUser;
+        }
+
         public User searchUser(int id)
         {
             return _dbContext.Users.FirstOrDefault(s => s.Id == id);

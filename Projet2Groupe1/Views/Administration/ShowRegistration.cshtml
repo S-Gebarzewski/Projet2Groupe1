@@ -13,26 +13,25 @@
         <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
         <li><a href=# class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Valider une demande d'événement</a></li>
         <li><a href="/Administration/ShowRegistration/" class="buttonProfile"><img src="~/images/iconePen.png" alt="Icone Pen" class="icone">Traiter une demande d'inscription</a></li>
-        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+        <li><a href="/Login/Redirect" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
 <div id="OrganizerTable">
-    
-        <h2>Gestion des inscriptions Organisateur en attente</h2>
-        <table border="1" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Prenom</th>
-                    <th>Nom</th>
-                    <th>Role</th>
-                    <th>Etat de la demande</th>
-                    <th>Decision</th>
-                </tr>
-            </thead>
-            <tbody>
-                if(Model.OrganizerStatusPending.count() == 0) 
-                {
+        <h2>Gestion des inscriptions Organisateurs</h2>
+        @if(Model.OrganizerStatusPending.Count() > 0) 
+        {
+            <table border="1" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Role</th>
+                        <th>Etat de la demande</th>
+                        <th>Decision</th>
+                    </tr>
+                </thead>
+                <tbody>
                     @foreach (var user in Model.OrganizerStatusPending)
                     {
                         @using (Html.BeginForm("HandlerRegistration", "Administration", FormMethod.Post))
@@ -56,12 +55,62 @@
 
                             </tr>
                         }
-                }
-                else 
+                    } 
+       
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div>Aucune demande d'enregistrement en attente</div>
+        }
+</div>
+
+<div id="ProviderTable">
+    <h2>Gestion des inscriptions Prestataire</h2>
+    @if (Model.ProviderStatusPending.Count() > 0)
+    {
+        <table border="1" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Role</th>
+                    <th>Etat de la demande</th>
+                    <th>Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.ProviderStatusPending)
                 {
-                <div>nothing for you</div>
+                    @using (Html.BeginForm("HandlerRegistration", "Administration", FormMethod.Post))
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Role</td>
+                            <td>
+                                <select id="StatusRegistration" name="StatusRegistration">
+                                    <option value="" disabled selected>@user.StatusRegistration.ToString()</option>
+                                    <option value="@statusRegistration.ACCEPTED">Accepter</option>
+                                    <option value="@statusRegistration.ACCEPTED">Refuser</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" name="Id" value="@user.Id" />
+                                <button type="submit">Mettre à jour</button>
+                            </td>
+
+                        </tr>
+                    }
                 }
+
             </tbody>
         </table>
     }
-</div>
+    else
+    {
+        <div>Aucune demande d'enregistrement en attente</div>
+    }
