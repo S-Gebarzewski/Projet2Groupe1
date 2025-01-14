@@ -4,9 +4,6 @@
     ViewBag.Role = "PROVIDER";
 }
 
-<div>Bonjour @ViewBag.Role</div>
-
-
 @section DashNav {
     <ul>
         <li><a href="@Url.Action("MyServices", "Service")" class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services proposés</a></li>
@@ -14,3 +11,5 @@
         <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
+
+<a href="@Url.Action("CreateService", "Service")" class="buttonProfile">Ajouter un service</a>
