@@ -50,8 +50,36 @@ namespace Projet2Groupe1.Controllers
                 
                 return View(JamSessions);
 
-            }
-           ;
+            };
+
+           
+        }
+        [HttpGet]
+        public IActionResult DeleteJamSession(JamSessionViewModel jamSessionViewModel)
+        {
+            using (IJamService ijs = new JamService(new DataBaseContext()))
+            {
+                string user_id = retrieveUserIdFromContext();
+                jamSessionViewModel.JamSessions = ijs.searchJamSessionList(int.Parse(user_id));
+
+                return View(jamSessionViewModel);
+            };
+
+        }
+        [HttpPost]
+        public IActionResult DeleteJamSessions(JamSessionViewModel jamSessionViewModel)
+        {
+            using (IJamService ijs = new JamService(new DataBaseContext()))
+            {
+
+                 ijs.DeleteJamSession(jamSessionViewModel.JamSession.Id);
+                
+            
+
+
+            };
+
+            return RedirectToAction("DeleteJamSession", jamSessionViewModel);
         }
         private String retrieveUserIdFromContext()
         {

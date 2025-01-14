@@ -136,8 +136,7 @@ namespace Projet2Groupe1.Models
 
         public List<Event> searchEventList(int userId)
         {
-            return _dbContext.Events.Include(e => e.Adress) // Include related Adress
-        .Include(e => e.Artist) // Include other related entities as needed
+            return _dbContext.Events
         .Include(e => e.Adress)
         .Include(e => e.Billetterie)
         .Include(e => e.Service).

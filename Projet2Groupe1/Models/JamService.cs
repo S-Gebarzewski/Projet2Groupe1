@@ -39,17 +39,34 @@ namespace Projet2Groupe1.Models
         {
             return this._dbContext.Sessions.Include(e => e.Adress).ToList();
         }
+ public List<JamSession> searchJamSessionList(int userId)
+        {
+            return _dbContext.Sessions.Include(e => e.Adress).Where(e => e.userId == userId).ToList();
+        }
 
 
 
 
 
 
-
-        JamSession IJamService.searchEvent(int id)
+        JamSession IJamService.searchJamSession(int id)
         {
             return _dbContext.Sessions.FirstOrDefault(e => e.Id == id);
             
+        }
+        public void DeleteJamSession(int id)
+        {
+            JamSession newJamSession = _dbContext.Sessions.Find(id);
+
+            if (newJamSession != null)
+            {
+                _dbContext.Sessions.Remove(newJamSession);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("not found");
+            }
         }
         public void Dispose()
         {
