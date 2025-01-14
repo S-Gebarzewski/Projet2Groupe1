@@ -110,10 +110,6 @@ namespace Projet2Groupe1.Models
             return this._dbContext.Events.ToList();
         }
 
-
-
-
-
         public void Dispose()
         {
             _dbContext.Dispose();

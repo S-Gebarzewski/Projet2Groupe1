@@ -1,0 +1,98 @@
+﻿@model Projet2Groupe1.ViewModels.JamSessionViewModel
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Profile du premium !!";
+    ViewBag.Role = "PREMIUM";
+}
+
+
+@section DashNav {
+    <ul>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser événements</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services demandés</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+    </ul>
+}
+@using (Html.BeginForm("CreateJamSession", "JamSession", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+
+{
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Title, "Titre de la session") :
+        @Html.TextBoxFor(m => Model.JamSession.Title)
+        @Html.ValidationMessageFor(m => Model.JamSession.Title)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.StartSession, "Heure de début") :
+        @Html.TextBoxFor(m => Model.JamSession.StartSession, new { Type = "datetime-local", })
+        @Html.ValidationMessageFor(m => Model.JamSession.StartSession)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.EndSession, "Heure de fin") :
+        @Html.TextBoxFor(m => Model.JamSession.EndSession, new { Type = "datetime-local" })
+        @Html.ValidationMessageFor(m => Model.JamSession.EndSession)
+    </div>
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Description, "Description") :
+        @Html.TextBoxFor(m => Model.JamSession.Description)
+        @Html.ValidationMessageFor(m => Model.JamSession.Description)
+    </div>
+
+    @*Ici débute l'adresse ========================================================================*@
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Adress.StreetNumber, "Numéro de rue") :
+        @Html.TextBoxFor(m => Model.JamSession.Adress.StreetNumber)
+        @Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetNumber)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Adress.StreetName, "Nom de voie") :
+        @Html.TextBoxFor(m => Model.JamSession.Adress.StreetName)
+        @Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Adress.ZipCode, "Code postal") :
+        @Html.TextBoxFor(m => Model.JamSession.Adress.ZipCode)
+        @Html.ValidationMessageFor(m => Model.JamSession.Adress.ZipCode)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Adress.City, "Ville") :
+        @Html.TextBoxFor(m => Model.JamSession.Adress.City)
+        @Html.ValidationMessageFor(m => Model.JamSession.Adress.City)
+    </div>
+
+    @*Ici se termine l'adresse ======================================================================*@
+
+    
+
+    @* <div> *@
+    @*     @Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement") : *@
+    @*     @Html.DropDownListFor( *@
+    @*             m => Model.Event.TypeEvent, *@
+    @*             new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))), *@
+    @*             "Sélectionnez un type" *@
+    @*             ) *@
+    @*     @Html.ValidationMessageFor(m => Model.Event.TypeEvent) *@
+    @* </div> *@
+
+    <div>
+        @Html.LabelFor(m => Model.JamSession.NumberPlaces, "Nombre total de places") :
+        @Html.TextBoxFor(m => Model.JamSession.NumberPlaces)
+        @Html.ValidationMessageFor(m => Model.JamSession.NumberPlaces)
+    </div>
+    <div>
+        @Html.LabelFor(m => Model.JamSession.Instruments, "Instruments") :
+        @Html.TextBoxFor(m => Model.JamSession.Instruments)
+        @Html.ValidationMessageFor(m => Model.JamSession.Instruments)
+    </div>
+
+
+
+    <input type="submit" value="je crée mon événement" />
+}

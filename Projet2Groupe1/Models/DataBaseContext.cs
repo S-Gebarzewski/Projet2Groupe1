@@ -15,6 +15,7 @@ namespace Projet2Groupe1.Models
         public DbSet<Admin> Admins { get; set; }
 
         public DbSet<Event> Events { get; set; }
+        public DbSet<JamSession> Sessions { get; set; }
 
         public DbSet<Billeterie> Billetteries { get; set; }
 
