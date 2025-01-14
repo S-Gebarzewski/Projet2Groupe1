@@ -14,7 +14,7 @@
 
         public Artist Artist {  get; set; }
 
-        public Ticket? Ticket { get; set; }
+        public Billeterie? Billetterie { get; set; }
 
         public Service? Service { get; set; }
 

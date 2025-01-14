@@ -1,11 +1,14 @@
-﻿namespace Projet2Groupe1.Models
+﻿using Humanizer.Localisation.TimeToClockNotation;
+
+namespace Projet2Groupe1.Models
 {
     public interface ITicketService : IDisposable
     {
-        public Ticket GetTicketById (int ticketId);
+        public int CreateTicket(int billetterieId, int eventiD, int userId, int quantity);
+        public Billeterie GetBilletterieByEventId (int billetterieId);
         public bool TicketAvailable ();
-        public int BuyTicket (int numberTicket);
+        public bool BuyTicket ( int numberTicket, int eventId);
         
-        //public Ticket GetTicketByIdEvent (int eventId);
+      
     }
 }

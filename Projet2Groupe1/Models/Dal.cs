@@ -11,6 +11,7 @@ namespace Projet2Groupe1.Models
         private ProviderService _providerService;
         private MemberService _memberService;     
         private EventService _eventService;
+        private TicketService _ticketService;
 
         public Dal () 
         {
@@ -20,7 +21,8 @@ namespace Projet2Groupe1.Models
             _eventService = new EventService(_dbContext);
 
             _organizerService = new OrganizerService(_dbContext);
-            _eventService = new EventService(_dbContext);   
+            _eventService = new EventService(_dbContext);
+            _ticketService = new TicketService(_dbContext);
 
         }
 
@@ -117,21 +119,21 @@ namespace Projet2Groupe1.Models
             };
 
             // Création des tickets
-            var ticketConcertStandard = new Ticket
+            var ticketConcertStandard = new Billeterie
             {
                 Category = "Standard",
                 NumberTotalTicket = 2000,
                 UnitPriceTicket = 45
             };
 
-            var ticketConcertVIP = new Ticket
+            var ticketConcertVIP = new Billeterie
             {
                 Category = "VIP",
                 NumberTotalTicket = 200,
                 UnitPriceTicket = 120
             };
 
-            var ticketFestival = new Ticket
+            var ticketFestival = new Billeterie
             {
                 Category = "Pass 3 jours",
                 NumberTotalTicket = 5000,
@@ -231,7 +233,7 @@ namespace Projet2Groupe1.Models
                 NamedPlace = "Louvre Museum",
                 StreetComplement = "Near the pyramid"
             };
-            Ticket ticket = new Ticket 
+            Billeterie ticket = new Billeterie 
               {
                     Category = "VIP",
                     NumberTotalTicket = 100,
@@ -251,6 +253,7 @@ namespace Projet2Groupe1.Models
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            _ticketService.CreateTicket(1, 1, 1, 1);
         }
     }
 }

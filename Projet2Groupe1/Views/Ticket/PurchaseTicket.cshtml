@@ -1,49 +1,62 @@
-﻿@model Projet2Groupe1.Models.Event
+﻿@model Projet2Groupe1.ViewModels.TicketViewModel
 
 @{
     Layout = "_layoutHeaderFooter";
     ViewBag.Title = "Achat billets";
+   /*  ViewBag.Result = ViewBag.Result ?? 0; */ // Valeur par défaut
 }
 
 <h1>PANIER</h1>
 
 <div>Achat billets </div>
 
-<p>@Model.Artist.NickNameArtist</p>
+<p>@Model.Event.Artist.NickNameArtist</p>
 
-<p>@Model.NameEvent</p>
-<p>PLus que @Model.Ticket.NumberTotalTicket billets disponibles</p>
+<p>@Model.Event.NameEvent</p>
+<p>PLus que @Model.Billetterie.NumberTotalTicket billets disponibles</p>
 
-<p>Prix unitaire : @Model.Ticket.UnitPriceTicket €</p>
+<p>Prix unitaire : @Model.Billetterie.UnitPriceTicket €</p>
 
 <div>Je suis un billet</div>
 <!-- renvoie "connexion obligatoire" ou ouvre champs pour entrer info carte bleue-->
+@using (Html.BeginForm("PurchaseTicket", "Ticket", FormMethod.Post))
 
-@using (Html.BeginForm())
 {
+	@Html.HiddenFor(m => m.Event.Id)
+    @Html.HiddenFor(m => m.User.Id)
+    @Html.HiddenFor(m => m.Billetterie.Id)
+	
+    
     <div>
-        @Html.Label("Qté Billet") :
-        @Html.TextBox("numberTicket")
+        @Html.LabelFor(m => Model.TicketQuantityAvailable, "Nombres billets") :
+        @Html.TextBoxFor(m => Model.TicketQuantityAvailable)
+        @Html.ValidationMessageFor(m => Model.TicketQuantityAvailable)
     </div>
 
+    @* 
+         <label for="UnitPriceTicket">Nombre 1:</label> 
+         <input type="number" name="UnitPriceTicket" id="number1" required /> 
+
+        <label for="TicketQuantityAvailable">Nombre 2:</label>
+    <input type="number" name="TicketQuantityAvailable" id="number2" required />
+
+    <button type="submit">Calculer la somme</button> 
     
+
+    <p>Résultat: @ViewBag.Result</p>  *@
+    
+
+
+
+
     <input type="submit" value="Acheter Billets" />
+
+
+
+
+
 }
 
 
 
-@* @{ *@
-@*     ViewBag.Result = ViewBag.Result ?? 0; // Valeur par défaut *@
-@* } *@
 
-@* <form method="post"> *@
-@*     <label for="number1">Nombre 1:</label> *@
-@*     <input type="number" name="number1" id="number1" required /> *@
-
-@*     <label for="number2">Nombre 2:</label> *@
-@*     <input type="number" name="number2" id="number2" required /> *@
-
-@*     <button type="submit">Calculer la somme</button> *@
-@* </form> *@
-
-@* <p>Résultat: @ViewBag.Result</p> *@

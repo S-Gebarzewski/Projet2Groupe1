@@ -12,7 +12,7 @@ namespace Projet2Groupe1.ViewModels
 
         public Service? Service { get; set; }
 
-        public Ticket? Ticket { get; set; }
+        public Billeterie? Ticket { get; set; }
         public TypeEvent TypeEvent { get; set; }
         public List<Event>? Events { get; set; }
 
