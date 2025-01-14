@@ -65,6 +65,7 @@ namespace Projet2Groupe1.Controllers
         [HttpPost]
         public IActionResult RegisterOrganizer(User user,Organizer organizer)
         {
+            Console.WriteLine("je suis entre dans RegisterOrganizer");
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
                 if (!ModelState.IsValid)
@@ -85,7 +86,6 @@ namespace Projet2Groupe1.Controllers
                 {
                     statusRegistration StatusPending = statusRegistration.PENDING;
                     user.Id = ius.CreateUser(user.FirstName, user.LastName, user.Phone, user.Mail, user.Password,user.Newsletter, user.StatusRegistration = StatusPending, user.Role = UserRole.ORGANIZER);
-                    Console.WriteLine("Création" + user.Id);
                 }
                 Console.WriteLine("Apres le if de createuser");
 

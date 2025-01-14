@@ -18,10 +18,10 @@ namespace Projet2Groupe1.Models
                 Adress = Adress,
                 UserId = UserId
             };
-            Console.WriteLine("dans createorganizer,avant le add, organizer vaut  " + Function);
+            Console.WriteLine("dans createorganizer,avant le add, function organizer vaut  " + Function);
             _dbContext.Organizers.Add(organizer); // ma DB, ma table, ma fonction
             _dbContext.SaveChanges(); // save object user in object DB
-            Console.WriteLine("dans createorganizer,apres le add, organizer vaut  " + Function);
+            Console.WriteLine("dans createorganizer,apres le add, function organizer vaut  " + Function);
             return organizer.Id;
         }
 

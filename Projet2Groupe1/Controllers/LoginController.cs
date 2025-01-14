@@ -40,7 +40,9 @@ namespace Projet2Groupe1.Controllers
 
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
+                Console.WriteLine("dans le using connection, verification de lauthentification");
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
+                Console.WriteLine("Apres authentification, user reucperer ? " + user.FirstName);
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
@@ -85,9 +87,10 @@ namespace Projet2Groupe1.Controllers
                         Console.WriteLine("No ClaimsIdentity found.");
                     }
                     //return Redirect("/Login/DashBoardAdmin");
+                    Console.WriteLine("Juste avant le if pour rediriger vers lerreur ");
                     if (user.StatusRegistration == statusRegistration.PENDING) {
                         Console.WriteLine("Le role est En attente. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
-                        return RedirectToAction("Error", "Error", new { Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
+                        return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
                     } else if (user.StatusRegistration == statusRegistration.REFUSED) {
                         Console.WriteLine("Le role est Refused. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
                         return RedirectToAction("Error", "Error", new { errorCode = 1, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
