@@ -247,7 +247,7 @@ namespace Projet2Groupe1.Models
 
 
            // (TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId)
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, service, 5, statusRegistration.ACCEPTED);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);

@@ -16,10 +16,8 @@ namespace Projet2Groupe1.Controllers
             using (IEventService ies = new EventService(new DataBaseContext()))
             {
                List<Event> events = ies.GetFilteredEvents(category,city,search);
-                return View(events);
-
-            }
-           ;
+               return View(events);
+            };
         }
 
         public IActionResult TicketDetail()
