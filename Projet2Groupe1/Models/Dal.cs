@@ -239,10 +239,12 @@ namespace Projet2Groupe1.Models
                 };
             Service service = new Service
             {
-              
-                NameService = "Transportation",
-                TypeService = "Logistics",
-                QuantityService = 15
+                
+                NameService = "Los Monteros",
+                TypeService = TypeService.ASSEMBLY,
+                QuantityService = 2,
+                DescriptionService = "Service de montage/demontage de scene.",
+                PriceService = 100
             };
 
 

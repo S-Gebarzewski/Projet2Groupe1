@@ -1,4 +1,5 @@
-﻿@* model *@
+﻿@using Projet2Groupe1.Models
+@model Projet2Groupe1.Models.Service
 
 @{
     Layout = "_LayoutDashboard";
@@ -8,15 +9,52 @@
 
 @section DashNav {
     <ul>
-            <li><a href="@Url.Action("MyServices", "Service")" class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services proposés</a></li>
+        <li><a href="@Url.Action("MyServices", "Service")" class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services proposés</a></li>
         <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique de vente</a></li>
         <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
 
 <div>
-    @Html.BeginForm()
+    @using(IServiceService iss = new ServiceService(new DataBaseContext()))
     {
-        cc
+        <h2>Ajout d'un Service</h2>
+        @using(Html.BeginForm())
+        {
+            <div>
+                <div>
+                    <div>
+				        @Html.LabelFor(m => Model.NameService, "nom du service")
+				        @Html.TextBoxFor(m => Model.NameService)
+                        @Html.ValidationMessageFor(m => Model.NameService)
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => Model.TypeService, "type de service")
+                        @Html.DropDownListFor(mbox => Model.TypeService, new SelectList(Enum.GetValues(typeof(TypeService))
+                            .Cast<TypeService>()
+                            .Select(e => new { Value = e, Text = iss.GetDisplayName(e) }),
+                            "Value",
+                            "Text"), "Selectionner un type")
+                        @Html.ValidationMessageFor(m => Model.TypeService)
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => Model.QuantityService, "quantite du service propose")
+                        @Html.TextBoxFor(m => Model.QuantityService)
+                        @Html.ValidationMessageFor(m => Model.QuantityService)
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => Model.DescriptionService, "description du service propose")
+                        @Html.TextAreaFor(m => Model.DescriptionService)
+                        @Html.ValidationMessageFor(m => Model.DescriptionService)
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => Model.PriceService, "prix du service")
+                        @Html.TextBoxFor(m => Model.PriceService)
+                        @Html.ValidationMessageFor(m => Model.PriceService)
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="je crée mon événement" />
+        }
     }
 </div>

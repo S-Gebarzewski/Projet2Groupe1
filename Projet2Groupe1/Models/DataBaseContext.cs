@@ -18,6 +18,8 @@ namespace Projet2Groupe1.Models
 
         public DbSet<Ticket> Tickets { get; set; }
 
+        public DbSet<Service> Services { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // connexion BDD
         {
