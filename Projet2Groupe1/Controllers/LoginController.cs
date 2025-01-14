@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authentication;
@@ -40,7 +41,6 @@ namespace Projet2Groupe1.Controllers
 
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
-                Console.WriteLine("dans le using connection, verification de lauthentification");
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
                 Console.WriteLine("Apres authentification, user reucperer ? " + user.FirstName);
                 if (user != null) // bon mot de passe
@@ -87,12 +87,11 @@ namespace Projet2Groupe1.Controllers
                         Console.WriteLine("No ClaimsIdentity found.");
                     }
                     //return Redirect("/Login/DashBoardAdmin");
-                    Console.WriteLine("Juste avant le if pour rediriger vers lerreur ");
                     if (user.StatusRegistration == statusRegistration.PENDING) {
-                        Console.WriteLine("Le role est En attente. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
+                        
                         return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
                     } else if (user.StatusRegistration == statusRegistration.REFUSED) {
-                        Console.WriteLine("Le role est Refused. Le user ne peut pas se connecter et est redirige vesr error.cshtml");
+
                         return RedirectToAction("Error", "Error", new { errorCode = 1, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
                     }
                     return Redirect(user.Role);
@@ -136,27 +135,40 @@ namespace Projet2Groupe1.Controllers
         [Authorize]
         public IActionResult Redirect(UserRole DashboardType)
         {
-            Console.WriteLine("voici le dashboardtype : " + DashboardType.ToString());
             TempData["Role"] = DashboardType;
-            
 
-
-            switch (DashboardType.ToString())
+            Claim ClaimId = HttpContext.User.FindFirst(ClaimTypes.Name);
+            Console.WriteLine("ClaimId est " + ClaimId);
+            if (ClaimId == null)
             {
-                case "ADMIN":
-                    return View("DashBoardAdmin");
-                case "MEMBER":
-                    return View("DashBoardMember");
-                case "PREMIUM":
-                    return View("DashBoardPremium");
-                case "ORGANIZER":
-                    return View("DashBoardOrganizer");
-                case "PROVIDER":
-                    return View("DashBoardProvider");
-                default:
-                    Console.WriteLine("je suis en role par defaut");
-                    return null;
+                return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, vous n'etes pas authentifie(e). Connectez-vous et/ou contactez l'administrateur." });
+            }
+            int UserId = int.Parse(ClaimId.Value);
+            Console.WriteLine("Vers Dashboard Provider - user ID : " + UserId);
+            using (IServiceService iss = new ServiceService(new DataBaseContext()))
+            {
+                List<Service> Services = iss.GetServicesById(UserId);
+                ServiceViewModel ListServices = new ServiceViewModel 
+                {
+                    Services = Services
+                };
+                switch (DashboardType.ToString())
+                {
+                    case "ADMIN":
+                        return View("DashBoardAdmin");
+                    case "MEMBER":
+                        return View("DashBoardMember");
+                    case "PREMIUM":
+                        return View("DashBoardPremium");
+                    case "ORGANIZER":
+                        return View("DashBoardOrganizer");
+                    case "PROVIDER":
+                        return View("DashBoardProvider", ListServices);
+                    default:
+                        Console.WriteLine("je suis en role par defaut");
+                        return null;
                 }
+            }
         }
        
         public IActionResult Disconnection()

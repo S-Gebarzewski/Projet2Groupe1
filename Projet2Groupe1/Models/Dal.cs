@@ -244,7 +244,8 @@ namespace Projet2Groupe1.Models
                 TypeService = TypeService.ASSEMBLY,
                 QuantityService = 2,
                 DescriptionService = "Service de montage/demontage de scene.",
-                PriceService = 100
+                PriceService = 100,
+                UserId = 5
             };
 
 

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Projet2Groupe1.ViewModels.ServiceViewModel
+
+@{
     Layout = "_LayoutDashboard";
     ViewBag.Title = "Profile du Prestataire !!";
     ViewBag.Role = "PROVIDER";
@@ -14,3 +16,15 @@
         <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
+
+<div>
+    @foreach (var service in Model.Services)
+    { 
+        <div>
+            <p>@service.Id</p>
+            <p>@service.NameService</p>
+            <p>@service.TypeService</p>
+            <p>@service.QuantityService</p>
+        </div>
+    }
+</div>

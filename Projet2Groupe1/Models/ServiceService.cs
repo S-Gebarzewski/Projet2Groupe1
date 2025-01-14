@@ -11,6 +11,13 @@ namespace Projet2Groupe1.Models
             this._dbContext = _dbContext;
         }
 
+        public List<Service> GetServicesById(int UserId)
+        {
+            Console.WriteLine("Je suis dans Get Services by id avec l'id prestataire : " + UserId);
+            List<Service> Services = _dbContext.Services.Where(s => s.UserId == UserId).ToList();
+            Console.WriteLine("nombre de service : " + Services.Count());
+            return Services;
+        }
 
         public string GetDisplayName(Enum value)
         {
@@ -19,7 +26,7 @@ namespace Projet2Groupe1.Models
             return AttributeDisplay.Name;
         }
 
-        public int CreateService(string NameService, TypeService TypeService, int QuantityService, string DescriptionService, int PriceService)
+        public int CreateService(string NameService, TypeService TypeService, int QuantityService, string DescriptionService, int PriceService, int UserId)
         {
             Service Service = new Service()
             {
@@ -27,12 +34,11 @@ namespace Projet2Groupe1.Models
                 TypeService = TypeService,
                 QuantityService = QuantityService,
                 DescriptionService = DescriptionService,
-                PriceService = PriceService
+                PriceService = PriceService,
+                UserId = UserId
             };
-            Console.WriteLine("dans createService,avant le add, service est " + Service.ToString());
             _dbContext.Services.Add(Service);
             _dbContext.SaveChanges();
-            Console.WriteLine("dans createService,avant le add, service est " + Service.ToString());
             return Service.Id;
         }
 

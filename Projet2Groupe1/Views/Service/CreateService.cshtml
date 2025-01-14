@@ -1,4 +1,5 @@
 ﻿@using Projet2Groupe1.Models
+@using System.Security.Claims
 @model Projet2Groupe1.Models.Service
 
 @{
@@ -18,7 +19,7 @@
 <div>
     @using(IServiceService iss = new ServiceService(new DataBaseContext()))
     {
-        <h2>Ajout d'un Service</h2>
+        <h2>Ajouter un Service</h2>
         @using(Html.BeginForm())
         {
             <div>
@@ -52,6 +53,7 @@
                         @Html.TextBoxFor(m => Model.PriceService)
                         @Html.ValidationMessageFor(m => Model.PriceService)
                     </div>
+                    @Html.HiddenFor(m => Model.UserId, new { ValueTask = "@"})
                 </div>
             </div>
             <input type="submit" value="je crée mon événement" />

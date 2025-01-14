@@ -18,6 +18,7 @@ namespace Projet2Groupe1.Models
         public string DescriptionService { get; set; } //
         [Required(ErrorMessage = "Le prix du service est obligatoire.")]
         public int PriceService { get; set; }
+        public int UserId { get; set; }
         //public Blob? PictureService { get; set; }
     }
 }
