@@ -5,6 +5,7 @@ namespace Projet2Groupe1.ViewModels
     public class JamSessionViewModel
     {
         public JamSession JamSession  { get; set; }
+       public List<JamSession> JamSessions { get; set; }
        
     }
 }

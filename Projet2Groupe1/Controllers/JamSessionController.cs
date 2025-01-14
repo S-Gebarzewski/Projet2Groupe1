@@ -41,28 +41,18 @@ namespace Projet2Groupe1.Controllers
 
             }
         }
-        //get pour afficher l'événement et le formulaire d'upload
-/*        public IActionResult DetailsJamSession(int id) //route GET pour ajouter un User avec une image
+        [HttpGet]
+        public IActionResult CatalogJamSession()
         {
             using (IJamService ijs = new JamService(new DataBaseContext()))
             {
-                JamSession sessionItem = ijs.searchEvent(id);
+                List<JamSession> JamSessions = ijs.GetJamSessions();
+                
+                return View(JamSessions);
 
-                JamSessionViewModel jamSessionViewModel = new JamSessionViewModel();
-                if (sessionItem != null)
-                {
-                    {
-                        jamSessionViewModel.JamSession = sessionItem;
-
-                    };
-
-                    return View(jamSessionViewModel);
-                }
-                return RedirectToAction("CreateJamSession", jamSessionViewModel);
             }
-        }*/
-
-
+           ;
+        }
         private String retrieveUserIdFromContext()
         {
             var userPrincipal = HttpContext.User;

@@ -1,4 +1,6 @@
-﻿namespace Projet2Groupe1.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Projet2Groupe1.Models
 {
     public class JamService : IJamService
     {
@@ -32,10 +34,16 @@
             return NewJamSession.Id;
 
         }
-        
-    
-   
-     
+
+        public List<JamSession> GetJamSessions()
+        {
+            return this._dbContext.Sessions.Include(e => e.Adress).ToList();
+        }
+
+
+
+
+
 
 
         JamSession IJamService.searchEvent(int id)

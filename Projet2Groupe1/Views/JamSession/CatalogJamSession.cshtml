@@ -1,0 +1,50 @@
+﻿@using Projet2Groupe1.Models;
+@model List<Projet2Groupe1.Models.JamSession>
+@{
+    Layout = "_layoutDashboard";
+    ViewBag.Title = "Catalogue des sessions de jam";
+    ViewBag.Role = "PREMIUM";
+}
+@section DashNav {
+    <ul>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeMusic.png" alt="Icone Music" class="icone">Participer session jam</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+    </ul>
+}
+
+<main class="events-container">
+
+
+    @foreach (var JamSession in Model)
+    {
+        <div class="event-card">
+            <section class="left-section">
+                <div class="event-card-picture">
+
+                    @{
+                        String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@JamSession.Photo) + "";
+
+                        <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
+
+                    }
+                </div>
+
+                <div class="info-event">
+                    <h2 class="event-card-title">@JamSession.Title </h2>
+                    <p class="event-card-date">@JamSession.StartSession.ToString("dd/MM/yyyy") - @JamSession.EndSession.ToString("dd/MM/yyyy")</p>
+                    <p class="event-card-location">@JamSession.Instruments</p>
+                    <p class="event-card-location">@JamSession.Adress.City</p>
+                    <p class="event-card-location">@JamSession.Adress.ZipCode</p>
+                    <p class="event-card-location">@JamSession.Adress.StreetName</p>
+                    <p class="event-card-location">@JamSession.Adress.StreetNumber</p>
+                </div>
+            </section>
+           
+        </div>
+    }
+
+</main>
