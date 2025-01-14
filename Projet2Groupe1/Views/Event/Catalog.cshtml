@@ -23,9 +23,8 @@
     
      <div class="search-bar">
          <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
-				@Html.TextBox("search",
-                null,
-                new { placeholder = "Evenement, artiste " })
+				@Html.TextBox("search", null, new { placeholder = "Evenement, artiste " })
+
 		<button type="submit" class="search-button">
             Rechercher
         </button>
@@ -63,7 +62,7 @@
             </section>
              <section class="right-section">
 				<p class="price"> à partir de  @eventItem.Ticket.UnitPriceTicket €</p>
-                @Html.ActionLink("Voir les évènements", "TicketDetail", "Event", new { id = eventItem.Id }, new { @class = "button" })
+                @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button" })
             </section>
         </div>
         }

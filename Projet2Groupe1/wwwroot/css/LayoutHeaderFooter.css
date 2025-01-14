@@ -1,14 +1,14 @@
 ﻿* {
-    margin: 0;
-    padding: 0;
+/*    margin: 0;
+    padding: 0;*/
     box-sizing: border-box;
     font-family: 'Urbanist', sans-serif ;
 }
 
-body {
+/*body {
     margin: 0;
     padding: 0;
-}
+}*/
 
 #header {
     background-color: #395bd8; /*couleur bandeau*/
@@ -75,6 +75,14 @@ body {
         .nav-links a:hover {
             text-decoration: underline;
         }
+
+
+#contenu {
+    margin-left: 200px;
+    font-size: 1.4em;
+    padding-left: 200px;
+}
+
 
 #footer {
     background-color: #191D37;
