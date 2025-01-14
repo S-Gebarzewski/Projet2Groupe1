@@ -56,7 +56,7 @@ namespace Projet2Groupe1.Controllers
                     if (userId != null)
                     {
 
-                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Ticket, eventViewModel.Event.Service, int.Parse(userId));
+                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, eventViewModel.Event.Service, int.Parse(userId));
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
                         return RedirectToAction("DetailsEvent", new { id = eventId });
                     }
@@ -182,7 +182,7 @@ namespace Projet2Groupe1.Controllers
                
                 Event eventToUpdate = ies.searchEvent(eventViewModel.Event.Id);
                 eventToUpdate.Artist.NickNameArtist = eventViewModel.Event.Artist.NickNameArtist;
-                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Ticket, eventToUpdate.Service);
+                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Billetterie, eventToUpdate.Service);
 
             };
 

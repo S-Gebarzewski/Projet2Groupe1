@@ -10,9 +10,42 @@
         }
 
 
-        public int BuyTicket(int numberTicket)
+        public bool BuyTicket(int numberTicket, int eventId)
         {
-            throw new NotImplementedException();
+            Billeterie billeterie = GetBilletterieByEventId(eventId);
+            if (billeterie != null)
+            {
+                if (billeterie.NumberTotalTicket >= numberTicket )
+                    
+                {
+                    billeterie.NumberTotalTicket -= numberTicket;
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+           
+        }
+
+        public int CreateTicket(int billetterieId, int eventiD, int userId, int quantity)
+        {
+            UserTicket userTicket = new UserTicket
+            {
+                BilletterieId = billetterieId,
+                EventId = eventiD,
+                UserId = userId,
+                Quantity = quantity
+            };
+            _dbContext.UserTickets.Add(userTicket);
+            _dbContext.SaveChanges();
+            return userTicket.Id;
         }
 
         public void Dispose()
@@ -20,15 +53,11 @@
             this._dbContext.Dispose();
         }
 
-        public Ticket GetTicketById(int ticketId)
+        public Billeterie GetBilletterieByEventId(int eventId)
         {
-            return _dbContext.Tickets.FirstOrDefault(t => t.Id == ticketId);
+            return _dbContext.Billetteries.FirstOrDefault(t => t.Id == eventId);
         }
 
-        //public Ticket GetTicketByIdEvent(int eventId)
-        //{
-        //    return _dbContext.Tickets.
-        //}
 
         public bool TicketAvailable()
         {

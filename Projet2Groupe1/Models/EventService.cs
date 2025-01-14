@@ -13,7 +13,7 @@ namespace Projet2Groupe1.Models
             this._dbContext = _dbContext;
         }
         
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Ticket? Ticket, Service? Service, statusRegistration StatusRegistration)
+        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? Ticket, Service? Service, statusRegistration StatusRegistration)
         { 
             Adress adress = new Adress()
             {
@@ -25,7 +25,7 @@ namespace Projet2Groupe1.Models
                 StreetComplement = AdressData.StreetComplement
             };
 
-            Ticket ticket = new Ticket()
+            Billeterie ticket = new Billeterie()
             {
                 Category = Ticket.Category,
                 NumberTotalTicket = Ticket.NumberTotalTicket,
@@ -47,7 +47,7 @@ namespace Projet2Groupe1.Models
                 EndEvent = EndEvent,
                 Adress = adress,
                 Artist = artist,
-                Ticket = ticket,
+                Billetterie = ticket,
                 Service = Service,
                 StatusRegistration = StatusRegistration
             };
@@ -59,7 +59,7 @@ namespace Projet2Groupe1.Models
         }
 
 
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
+        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
         {
 
             Event newEvent = new Event()
@@ -72,7 +72,7 @@ namespace Projet2Groupe1.Models
 
                 Adress = Adress,
                 Artist = Artist,
-                Ticket = Ticket,
+                Billetterie = Ticket,
                 Service = Service,
                 userId = userId,
                 StatusRegistration = StatusRegistration
@@ -89,11 +89,11 @@ namespace Projet2Groupe1.Models
             return _dbContext.Events
              .Include(e => e.Artist) 
              .Include(e => e.Adress) 
-             .Include(e => e.Ticket)
+             .Include(e => e.Billetterie)
              .Include(e => e.Service)
              .FirstOrDefault(e => e.Id == id);
         }
-        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service)
+        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service)
         {
             Event newEvent = _dbContext.Events.Find(Id);
 
@@ -105,7 +105,7 @@ namespace Projet2Groupe1.Models
                 newEvent.EndEvent = EndEvent;
                 newEvent.Adress = Adress;
                 newEvent.Artist = Artist;
-                newEvent.Ticket = Ticket;
+                newEvent.Billetterie = Ticket;
                 newEvent.Service = Service;
                 _dbContext.SaveChanges();
             }
@@ -139,7 +139,7 @@ namespace Projet2Groupe1.Models
             return _dbContext.Events.Include(e => e.Adress) // Include related Adress
         .Include(e => e.Artist) // Include other related entities as needed
         .Include(e => e.Adress)
-        .Include(e => e.Ticket)
+        .Include(e => e.Billetterie)
         .Include(e => e.Service).
         Where(e => e.userId == userId).ToList();
         }
@@ -164,7 +164,7 @@ namespace Projet2Groupe1.Models
             return _dbContext.Events.Where(e => e.StatusRegistration == statusRegistration.ACCEPTED)
                 .Include(e => e.Adress)
                 .Include(e => e.Artist)
-                .Include(e => e.Ticket)
+                .Include(e => e.Billetterie)
                 .ToList();
         }
 

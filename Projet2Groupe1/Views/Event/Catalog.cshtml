@@ -50,8 +50,8 @@
              {
 			 <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" 
               src = "@Url.Action("GetDefaultImage", "Event", new { type = eventItem.TypeEvent })"/>
-                       
-              }
+                      
+             }
             </div>
                 
             <div class="info-event">
@@ -61,7 +61,14 @@
             </div>
             </section>
              <section class="right-section">
-				<p class="price"> à partir de  @eventItem.Ticket.UnitPriceTicket €</p>
+                @if (eventItem?.Billetterie?.UnitPriceTicket != null)
+                {
+                    <p class="price"> à partir de  @eventItem.Billetterie.UnitPriceTicket €</p>
+                }
+                else
+                {
+                    <p class="price">Prix non disponible</p>
+                }
                 @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button" })
             </section>
         </div>
