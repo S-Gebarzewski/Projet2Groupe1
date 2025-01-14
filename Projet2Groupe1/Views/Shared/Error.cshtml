@@ -1,6 +1,13 @@
-﻿@{
+﻿@model Projet2Groupe1.ViewModels.ErrorViewModel
+@{
     Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Error";
+    ViewBag.Title = "Erreur";
 }
 
-     <div>You should not pass !!!!!</div>
+
+
+<body>
+    <div>@Model.Message</div>
+
+</body>
+

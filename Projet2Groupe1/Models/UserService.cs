@@ -14,6 +14,7 @@ namespace Projet2Groupe1.Models
 
         public int CreateUser(string FirstName, string LastName, string Phone, string Mail, string Password, bool Newsletter, statusRegistration statusRegistration = statusRegistration.ACCEPTED, UserRole Role = UserRole.DEFAULT)
         {
+            Console.WriteLine("dans Create user Password est : " + Password + " et password encode vaut : " + EncodeMD5(Password));
             User user = new User()
             {
                 FirstName = FirstName,
@@ -25,7 +26,7 @@ namespace Projet2Groupe1.Models
                 StatusRegistration = statusRegistration,
                 Role = Role                
             };
-
+            Console.WriteLine("APRES CREATION DU USER dans Create user Password est : " + Password + " et password encode vaut : " + EncodeMD5(Password));
             _dbContext.Users.Add(user); // ma DB, ma table, ma fonction
             _dbContext.SaveChanges(); // save object user in object DB
 
@@ -56,7 +57,7 @@ namespace Projet2Groupe1.Models
                 ExistingUser.LastName = user.LastName;  
                 ExistingUser.Phone = user.Phone;
                 ExistingUser.Mail = user.Mail;  
-                ExistingUser.Password = user.Password;  
+                ExistingUser.Password = EncodeMD5(user.Password);  
                 ExistingUser.Newsletter = user.Newsletter;
                 ExistingUser.Role= user.Role;
                 ExistingUser.StatusRegistration = user.StatusRegistration;

@@ -161,7 +161,7 @@ namespace Projet2Groupe1.Models
 
         public List<Event> GetAllEvents()
         {
-            return _dbContext.Events
+            return _dbContext.Events.Where(e => e.StatusRegistration == statusRegistration.ACCEPTED)
                 .Include(e => e.Adress)
                 .Include(e => e.Artist)
                 .Include(e => e.Ticket)
