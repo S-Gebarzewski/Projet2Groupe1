@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 
@@ -58,10 +59,12 @@ namespace Projet2Groupe1.Controllers
                             Message = "Veuillez vous connecter" });
                     }
 
+                    int UserId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.Name).Value);
+
                     if (its.BuyTicket(ticketViewModel.TicketQuantityAvailable, ticketViewModel.Event.Id ))
                     {
                         its.CreateTicket
-                            (ticketViewModel.Billetterie.Id, ticketViewModel.Event.Id, ticketViewModel.User.Id, ticketViewModel.TicketQuantityAvailable);
+                            (ticketViewModel.Billetterie.Id, ticketViewModel.Event.Id, UserId, ticketViewModel.TicketQuantityAvailable);
                         ViewBag.Result = ticketViewModel.Billetterie.UnitPriceTicket * ticketViewModel.TicketQuantityAvailable;
                         return View("SuccessTicket");
                     }
@@ -83,6 +86,37 @@ namespace Projet2Groupe1.Controllers
                 }
             }
             
+        }
+        public IActionResult PurchaseHistory()
+        {
+            using (ITicketService its = new TicketService(new DataBaseContext()))
+            {
+                int UserId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.Name).Value);
+                List<UserTicket> tickets = its.GetTicketsByUserId(UserId);
+
+                if (tickets != null)
+                {
+                    List<TicketViewModel> tvm = tickets.Select(t => new TicketViewModel
+                    {
+                        Event = t.Event,
+                        TicketQuantityAvailable = t.Quantity,
+                        QuantityPurchased = t.Quantity,
+
+                    }).ToList();
+
+                    return(View(tvm));
+                }
+                else
+                {
+                    return View("Error");
+                }
+
+            }
+
+
+
+
+
         }
 
     }

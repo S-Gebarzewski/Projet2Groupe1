@@ -9,5 +9,11 @@
         public int EventId { get; set; }
         public int Quantity { get; set; }
 
+
+        public virtual User User { get; set; }
+        public virtual Event Event { get; set; }
+        
+
+
     }
 }

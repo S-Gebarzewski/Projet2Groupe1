@@ -12,6 +12,7 @@ namespace Projet2Groupe1.ViewModels
 
        
         public int TicketQuantityAvailable { get; set; }
+        public int QuantityPurchased { get; set; }
 
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Projet2Groupe1.Models
+﻿
+using Microsoft.EntityFrameworkCore;
+
+namespace Projet2Groupe1.Models
 {
     public class TicketService : ITicketService
     {
@@ -58,13 +61,14 @@
             return _dbContext.Billetteries.FirstOrDefault(t => t.Id == eventId);
         }
 
-
-        public bool TicketAvailable()
+        public List<UserTicket> GetTicketsByUserId(int userID)
         {
-            throw new NotImplementedException();
-             
+            return _dbContext.UserTickets
+                 .Include(t => t.Event)
+                 .ThenInclude(e => e.Artist)  // Pour avoir accès à NickNameArtist
+                 .Include(t => t.Event)
+                 .ThenInclude(e => e.Billetterie)  // Pour avoir accès à UnitPriceTicket et NumberTotalTicket
+                 .Where(t => t.UserId == userID).ToList();
         }
-
-       
     }
 }

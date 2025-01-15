@@ -1,0 +1,27 @@
+﻿@model List<Projet2Groupe1.ViewModels.TicketViewModel>
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Profile du Prestataire !!";
+    ViewBag.Role = "MEMBER";
+
+}
+
+<div>Vos réservation</div>
+
+@foreach(var ticket in Model){
+	<div>
+		<p>@ticket.Event.NameEvent</p>
+        <p>@ticket.Event.Artist.NickNameArtist</p>
+		<p>@ticket.Event.StartEvent</p>
+		<p>@ticket.Event.Billetterie.UnitPriceTicket €</p>
+        <p>@ticket.QuantityPurchased</p>
+	</div>
+}
+
+@section DashNav {
+    <ul>
+        <li><a href="@Url.Action("PurchaseHistory", "Ticket")" class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
+        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+    </ul>
+}

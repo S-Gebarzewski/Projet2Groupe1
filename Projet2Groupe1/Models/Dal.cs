@@ -150,7 +150,7 @@ namespace Projet2Groupe1.Models
                 orelsan,
                 ticketConcertStandard,
                 null,
-                statusRegistration.PENDING
+                statusRegistration.ACCEPTED
             );
 
             _eventService.CreateEvent(
