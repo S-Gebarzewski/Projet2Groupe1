@@ -10,14 +10,14 @@
         <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
         <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
         <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li>
-        <li><a href=# class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
-        <li><a href=# class="buttonProfile"><img src="~/images/iconeMusic.png" alt="Icone Music" class="icone">Participer session jam</a></li>
-        <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
+        <li><a href="@Url.Action("CreateJamSession", "JamSession")" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
+        <li><a href="@Url.Action("CatalogJamSession", "JamSession")" class="buttonProfile"><img src="~/images/iconeMusic.png" alt="Icone Music" class="icone">Participer session jam</a></li>
+        <li><a href="@Url.Action("DashBoardPremium", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
 
 <main class="events-container">
-
+    <h2>Catalogue des Jam Sessions</h2>
 
     @foreach (var JamSession in Model)
     {
