@@ -30,7 +30,7 @@ namespace Projet2Groupe1.Controllers
                     int jamSessionId = ijs.CreateJamSession(jamSessionViewModel.JamSession.Title, jamSessionViewModel.JamSession.StartSession, jamSessionViewModel.JamSession.EndSession, jamSessionViewModel.JamSession.Description, jamSessionViewModel.JamSession.NumberPlaces, jamSessionViewModel.JamSession.Instruments, jamSessionViewModel.JamSession.Adress, fileByteArray, int.Parse(userId));
                         Console.WriteLine("Création" + jamSessionViewModel.JamSession.ToString());
 
-                       // return RedirectToAction("DetailsJamSession", new { id = jamSessionId });
+                        return RedirectToAction("CatalogJamSession", new { id = jamSessionId });
                     }
                     else
                     {
