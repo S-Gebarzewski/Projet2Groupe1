@@ -46,7 +46,7 @@ namespace Projet2Groupe1.Models
 
 
             _userService.CreateUser("Admin", "ISIKA", "0450452356", "admin@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ADMIN);
-            _userService.CreateUser("Organizer", "ISIKA", "0450452356", "organizer@gmail.com", "1234", true, statusRegistration.PENDING, UserRole.ORGANIZER);
+            _userService.CreateUser("Organizer", "ISIKA", "0450452356", "organizer@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ORGANIZER);
             _userService.CreateUser("Provider", "ISIKA", "0450452356", "provider@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.PROVIDER);
             _userService.CreateUser("Member", "ISIKA", "0450452356", "member@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.MEMBER);
             _userService.CreateUser("Premium", "ISIKA", "0450452356", "premium@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.PREMIUM);
