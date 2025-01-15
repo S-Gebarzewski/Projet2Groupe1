@@ -149,8 +149,11 @@ namespace Projet2Groupe1.Models
                 bercy,
                 orelsan,
                 ticketConcertStandard,
-                null,
-                statusRegistration.PENDING
+                statusRegistration.PENDING,
+                TypeService.FOOD,
+                2,
+                0
+
             );
 
             _eventService.CreateEvent(
@@ -161,8 +164,10 @@ namespace Projet2Groupe1.Models
                 olympiaAddress,
                 stromae,
                 ticketConcertVIP,
-                null,
-                statusRegistration.PENDING
+                statusRegistration.PENDING,
+                TypeService.FOOD,
+                2,
+                0
             );
 
             _eventService.CreateEvent(
@@ -180,8 +185,10 @@ namespace Projet2Groupe1.Models
                 },
                 iggyPop,
                 ticketFestival,
-                null,
-                statusRegistration.PENDING
+                statusRegistration.PENDING,
+                TypeService.FOOD,
+                2,
+                0
             );
 
             _eventService.CreateEvent(
@@ -199,8 +206,10 @@ namespace Projet2Groupe1.Models
                 },
                 bowie,
                 ticketConcertVIP,
-                null,
-                statusRegistration.PENDING
+                statusRegistration.PENDING,
+                TypeService.FOOD,
+                2,
+                0
             );
 
             _eventService.CreateEvent(
@@ -211,8 +220,10 @@ namespace Projet2Groupe1.Models
                 zenithAddress,
                 indochine,
                 ticketConcertStandard,
-                null,
-                statusRegistration.PENDING
+                statusRegistration.PENDING,
+                TypeService.FOOD,
+                2,
+                0
             );
 
 
@@ -251,11 +262,11 @@ namespace Projet2Groupe1.Models
             };
 
 
-           // (TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Ticket? Ticket, Service? Service, int userId)
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, service, 5, statusRegistration.ACCEPTED);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, service, 5, statusRegistration.PENDING);
+            //(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration, TypeService TypeService, int QuantityService, int userId)
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, statusRegistration.ACCEPTED, TypeService.SECURITY, 1,0 );
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.FOOD, 1,0);
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.FOOD, 1,0 );
+            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.SECURITY,1,0);
             _ticketService.CreateTicket(1, 1, 1, 1);
         }
     }

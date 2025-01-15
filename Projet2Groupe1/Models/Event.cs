@@ -12,13 +12,12 @@
 
         //penser ajout depot image  ============================================================================================================
 
-        public Artist Artist {  get; set; }
+        public Artist? Artist {  get; set; }
 
-        public Billeterie? Billetterie { get; set; }
-
-        public Service? Service { get; set; }
-
+        public Billeterie Billetterie { get; set; }
         public byte[]? PhotoData { get; set; }
+        public int QuantityService { get; set; }    
+        public TypeService TypeService { get; set; }    
 
         public statusRegistration StatusRegistration { get; set; }
         public int userId { get; set; }
