@@ -1,0 +1,74 @@
+﻿/*import d'une police depuis le site Google Fonts ==========================================================================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*styles génériques ========================================================================================================================*/
+
+:root {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%; /*permet que les images ne dépassent jamais leur conteneur*/
+    height: auto;
+}
+
+
+body {
+    font-family: "Urbanist";
+    font-size: 1rem;
+    color: #191D37;
+}
+
+#pageContent {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+#logo {
+    height: 86px;
+    margin-top: 200px;
+    margin-bottom: 40px;
+}
+
+.titre {
+    margin-left: 40px;
+    font-weight: 1200;
+}
+
+#leftCol {
+    padding: 30px;
+    margin-left: 80px;
+    margin-right: 40px;
+    align-items: center;
+}
+
+.form {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+input {
+    border-radius: 10px; /* Arrondir les angles avec un rayon de 10px */
+    height: 40px;
+    width: 280px;
+    border-width: 4px;
+    border-color: #191D37;
+}
+
+.button {
+    margin-top: 20px;
+    border-radius: 12px;
+    border-width: 4px;
+    background-color: #fc2306;
+    height: 40px;
+    width: 280px;
+    color: white;
+    font-weight: 700;
+    border-color: #191D37;
+    margin-left: 40px;
+}

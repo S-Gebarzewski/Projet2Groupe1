@@ -1,41 +1,58 @@
 ﻿@model Projet2Groupe1.ViewModels.UserViewModel
 
 @{
-    Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Connection";
 }
 
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>Connexion</title>
-
+    <title>@ViewBag.Title</title>
+    <link href="~/css/normalize.css" rel="stylesheet" />
+    <link href="~/css/ConnectionSheet.css" rel="stylesheet" />
 </head>
 
 <body>
-    <p> Veuillez remplir les champs ci-dessous pour vous connecter :  </p>
-    @using (Html.BeginForm())
-    {
+    <header id="mainHeader">
+        
+    </header><!--Ici se termine le mainHeader-->
 
+    <section id="pageContent" class="bigScreen">
 
-        <div>
-            @Html.LabelFor(m => Model.User.Mail) :
-            @Html.TextBoxFor(m => Model.User.Mail)
-            @Html.ValidationMessageFor(m => Model.User.Mail)
-        </div>
+        <aside id="leftCol">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/images/logoSoundTogetherH.svg" alt="Logo de la plateforme" id="logo">
+            </a>
+            <h1 class="titre">Connexion</h1>
+            @using (Html.BeginForm())
+            {
+                <div class="form">
+                    @* @Html.LabelFor(m => Model.User.Mail) : *@
+                    @Html.TextBoxFor(m => Model.User.Mail, new {@placeholder = "Mail"})
+                    @Html.ValidationMessageFor(m => Model.User.Mail)
+                </div>
+                <div class="form">
+                    @* @Html.LabelFor(m => Model.User.Password) : *@
+                    @Html.PasswordFor(m => Model.User.Password, new { @placeholder = "Password" })
+                </div>
+                <input type="submit" value="Se Connecter" class="button" />
+            }
+        </aside><!--Ici se termine leftCol-->
 
-        <div>
-            @Html.LabelFor(m => Model.User.Password) :
-            @Html.PasswordFor(m => Model.User.Password)
-        </div>
+        <main id="rightCol">
+            <img src="~/images/imgConnection.png" alt="Image illustration connecxion" class="img">
+        </main> <!--Ici se termine rightCol-->
 
-        <input type="submit" value="je me connecte " />
-             
-    }
+    </section> <!--Ici se termine le pageContent-->
 
-</body>
+    <footer id="mainFooter">
+    </footer> <!--Ici se termine le mainFooter-->
+
+</body> <!--Ici se termine la page-->
+
 </html>
 
