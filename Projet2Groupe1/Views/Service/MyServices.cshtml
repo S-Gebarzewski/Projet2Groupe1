@@ -1,13 +1,8 @@
-﻿@model Projet2Groupe1.ViewModels.ServiceViewModel
-
-@{
+﻿@{
     Layout = "_LayoutDashboard";
     ViewBag.Title = "Profile du Prestataire !!";
     ViewBag.Role = "PROVIDER";
 }
-
-<div>Bonjour @ViewBag.Role</div>
-
 
 @section DashNav {
     <ul>
@@ -17,14 +12,4 @@
     </ul>
 }
 
-<div>
-    @foreach (var service in Model.Services)
-    { 
-        <div>
-            <p>@service.Id</p>
-            <p>@service.NameService</p>
-            <p>@service.TypeService</p>
-            <p>@service.QuantityService</p>
-        </div>
-    }
-</div>
+<a href="@Url.Action("CreateService", "Service")" class="buttonProfile">Ajouter un service</a>

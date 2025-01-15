@@ -55,7 +55,6 @@ namespace Projet2Groupe1.Controllers
                     String userId = retrieveUserIdFromContext();
                     if (userId != null)
                     {
-
                         int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, eventViewModel.Event.Service, int.Parse(userId));
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
                         return RedirectToAction("DetailsEvent", new { id = eventId });
