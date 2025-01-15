@@ -1,11 +1,23 @@
-﻿@{
+﻿@model List<Projet2Groupe1.ViewModels.TicketViewModel>
+
+@{
     Layout = "_LayoutDashboard";
-    ViewBag.Title = "Profile de l'Adhérent !!";
+    ViewBag.Title = "Profile du Prestataire !!";
     ViewBag.Role = "MEMBER";
+
 }
 
-<div>Bonjour @ViewBag.Role</div>
+<div>Vos réservation</div>
 
+@foreach(var ticket in Model){
+	<div>
+		<p>@ticket.Event.NameEvent</p>
+        <p>@ticket.Event.Artist.NickNameArtist</p>
+		<p>@ticket.Event.StartEvent</p>
+		<p>@ticket.Event.Billetterie.UnitPriceTicket €</p>
+        <p>@ticket.QuantityPurchased</p>
+	</div>
+}
 
 @section DashNav {
     <ul>
