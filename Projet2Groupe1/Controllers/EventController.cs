@@ -46,9 +46,9 @@ namespace Projet2Groupe1.Controllers
         {
 
             using (IEventService ies = new EventService(new DataBaseContext()))
-
+                
             {
-
+                //Console.WriteLine("TypeEvent" + eventViewModel.Service.ToString());
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
@@ -56,7 +56,8 @@ namespace Projet2Groupe1.Controllers
                     if (userId != null)
                     {
                         statusRegistration StatusPending = statusRegistration.PENDING;
-                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, eventViewModel.Event.Service, int.Parse(userId), StatusPending);
+                                                                                   
+                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, StatusPending, eventViewModel.Event.TypeService,eventViewModel.Event.QuantityService ,int.Parse(userId) );
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
                         return RedirectToAction("DetailsEvent", new { id = eventId });
                     }
@@ -182,7 +183,7 @@ namespace Projet2Groupe1.Controllers
                
                 Event eventToUpdate = ies.searchEvent(eventViewModel.Event.Id);
                 eventToUpdate.Artist.NickNameArtist = eventViewModel.Event.Artist.NickNameArtist;
-                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Billetterie, eventToUpdate.Service);
+                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Billetterie, eventToUpdate.TypeService);
 
             };
 

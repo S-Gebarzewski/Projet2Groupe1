@@ -13,7 +13,7 @@ namespace Projet2Groupe1.Models
             this._dbContext = _dbContext;
         }
         
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? Ticket, Service? Service, statusRegistration StatusRegistration)
+        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration,TypeService TypeService, int QuantityService, int userId)
         { 
             Adress adress = new Adress()
             {
@@ -25,11 +25,11 @@ namespace Projet2Groupe1.Models
                 StreetComplement = AdressData.StreetComplement
             };
 
-            Billeterie ticket = new Billeterie()
+            Billeterie Billeterie = new Billeterie()
             {
-                Category = Ticket.Category,
-                NumberTotalTicket = Ticket.NumberTotalTicket,
-                UnitPriceTicket = Ticket.UnitPriceTicket
+                Category = billeterie.Category,
+                NumberTotalTicket = billeterie.NumberTotalTicket,
+                UnitPriceTicket = billeterie.UnitPriceTicket
                
             };
 
@@ -47,34 +47,10 @@ namespace Projet2Groupe1.Models
                 EndEvent = EndEvent,
                 Adress = adress,
                 Artist = artist,
-                Billetterie = ticket,
-                Service = Service,
-                StatusRegistration = StatusRegistration
-            };
-
-            _dbContext.Events.Add(newEvent);
-            _dbContext.SaveChanges();
-
-            return newEvent.Id;
-        }
-
-
-        public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
-        {
-
-            Event newEvent = new Event()
-            {
-                TypeEvent = TypeEvent,
-                NameEvent = NameEvent,
-                StartEvent = StartEvent,
-                EndEvent = EndEvent,
-
-
-                Adress = Adress,
-                Artist = Artist,
-                Billetterie = Ticket,
-                Service = Service,
+                Billetterie = Billeterie,
                 userId = userId,
+                TypeService = TypeService,
+                QuantityService = QuantityService,
                 StatusRegistration = StatusRegistration
             };
 
@@ -83,6 +59,32 @@ namespace Projet2Groupe1.Models
 
             return newEvent.Id;
         }
+
+
+        //public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
+        //{
+
+        //    Event newEvent = new Event()
+        //    {
+        //        TypeEvent = TypeEvent,
+        //        NameEvent = NameEvent,
+        //        StartEvent = StartEvent,
+        //        EndEvent = EndEvent,
+
+
+        //        Adress = Adress,
+        //        Artist = Artist,
+        //        Billetterie = Ticket,
+        //        Service = Service,
+        //        userId = userId,
+        //        StatusRegistration = StatusRegistration
+        //    };
+
+        //    _dbContext.Events.Add(newEvent);
+        //    _dbContext.SaveChanges();
+
+        //    return newEvent.Id;
+        //}
 
         public Event searchEvent(int id)
         {
@@ -90,10 +92,10 @@ namespace Projet2Groupe1.Models
              .Include(e => e.Artist) 
              .Include(e => e.Adress) 
              .Include(e => e.Billetterie)
-             .Include(e => e.Service)
+             .Include(e => e.TypeService)
              .FirstOrDefault(e => e.Id == id);
         }
-        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service)
+        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie Billeterie,  TypeService TypeService)
         {
             Event newEvent = _dbContext.Events.Find(Id);
 
@@ -105,8 +107,8 @@ namespace Projet2Groupe1.Models
                 newEvent.EndEvent = EndEvent;
                 newEvent.Adress = Adress;
                 newEvent.Artist = Artist;
-                newEvent.Billetterie = Ticket;
-                newEvent.Service = Service;
+                newEvent.Billetterie = Billeterie;
+                newEvent.TypeService = TypeService;
                 _dbContext.SaveChanges();
             }
             return newEvent.Id;
@@ -138,8 +140,7 @@ namespace Projet2Groupe1.Models
         {
             return _dbContext.Events
         .Include(e => e.Adress)
-        .Include(e => e.Billetterie)
-        .Include(e => e.Service).
+        .Include(e => e.Billetterie).
         Where(e => e.userId == userId).ToList();
         }
         public void DeleteEvent(int id)
