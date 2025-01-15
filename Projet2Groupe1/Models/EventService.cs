@@ -89,13 +89,12 @@ namespace Projet2Groupe1.Models
         public Event searchEvent(int id)
         {
             return _dbContext.Events
-             .Include(e => e.Artist) 
-             .Include(e => e.Adress) 
+             .Include(e => e.Artist)
+             .Include(e => e.Adress)
              .Include(e => e.Billetterie)
-             .Include(e => e.TypeService)
              .FirstOrDefault(e => e.Id == id);
         }
-        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie Billeterie,  TypeService TypeService)
+        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, string NickNameArtist, Billeterie Billeterie,  TypeService TypeService)
         {
             Event newEvent = _dbContext.Events.Find(Id);
 
@@ -106,7 +105,7 @@ namespace Projet2Groupe1.Models
                 newEvent.StartEvent = StartEvent;
                 newEvent.EndEvent = EndEvent;
                 newEvent.Adress = Adress;
-                newEvent.Artist = Artist;
+                newEvent.Artist.NickNameArtist = NickNameArtist;
                 newEvent.Billetterie = Billeterie;
                 newEvent.TypeService = TypeService;
                 _dbContext.SaveChanges();
@@ -139,6 +138,7 @@ namespace Projet2Groupe1.Models
         public List<Event> searchEventList(int userId)
         {
             return _dbContext.Events
+        .Include(e =>e.Artist)
         .Include(e => e.Adress)
         .Include(e => e.Billetterie).
         Where(e => e.userId == userId).ToList();

@@ -5,7 +5,7 @@
         public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration, TypeService TypeService, int QuantityService, int userId);
 
         public Event searchEvent(int id);
-        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie Billeterie, TypeService TypeService);
+        public int UpdateEvent(int Id, TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, string NickNameArtist, Billeterie Billeterie, TypeService TypeService);
 
         public List<Event> searchEventList(int userId);
         public void DeleteEvent(int id);
