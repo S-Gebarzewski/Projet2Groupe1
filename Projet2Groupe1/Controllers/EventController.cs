@@ -46,16 +46,18 @@ namespace Projet2Groupe1.Controllers
         {
 
             using (IEventService ies = new EventService(new DataBaseContext()))
-
+                
             {
-
+                //Console.WriteLine("TypeEvent" + eventViewModel.Service.ToString());
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
                     String userId = retrieveUserIdFromContext();
                     if (userId != null)
                     {
-                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, eventViewModel.Event.Service, int.Parse(userId));
+                        statusRegistration StatusPending = statusRegistration.PENDING;
+                                                                                   
+                        int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, StatusPending, eventViewModel.Event.TypeService,eventViewModel.Event.QuantityService ,int.Parse(userId) );
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
                         return RedirectToAction("DetailsEvent", new { id = eventId });
                     }
@@ -166,6 +168,7 @@ namespace Projet2Groupe1.Controllers
             using (IEventService ies = new EventService(new DataBaseContext()))
             {
                 string user_id = retrieveUserIdFromContext();
+                Console.WriteLine("user Id vaut " + user_id);
                 eventViewModel.Events = ies.searchEventList(int.Parse(user_id));
 
                 return View(eventViewModel);
@@ -180,8 +183,9 @@ namespace Projet2Groupe1.Controllers
             {
                
                 Event eventToUpdate = ies.searchEvent(eventViewModel.Event.Id);
+                Console.WriteLine("on est dans la merde" + eventViewModel.Event.Artist.NickNameArtist);
                 eventToUpdate.Artist.NickNameArtist = eventViewModel.Event.Artist.NickNameArtist;
-                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist, eventToUpdate.Billetterie, eventToUpdate.Service);
+                ies.UpdateEvent(eventToUpdate.Id, eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventToUpdate.Adress, eventToUpdate.Artist.NickNameArtist, eventToUpdate.Billetterie, eventToUpdate.TypeService);
 
             };
 

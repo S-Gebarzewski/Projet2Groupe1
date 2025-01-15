@@ -1,4 +1,5 @@
-﻿@model Projet2Groupe1.ViewModels.EventViewModel
+﻿@using Projet2Groupe1.Models
+@model Projet2Groupe1.ViewModels.EventViewModel
 
 @{
     Layout = "_LayoutDashboard";
@@ -15,6 +16,8 @@
         <li><a href=# class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
     </ul>
 }
+@using(IServiceService iss = new ServiceService(new DataBaseContext()))
+{
 @using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
 
@@ -100,16 +103,20 @@
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Service.TypeService, "Type de service") :
-            @Html.TextBoxFor(m => Model.Event.Service.TypeService)
-            @Html.ValidationMessageFor(m => Model.Event.Service.TypeService)
+        @Html.LabelFor(m => Model.Event.TypeService, "type de service")
+        @Html.DropDownListFor(mbox => Model.Event.TypeService, new SelectList(Enum.GetValues(typeof(TypeService))
+                .Cast<TypeService>()
+                .Select(e => new { Value = e, Text = iss.GetDisplayName(e) }),
+                "Value",
+                "Text"), "Selectionner un type")
         </div>
 
         <div>
-            @Html.LabelFor(m => Model.Event.Service.QuantityService, "Quantité de service") :
-            @Html.TextBoxFor(m => Model.Event.Service.QuantityService)
-            @Html.ValidationMessageFor(m => Model.Event.Service.QuantityService)
+            @Html.LabelFor(m => Model.Event.QuantityService, "Quantité de service") :
+            @Html.TextBoxFor(m => Model.Event.QuantityService)
+            @Html.ValidationMessageFor(m => Model.Event.QuantityService)
         </div>
 
         <input type="submit" value="je crée mon événement" />
+    }
     }

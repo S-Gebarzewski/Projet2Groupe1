@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 
@@ -29,6 +29,9 @@ namespace Projet2Groupe1.Controllers
                 {
                     Console.WriteLine("je suis deja authentifie");
                     uvm.User = ius.GetUser(HttpContext.User.Identity.Name);
+                    
+
+                    return Redirect(uvm.User.Role, uvm.User.Id);
                 }
                 
                 return View(uvm);
@@ -94,7 +97,7 @@ namespace Projet2Groupe1.Controllers
 
                         return RedirectToAction("Error", "Error", new { errorCode = 1, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
                     }
-                    return Redirect(user.Role);
+                    return Redirect(user.Role, user.Id);
                 }
                 ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
                 return View(userViewModel);
@@ -133,17 +136,10 @@ namespace Projet2Groupe1.Controllers
             return View();
         }
         [Authorize]
-        public IActionResult Redirect(UserRole DashboardType)
+        public IActionResult Redirect(UserRole DashboardType, int UserId)
         {
             TempData["Role"] = DashboardType;
 
-            Claim ClaimId = HttpContext.User.FindFirst(ClaimTypes.Name);
-            Console.WriteLine("ClaimId est " + ClaimId);
-            if (ClaimId == null)
-            {
-                return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, vous n'etes pas authentifie(e). Connectez-vous et/ou contactez l'administrateur." });
-            }
-            int UserId = int.Parse(ClaimId.Value);
             Console.WriteLine("Vers Dashboard Provider - user ID : " + UserId);
             using (IServiceService iss = new ServiceService(new DataBaseContext()))
             {

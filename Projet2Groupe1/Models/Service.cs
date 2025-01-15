@@ -19,6 +19,10 @@ namespace Projet2Groupe1.Models
         [Required(ErrorMessage = "Le prix du service est obligatoire.")]
         public int PriceService { get; set; }
         public int UserId { get; set; }
-        //public Blob? PictureService { get; set; }
+        public override string ToString()
+        {
+            return $"Service ID: {Id}\n" + $"Nom du Service: {NameService}\n" + $"Type de Service: {TypeService}\n" + $"Quantité Disponible: {QuantityService}\n" + $"Description: {DescriptionService}\n" + $"Prix: {PriceService}€\n" + $"User ID: {UserId}";
+            //public Blob? PictureService { get; set; }
+        }
     }
 }

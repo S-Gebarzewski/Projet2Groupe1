@@ -8,7 +8,6 @@ namespace Projet2Groupe1.Controllers
     public class TicketController : Controller
     {
         [HttpGet]
-
         public IActionResult PurchaseTicket(int Id)
         {
             using(IEventService ies = new EventService(new DataBaseContext()))
@@ -40,7 +39,6 @@ namespace Projet2Groupe1.Controllers
 
 
         [HttpPost]
-
         public IActionResult PurchaseTicket(TicketViewModel ticketViewModel)
         {
             using (ITicketService its = new TicketService(new DataBaseContext()))
@@ -50,7 +48,6 @@ namespace Projet2Groupe1.Controllers
                     UserViewModel uvm = new UserViewModel
                     {
                         Authenticate = HttpContext.User.Identity.IsAuthenticated
-                        
                     };
                     Console.WriteLine("IsAuthenticated est a " + uvm.Authenticate);
                     if (!uvm.Authenticate)
