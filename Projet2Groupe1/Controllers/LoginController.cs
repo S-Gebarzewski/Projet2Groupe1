@@ -45,7 +45,17 @@ namespace Projet2Groupe1.Controllers
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
-                //Console.WriteLine("Apres authentification, user reucperer ? " + user.FirstName);
+
+                if (user.StatusRegistration == statusRegistration.PENDING)
+                {
+                    return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
+                }
+                else if (user.StatusRegistration == statusRegistration.REFUSED)
+                {
+                    return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
+                }
+
+
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
@@ -89,14 +99,8 @@ namespace Projet2Groupe1.Controllers
                     {
                         Console.WriteLine("No ClaimsIdentity found.");
                     }
-                    //return Redirect("/Login/DashBoardAdmin");
-                    if (user.StatusRegistration == statusRegistration.PENDING) {
-                        
-                        return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
-                    } else if (user.StatusRegistration == statusRegistration.REFUSED) {
 
-                        return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
-                    }
+                    
                     return OwnRedirect(user.Role, user.Id);
                 }
                 //ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");

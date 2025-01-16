@@ -51,7 +51,7 @@ namespace Projet2Groupe1.Controllers
                         }
 
                         UserRole dashboardRole = member.IsPremium ? UserRole.PREMIUM : UserRole.MEMBER;
-                        return RedirectToAction("Redirect", "Login", new { dashboardType = dashboardRole });
+                        return RedirectToAction("Connection", "Login");
                     }
                 }
                 return View();
@@ -99,7 +99,7 @@ namespace Projet2Groupe1.Controllers
                       
                         ius.UpdateUser(user);
                        
-                        return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.ORGANIZER });
+                        return RedirectToAction("Connection", "Login");
                     }
                     Console.WriteLine("Apresle if de createOrganizer");
 
@@ -137,7 +137,7 @@ namespace Projet2Groupe1.Controllers
                 {
                     ips.CreateProvider(provider.Function, provider.ServiceType, provider.Adress, provider.UserId);
 
-                    return RedirectToAction("Redirect", "Login", new { dashboardType = UserRole.PROVIDER });
+                    return RedirectToAction("Connection", "Login"); //new { dashboardType = UserRole.PROVIDER }
                 }
             }
 
