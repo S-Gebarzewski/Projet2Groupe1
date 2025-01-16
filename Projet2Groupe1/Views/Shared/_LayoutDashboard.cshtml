@@ -19,11 +19,9 @@
             <ul>
                 <li>@Html.ActionLink("Catalogue", "Catalog", "Event")</li>
                 <li><a href=# class="buttonNav">Espace personnel</a></li>
-                @* <li><a href=# class="buttonNav"><img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav"></a></li> *@
                 <li>
                     <a href="@Url.Action("Disconnection", "Login")" class="buttonNav">
                         <img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav">
-                        @* <span>je me déconnecte</span> *@
                     </a>
                 </li>
 
@@ -35,7 +33,7 @@
 
         <aside id="leftCol">
             <nav id="dashNav">
-                @if ((string)ViewData["Role"] == "ADMIN")
+                @if (ViewData["Role"].ToString() == "ADMIN")
                 {
                     <ul>
                         <li><a href="" class="buttonProfile"><img src="~/images/iconePrinter.png" alt="Icone Printer" class="icone">Imprimer rapport</a></li>
@@ -45,14 +43,14 @@
                         <li><a href="@Url.Action("DashBoardAdmin", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
                     </ul>
                 }
-                else if ((string)ViewData["Role"] == "MEMBER")
+                else if (ViewData["Role"].ToString() == "MEMBER")
                 {
                     <ul>
                         <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
                         <li><a href="@Url.Action("DashBoardMember", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
                     </ul>
                 }
-                else if ((string)ViewData["Role"] == "ORGANIZER")
+                else if (ViewData["Role"].ToString() == "ORGANIZER")
                 {
                     <ul>
                         <li><a href="@Url.Action("CreateEvent", "Event")" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser événements</a></li>
@@ -61,7 +59,7 @@
                         <li><a href="@Url.Action("DashBoardOrganizer", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
                     </ul>
                 }
-                else if ((string)ViewData["Role"] == "PREMIUM")
+                else if (ViewData["Role"].ToString() == "PREMIUM")
                 {
                     <ul>
                         <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
@@ -72,7 +70,7 @@
                         <li><a href="@Url.Action("DashBoardPremium", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
                     </ul>
                 }
-                else if ((string)ViewData["Role"] == "PROVIDER")
+                else if (ViewData["Role"].ToString() == "PROVIDER")
                 {
                     <ul>
                         <li><a href="@Url.Action("MyServices", "Service")" class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services proposés</a></li>
@@ -82,7 +80,7 @@
                 }
                 else 
                 {
-                    <p>Boloss</p>//RedirectToAction("Error", "Error", new { errorCode = 3, message = "Erreur, aucun role ne vous est associe. Veuillez contacter l'administrateur." });
+                    <p>Erreur d'affichage, aucun role ne vous est associe. Veuillez contacter l'administrateur</p>
                 }
             </nav>
         </aside><!--Ici se termine leftCol-->
