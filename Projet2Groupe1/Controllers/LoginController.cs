@@ -31,7 +31,7 @@ namespace Projet2Groupe1.Controllers
                     uvm.User = ius.GetUser(HttpContext.User.Identity.Name);
                     
 
-                    return Redirect(uvm.User.Role, uvm.User.Id);
+                    return OwnRedirect(uvm.User.Role, uvm.User.Id);
                 }
                 
                 return View(uvm);
@@ -97,7 +97,7 @@ namespace Projet2Groupe1.Controllers
 
                         return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
                     }
-                    return Redirect(user.Role, user.Id);
+                    return OwnRedirect(user.Role, user.Id);
                 }
                 //ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
                 return RedirectToAction("Error", "Error", new { errorCode = 4, message = "Email et/ou mots de passe incorrect(s)" }); ;
@@ -136,7 +136,7 @@ namespace Projet2Groupe1.Controllers
             return View();
         }
         [Authorize]
-        public IActionResult Redirect(UserRole DashboardType, int UserId)
+        public IActionResult OwnRedirect(UserRole DashboardType, int UserId)
         {
             TempData["Role"] = DashboardType;
 

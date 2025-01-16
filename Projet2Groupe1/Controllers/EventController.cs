@@ -14,9 +14,28 @@ namespace Projet2Groupe1.Controllers
         public IActionResult Catalog(string category, string city, string search)
         {
             using (IEventService ies = new EventService(new DataBaseContext()))
+            using (IUserService ius = new UserService(new DataBaseContext()))
             {
-               List<Event> events = ies.GetFilteredEvents(category,city,search);
-               return View(events);
+                Console.WriteLine("IsAuthenticated est a " + HttpContext.User.Identity.IsAuthenticated);
+                UserViewModel uvm = new UserViewModel
+                {
+                    Authenticate = HttpContext.User.Identity.IsAuthenticated
+                };
+                ViewData["IsAuthenticated"] = uvm.Authenticate;
+                uvm.User = ius.GetUser(HttpContext.User.Identity.Name);
+                List<Event> events = ies.GetFilteredEvents(category, city, search);
+                if (uvm.User == null)
+                {
+                    return View(events);
+                }
+                else
+                {
+                    Console.WriteLine("user Role avant catalogue : " + uvm.User.Role);
+                    ViewData["Role"] = uvm.User.Role;
+                    Console.WriteLine("user Role en viewbag  : " + ViewBag.Role);
+                    return View(events);
+                }
+               
             };
         }
 

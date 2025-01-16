@@ -1,39 +1,44 @@
 ﻿
 @using Projet2Groupe1.Models;
+@using Projet2Groupe1.ViewModels;
 @model List<Projet2Groupe1.Models.Event>
 @{
-    Layout = "_layoutHeaderFooter";
+
+    if ((bool)ViewData["IsAuthenticated"])
+    {
+        Layout = "_LayoutDashboard";
+    }
+    else
+    {
+        Layout = "_layoutHeaderFooter";
+    }
     ViewBag.Title = "Catalogue";
 }
 
 
 
-<header class="search-container">
+<div class="search-container">
  @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
     @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
 	{
-	
-    <nav class="filters-wrapper">
-    @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
-						"Catégories",
-                        new { onchange = "this.Form.submit()" })
-    @Html.DropDownList("city", new SelectList(Model.Select(e => e.Adress.City).Distinct()),
-						"Villes", 
-                        new { onchange = "this.Form.submit()" })
+        <nav class="filters-wrapper">
+            @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
+						        "Catégories",
+                                new { onchange = "this.Form.submit()" })
+            @Html.DropDownList("city", new SelectList(Model.Select(e => e.Adress.City).Distinct()),
+						        "Villes", 
+                                new { onchange = "this.Form.submit()" })
     
-     <div class="search-bar">
-         <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
-				@Html.TextBox("search", null, new { placeholder = "Evenement, artiste " })
-
-		<button type="submit" class="search-button">
-            Rechercher
-        </button>
-     </div>
-     </nav>
+            <div class="search-bar">
+                <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
+		            @Html.TextBox("search", null, new { placeholder = "Evenement, artiste " })
+                <button type="submit" class="search-button">Rechercher</button>
+             </div>
+         </nav>
     }
-</header>
+</div>
 
-<main class="events-container">
+<div class="events-container">
 	
 	
         @foreach (var eventItem in Model)
@@ -80,7 +85,7 @@
       
             
 
-</main>
+</div>
 
 
 

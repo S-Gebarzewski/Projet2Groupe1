@@ -9,22 +9,23 @@
 <div>Bonjour @ViewData["Role"]</div>
 
 
-@section DashNav {
-    <ul>
-        <li><a href="@Url.Action("MyServices", "Service")" class="buttonProfile"><img src="~/images/iconeTools.png" alt="Icone Tools" class="icone">Services proposés</a></li>
-        <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique de vente</a></li>
-        <li><a href="@Url.Action("Login", "DashBoardProvider")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
-    </ul>
-}
+
 
 <div>
-    @foreach (var service in Model.Services)
+    @if (Model.Services != null) 
     { 
-        <div>
-            <p>@service.Id</p>
-            <p>@service.NameService</p>
-            <p>@service.TypeService</p>
-            <p>@service.QuantityService</p>
-        </div>
+        @foreach (var service in Model.Services)
+        { 
+            <div>
+                <p>@service.Id</p>
+                <p>@service.NameService</p>
+                <p>@service.TypeService</p>
+                <p>@service.QuantityService</p>
+            </div>
+        }
+    } 
+    else
+    {
+        <p>Vous n'avez propose aucun service.'</p>
     }
 </div>
