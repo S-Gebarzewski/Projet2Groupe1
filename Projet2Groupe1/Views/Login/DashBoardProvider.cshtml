@@ -12,7 +12,7 @@
 
 
 <div>
-    @if (Model.Services != null) 
+    @if (Model!= null && Model.Services != null) 
     { 
         @foreach (var service in Model.Services)
         { 
@@ -26,6 +26,6 @@
     } 
     else
     {
-        <p>Vous n'avez propose aucun service.'</p>
+        <p>Vous n'avez proposé aucun service.</p>
     }
 </div>

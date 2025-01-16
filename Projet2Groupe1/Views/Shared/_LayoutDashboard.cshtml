@@ -8,6 +8,7 @@
     <title>@ViewBag.Title</title>
     <link href="~/css/normalize.css" rel="stylesheet" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/Catalog.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -92,7 +93,7 @@
                 else if (ViewData["Role"].ToString() == "PREMIUM")
                 {
                     <ul>
-                        <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
+                        <li><a href="@Url.Action("PurchaseHistory", "Ticket")" class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
                         @* <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li> *@
                         @* <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li> *@
                         <li><a href="@Url.Action("CreateJamSession", "JamSession")" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
