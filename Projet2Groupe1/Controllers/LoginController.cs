@@ -45,7 +45,7 @@ namespace Projet2Groupe1.Controllers
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
-                Console.WriteLine("Apres authentification, user reucperer ? " + user.FirstName);
+                //Console.WriteLine("Apres authentification, user reucperer ? " + user.FirstName);
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
@@ -95,12 +95,12 @@ namespace Projet2Groupe1.Controllers
                         return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
                     } else if (user.StatusRegistration == statusRegistration.REFUSED) {
 
-                        return RedirectToAction("Error", "Error", new { errorCode = 1, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
+                        return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
                     }
                     return Redirect(user.Role, user.Id);
                 }
-                ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
-                return View(userViewModel);
+                //ModelState.AddModelError("Utilisateur.Nom", "Nom et/ou mot de passe incorrect(s)");
+                return RedirectToAction("Error", "Error", new { errorCode = 4, message = "Email et/ou mots de passe incorrect(s)" }); ;
             }
         }
 
