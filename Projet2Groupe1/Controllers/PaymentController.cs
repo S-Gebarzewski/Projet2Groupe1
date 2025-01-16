@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 
@@ -9,7 +10,35 @@ namespace Projet2Groupe1.Controllers
         [HttpGet]
         public IActionResult Payment()
         {
-            return View();
+
+            using (IMemberService ims = new MemberService(new DataBaseContext()))
+
+            using (IUserService ius = new UserService(new DataBaseContext()))
+            {
+                User user = ius.GetUser(HttpContext.User.Identity.Name);
+                Console.WriteLine("le user id est " + user.Id);
+                if (user.Id != null)
+                {
+                    Member Member = ims.GetMemberByUserId(user.Id);
+                    if (Member.Id != null)
+                    {
+
+                        Console.WriteLine("le member Id est " + Member.Id);
+                        TempData["Id"] = Member.Id;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Member est null");
+                    }
+                   
+                }
+                else
+                {
+                    Console.WriteLine("user est null");
+                }
+              
+                return View();
+            }
         }
 
         [HttpPost]
