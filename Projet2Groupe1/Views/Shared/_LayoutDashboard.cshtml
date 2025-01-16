@@ -18,7 +18,37 @@
         <nav id="mainNav">
             <ul>
                 <li>@Html.ActionLink("Catalogue", "Catalog", "Event")</li>
-                <li><a href=# class="buttonNav">Espace personnel</a></li>
+
+                @if (ViewData["Role"].ToString() == "ADMIN")
+                {
+                    <li><a href="@Url.Action("DashBoardAdmin", "Login")" class="buttonNav">Espace personnel</a></li>
+
+                }
+                else if (ViewData["Role"].ToString() == "MEMBER")
+                {
+                    <li><a href="@Url.Action("DashBoardMember", "Login")" class="buttonNav">Espace personnel</a></li>
+
+                }
+                else if (ViewData["Role"].ToString() == "ORGANIZER")
+                {
+                    <li><a href="@Url.Action("DashBoardOrganizer", "Login")" class="buttonNav">Espace personnel</a></li>
+
+                }
+                else if (ViewData["Role"].ToString() == "PREMIUM")
+                {
+                    <li><a href="@Url.Action("DashBoardPremium", "Login")" class="buttonNav">Espace personnel</a></li>
+
+                }
+                else if (ViewData["Role"].ToString() == "PROVIDER")
+                {
+                    <li><a href="@Url.Action("DashBoardProvider", "Login")" class="buttonNav">Espace personnel</a></li>
+
+                }
+                else
+                {
+                    <p>Erreur d'affichage, aucun role ne vous est associe. Veuillez contacter l'administrateur</p>
+                }
+
                 <li>
                     <a href="@Url.Action("Disconnection", "Login")" class="buttonNav">
                         <img src="~/images/iconeDeconnexion.png" alt="Icone déconnexion" id="iconeNav">
@@ -37,7 +67,7 @@
                 {
                     <ul>
                         <li><a href="" class="buttonProfile"><img src="~/images/iconePrinter.png" alt="Icone Printer" class="icone">Imprimer rapport</a></li>
-                        <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
+                        @* <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li> *@
                         <li><a href="@Url.Action("ShowEvent", "Administration")" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Valider une demande d'événement</a></li>
                         <li><a href="@Url.Action("ShowRegistration", "Administration")" class="buttonProfile"><img src="~/images/iconePen.png" alt="Icone Pen" class="icone">Traiter une demande d'inscription</a></li>
                         <li><a href="@Url.Action("DashBoardAdmin", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>
@@ -63,8 +93,8 @@
                 {
                     <ul>
                         <li><a href=# class="buttonProfile"><img src="~/images/iconeEuro.png" alt="Icone Euro" class="icone">Historique d'achat</a></li>
-                        <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li>
-                        <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li>
+                        @* <li><a href=# class="buttonProfile"><img src="~/images/iconeGroupe.png" alt="Icone Groupe" class="icone">Groupe de discussion</a></li> *@
+                        @* <li><a href=# class="buttonProfile"><img src="~/images/iconeMessage.png" alt="Icone Message" class="icone">Messagerie privée</a></li> *@
                         <li><a href="@Url.Action("CreateJamSession", "JamSession")" class="buttonProfile"><img src="~/images/iconeOrganiser.png" alt="Icone Organiser" class="icone">Organiser session jam</a></li>
                         <li><a href="@Url.Action("CatalogJamSession", "JamSession")" class="buttonProfile"><img src="~/images/iconeMusic.png" alt="Icone Music" class="icone">Participer session jam</a></li>
                         <li><a href="@Url.Action("DashBoardPremium", "Login")" class="buttonProfile"><img src="~/images/iconeProfil.png" alt="Icone Profil" class="icone">Profil</a></li>

@@ -14,6 +14,7 @@
 img {
     max-width: 100%; /*permet que les images ne dépassent jamais leur conteneur*/
     height: auto;
+/*    width: 100%;*/
 }
 
 
@@ -25,7 +26,7 @@ body {
 
 #pageContent {
     display: flex;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
 }
 
 
@@ -45,6 +46,11 @@ body {
     margin-left: 80px;
     margin-right: 40px;
     align-items: center;
+    width: 50%;
+}
+
+#rightCol {
+    width: 50%;
 }
 
 .form {
