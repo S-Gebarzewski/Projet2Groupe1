@@ -24,7 +24,7 @@ namespace Projet2Groupe1.Controllers
                     {
 
                         Console.WriteLine("le member Id est " + Member.Id);
-                        TempData["Id"] = Member.Id;
+                        TempData["MemberId"] = Member.Id;
                     }
                     else
                     {
