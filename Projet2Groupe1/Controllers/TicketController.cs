@@ -21,20 +21,15 @@ namespace Projet2Groupe1.Controllers
                         Event = eventItem,
                         Billetterie = eventItem.Billetterie,
                     };
-
+                    ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                    ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                     return View(ticketViewModel);
 
                 }
                 else {
                     return View("Error"); }
 
-            }
-
-            //TicketViewModel ticketViewModel = new TicketViewModel();
-
-            //return View(ticketViewModel);
-
-          
+            }          
         }
 
 
@@ -63,6 +58,8 @@ namespace Projet2Groupe1.Controllers
                         its.CreateTicket
                             (ticketViewModel.Billetterie.Id, ticketViewModel.Event.Id, UserId, ticketViewModel.TicketQuantityAvailable);
                         ViewBag.Result = ticketViewModel.Billetterie.UnitPriceTicket * ticketViewModel.TicketQuantityAvailable;
+                        ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                        ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                         return View("SuccessTicket");
                     }
 
@@ -74,11 +71,8 @@ namespace Projet2Groupe1.Controllers
                             ticketViewModel.Event = eventItem;
                             ticketViewModel.Billetterie = eventItem.Billetterie;
                             ModelState.AddModelError("TicketQuantityAvailable", "Il n'y a pas suffisamment de billets disponibles.");
-                            /*  return View(ticketViewModel);*/
                             return View(ticketViewModel);
                         }
-
-
                     }
                 }
             }

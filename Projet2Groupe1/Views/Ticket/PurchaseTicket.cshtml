@@ -1,9 +1,15 @@
 ﻿@model Projet2Groupe1.ViewModels.TicketViewModel
 
 @{
-    Layout = "_layoutHeaderFooter";
+    if ((bool)ViewData["IsAuthenticated"])
+    {
+        Layout = "_LayoutDashboard";
+    }
+    else
+    {
+        Layout = "_layoutHeaderFooter";
+    }
     ViewBag.Title = "Achat billets";
-   /*  ViewBag.Result = ViewBag.Result ?? 0; */ // Valeur par défaut
 }
 
 <h1>PANIER</h1>

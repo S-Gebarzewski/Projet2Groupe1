@@ -46,18 +46,18 @@ namespace Projet2Groupe1.Controllers
             {
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
 
-                if (user.StatusRegistration == statusRegistration.PENDING)
-                {
-                    return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
-                }
-                else if (user.StatusRegistration == statusRegistration.REFUSED)
-                {
-                    return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
-                }
-
 
                 if (user != null) // bon mot de passe
                 {
+                    if (user.StatusRegistration == statusRegistration.PENDING)
+                    {
+                        return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
+                    }
+                    else if (user.StatusRegistration == statusRegistration.REFUSED)
+                    {
+                        return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
+                    }
+
                     Console.WriteLine("connexion reussie");
 
                     List<Claim> userClaims = new List<Claim>()

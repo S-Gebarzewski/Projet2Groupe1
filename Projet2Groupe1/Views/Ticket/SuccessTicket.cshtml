@@ -1,6 +1,13 @@
 ﻿@{
-    Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Index";
+    if ((bool)ViewData["IsAuthenticated"])
+    {
+        Layout = "_LayoutDashboard";
+    }
+    else
+    {
+        Layout = "_layoutHeaderFooter";
+    }
+    ViewBag.Title = "Achat valide";
 }
 
 <h2>Opération réussie!</h2>
