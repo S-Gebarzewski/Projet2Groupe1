@@ -1,12 +1,115 @@
-﻿.button {
-    background-color: black;
+﻿/* Container principal */
+#contenu {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Grille des événements */
+.events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Carte d'événement */
+.event-card {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Section gauche avec image et infos */
+.left-section {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+.event-picture {
+    width: 180px;
+    height: 120px;
+}
+
+.event-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-title {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+time, address {
+    color: #666;
+    font-style: normal;
+}
+
+/* Section droite avec prix et bouton */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    min-width: 200px;
+}
+
+.price {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.button {
+    background-color: #FF6B4A;
     color: white;
     text-decoration: none;
     padding: 10px 20px;
-    border-radius: 4px;
-    display: inline-block;
+    border-radius: 6px;
+    text-align: center;
+    font-family: 'Urbanist', sans-serif;
 }
 
     .button:hover {
-        background-color: #333;
+        background-color: #ff5533;
     }
+
+/* Media queries pour le responsive */
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
+    }
+
+    .left-section {
+        flex-direction: column;
+    }
+
+    .event-picture {
+        width: 100%;
+        height: auto;
+    }
+
+    .right-section {
+        align-items: stretch;
+    }
+}
