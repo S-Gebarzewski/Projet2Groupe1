@@ -30,9 +30,7 @@ namespace Projet2Groupe1.Controllers
                 }
                 else
                 {
-                    Console.WriteLine("user Role avant catalogue : " + uvm.User.Role);
                     ViewData["Role"] = uvm.User.Role;
-                    Console.WriteLine("user Role en viewbag  : " + ViewBag.Role);
                     return View(events);
                 }
                
@@ -58,7 +56,6 @@ namespace Projet2Groupe1.Controllers
             return View();
         }
 
-        //public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress Adress, Artist Artist, Ticket Ticket, Service Service)
 
         [HttpPost]
         public IActionResult CreateEvent(EventViewModel eventViewModel)
@@ -67,7 +64,6 @@ namespace Projet2Groupe1.Controllers
             using (IEventService ies = new EventService(new DataBaseContext()))
                 
             {
-                //Console.WriteLine("TypeEvent" + eventViewModel.Service.ToString());
                 Console.WriteLine("vérification du model state de la création d'event " + ModelState.IsValid);
                 if (ModelState.IsValid && ies.searchEvent(eventViewModel.Event.Id) == null)
                 {
@@ -78,6 +74,8 @@ namespace Projet2Groupe1.Controllers
                                                                                    
                         int eventId = ies.CreateEvent(eventViewModel.Event.TypeEvent, eventViewModel.Event.NameEvent, eventViewModel.Event.StartEvent, eventViewModel.Event.EndEvent, eventViewModel.Event.Adress, eventViewModel.Event.Artist, eventViewModel.Event.Billetterie, StatusPending, eventViewModel.Event.TypeService,eventViewModel.Event.QuantityService ,int.Parse(userId) );
                         Console.WriteLine("Création" + eventViewModel.Event.ToString());
+                        TempData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                        Console.WriteLine("Role est a " + TempData["Role"]);
                         return RedirectToAction("DetailsEvent", new { id = eventId });
                     }
                     else

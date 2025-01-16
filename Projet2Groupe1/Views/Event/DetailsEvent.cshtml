@@ -1,16 +1,11 @@
 ﻿@model Projet2Groupe1.ViewModels.EventViewModel
+@{
+    ViewData["Role"] = TempData["Role"];
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Achat billets";
+}
 
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Connexion</title>
-
-</head>
-
-<body>
+<div>
 
 <h1>Mon événement </h1>
 
@@ -115,5 +110,4 @@
             $("#imgViewer").attr("src", "");
         }
     </script>
-    </body>
-</html>
+    </div>
