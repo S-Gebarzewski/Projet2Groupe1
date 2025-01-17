@@ -185,7 +185,7 @@ namespace Projet2Groupe1.Models
                 },
                 iggyPop,
                 ticketFestival,
-                statusRegistration.PENDING,
+                statusRegistration.ACCEPTED,
                 TypeService.FOOD,
                 2,
                 0

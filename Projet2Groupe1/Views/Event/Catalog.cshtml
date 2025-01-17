@@ -17,11 +17,14 @@
 
 
 <div class="catalog-container">
-<section class="search-section">
+
+
+
+<section class="search-section-catalog">
  @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
     @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
 	{
-        <nav class="filters-wrapper">
+        <nav class="filters-wrapper-catalog">
             @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
 						        "Catégories",
                                 new { onchange = "this.Form.submit()" })
@@ -29,15 +32,20 @@
 						        "Villes", 
                                 new { onchange = "this.Form.submit()" })
     
-            <div class="search-wrapper">
+            <div class="search-wrapper-catalog">
                 <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
 		            @Html.TextBox("search", null, new { placeholder = "Evenement, artiste " })
-                <button type="submit" class="search-button">Rechercher</button>
+                <button type="submit" class="search-icon-catalog"></button>
              </div>
          </nav>
     }
 </section>
 
+    <section class="picture-decoration">
+        <img src="~/images/picture_catalog1.jpg" alt="Decoration" id="picture-decoration1" />
+        <img src="~/images/picture_catalog2.jpg" alt="Decoration" id="picture-decoration2" />
+        <img src="~/images/picture_catalog3.jpg" alt="Decoration" id="picture-decoration3" />
+    </section>
 
 	
 	

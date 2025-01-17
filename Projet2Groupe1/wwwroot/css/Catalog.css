@@ -1,108 +1,140 @@
-﻿/* Container principal */
-.catalog-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.search-section {
-    background-color: #f8f8f8; /* Couleur du bandeau, à ajuster selon vos besoins */
-    padding: 30px 40px; /* Plus d'espace vertical et horizontal */
+﻿
+/* Search bar
+   ========================================================================== */
+
+/* Container principal de la recherche */
+.search-section-catalog {
+    background-color: #f8f8f8;
+    padding: 30px 40px;
 }
 
-.filters-wrapper {
+.filters-wrapper-catalog {
     display: flex;
     align-items: center;
-    gap: 20px; /* Espace entre les éléments */
-    max-width: 1200px; /* Cohérent avec votre #contenu */
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
     /* Style commun pour les dropdowns et la barre de recherche */
-    .filters-wrapper select,
-    .search-wrapper input {
-        height: 40px; /* Hauteur uniforme */
+    .filters-wrapper-catalog select,
+    .search-wrapper-catalog input {
+        height: 40px;
         padding: 0 15px;
         border: 1px solid #ddd;
-        border-radius: 6px;
-        min-width: 150px; /* Largeur minimum pour les dropdowns */
+        border-radius: 10px;
+        min-width: 150px;
     }
 
-.search-wrapper {
+/* Container de la barre de recherche */
+.search-wrapper-catalog {
     display: flex;
     gap: 10px;
-    flex: 1; /* Prend l'espace restant */
+    flex: 1;
+    position: relative;
 }
 
-    .search-wrapper input {
-        flex: 1; /* La barre de recherche s'étend */
+.search-icon-catalog {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    background-image: url('../images/iconeLoupe.png'); /* Chemin vers votre icône */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+    .search-icon:hover {
+        opacity: 0.8;
     }
 
+/* Images d'accuei
+   ========================================================================== */
 
+.picture-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 60px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-/* Grille des événements */
+    .picture-decoration img {
+        width: calc(33% - 14px);
+        height: auto;
+        object-fit: cover;
+    }
+
+/* les infos des événements
+   ========================================================================== */
+
+/* Conteneur principal de la grille */
 .events-grid {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* Ajoutez ces propriétés : */
-    margin-top: 40px; /* Espace entre la search bar et la grille */
-    padding: 0 40px; /* Même padding horizontal que la search-section */
-    width: 1200px; /* Même largeur maximale que filters-wrapper */
+    margin-top: 40px;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Carte d'événement */
 .event-card {
-    width: 1200px;
+    width: 1000px;
     display: flex;
     justify-content: space-between;
     background: white;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    box-sizing: border-box;
+    margin: 0;
     overflow: hidden;
-    min-height: 200px;
 }
 
 /* Section gauche avec image et infos */
 .left-section-event-card {
     display: flex;
-    gap: 100px;
+    gap: 30px;
     padding: 0;
- 
-    /* flex: 1;*/
 }
 
+/* Conteneur de l'image */
 .event-picture {
     width: 200px;
-    height: auto;
-    margin: 0;
+    height: 100%;
     flex-shrink: 0;
 }
 
+/* Image elle-même */
 .event-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
 }
 
+/* Zone d'informations */
 .event-info {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 80%; /* Prendra 80% de la hauteur */
-    justify-content: center; /* Centre le contenu verticalement dans ces 80% */
+    padding: 20px 0;
+    height: 80%;
+    justify-content: center;
 }
 
+/* Éléments textuels */
 .event-title {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     margin: 0;
 }
 
 time, address {
+    font-size: 1.2rem;
     color: #666;
     font-style: normal;
 }
@@ -121,10 +153,11 @@ time, address {
 
 .price {
     color: #FF8500;
-    font-family: 'Urbanist', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
     margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .button-reservation {
@@ -134,29 +167,11 @@ time, address {
     padding: 10px 20px;
     border-radius: 6px;
     text-align: center;
-    font-family: 'Urbanist', sans-serif;
+    width: 100%; 
+    display: block; 
+    box-sizing: border-box;
 }
 
-    .button:hover {
+    .button-reservation:hover {
         background-color: #ff5533;
     }
-
-/* Media queries pour le responsive */
-/*@media (max-width: 768px) {
-    .event-card {
-        flex-direction: column;
-    }
-
-    .left-section {
-        flex-direction: column;
-    }
-
-    .event-picture {
-        width: 100%;
-        height: auto;
-    }
-
-    .right-section {
-        align-items: stretch;
-    }
-}*/
