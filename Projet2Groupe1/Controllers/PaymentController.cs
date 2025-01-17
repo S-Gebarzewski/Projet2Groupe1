@@ -58,8 +58,7 @@ namespace Projet2Groupe1.Controllers
         {
             if (Paiement == null)
             {
-                Console.WriteLine("Le modèle Paiement est null !");
-                return View("Error"); // Ou une autre vue appropriée
+                return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre paiement est invalide. Veuillez recommencer le paiement." });
             } 
             else 
             {
