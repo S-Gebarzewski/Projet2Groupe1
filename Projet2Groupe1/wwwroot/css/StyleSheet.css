@@ -32,7 +32,7 @@ a {
 
 /*styles applicables au header =============================================================================================================================*/
 #mainHeader {
-/*    background-color: #ef188e;*/
+    /*    background-color: #ef188e;*/
     display: flex;
     justify-content: space-between;
     height: 106px;
@@ -52,16 +52,16 @@ a {
     margin-right: 42px;
 }
 
-#mainNav ul {
-    display: flex;
-}
+    #mainNav ul {
+        display: flex;
+    }
 
-#mainNav li {
-    padding: 10px;
-}
+    #mainNav li {
+        padding: 10px;
+    }
 
 .buttonNav {
-/*    display: inline-flex;*/
+    /*    display: inline-flex;*/
     align-items: center;
     padding: 10px;
     margin: 15px;
@@ -126,22 +126,54 @@ body .PREMIUM {
     height: 45px;
 }
 
-.buttonProfile img {
-     width: 26px;
-     height: 26px;
-     margin-left: 10px;
-     margin-right: 20px;
-}
+    .buttonProfile img {
+        width: 26px;
+        height: 26px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
 
 
 /*styles applicables au contenu central ====================================================================================================================*/
 #rightCol {
     color: #191D37;
-    font-size: 2em;
+    font-size: 1.2em;
     display: flex;
+    flex-direction: column;
     align-content: center;
     margin: 80px;
-    font-weight: 800;
+    font-weight: 700;
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+
+h1.titleDashboard {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul.listDashboard {
+    margin-top: 10px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.listDashboard li {
+    padding: 5px 0;
+}
+
+.divImageDashboard {
+    justify-items: center;
+    text-align: center;
+    display: block;
+}
+
+.imageDashboard {
+    max-width: 500px;
+    height: auto;
+    border-radius: 18px;
 }
 
 
@@ -152,17 +184,12 @@ body .PREMIUM {
     justify-content: center;
 }
 
-#mainFooter ul {
-    display: flex;
-}
+    #mainFooter ul {
+        display: flex;
+    }
 
-#mainFooter li {
-    font-size: 20px;
-    font-weight: 500;
-    padding: 20px;
-}
-
-
-
-
-
+    #mainFooter li {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 20px;
+    }

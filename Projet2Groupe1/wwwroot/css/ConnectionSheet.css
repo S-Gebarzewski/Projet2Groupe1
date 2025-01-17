@@ -43,6 +43,7 @@ body {
 
 #leftCol {
     padding: 30px;
+    padding-left: 150px;
     margin-left: 80px;
     margin-right: 40px;
     align-items: center;
