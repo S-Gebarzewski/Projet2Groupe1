@@ -1,24 +1,84 @@
 ﻿@{
-    Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Inscription";
+	Layout = "_layoutHeaderFooter";
+	ViewBag.Title = "Inscription";
 }
 
+<div class="switch">
+	<button class="switchButton" type="button">Particulier</button>
+	<button class="switchButton" type="button">
+		@Html.ActionLink("Professionnel", "ProfessionalRegistration", "Registration", new { @class = "switchButton" })
+	</button>
 
-<div>Inscription </div>
-
-
-
-<button class="individual" type="button">Particulier</button>
-
-@Html.ActionLink("Professionnel", "ProfessionalRegistration", "Registration", new { @class = "button" })
-    
-
-<div>Visiteur gratuit </div>
-@Html.ActionLink("Catalogue", "Catalog", "Event", new { @class = "button" })
+</div>
 
 
-<div>Adhérent gratuit </div>
-@Html.ActionLink("S'inscrire", "MemberRegistration", "Registration", new { @class = "button" })
-   
+<div class="profileBanners">
+
+	<div class="profileBanner" id="visitorBanner">
+		<div class="bannerGroup">
+
+			<div class="bannerTitle">
+				<h2>Visiteur</h2>
+				<h3>gratuit</h3>
+			</div>
+
+			<div class="bannerText">
+				<p>&#x2713; Consultation du catalogue</p>
+			</div>
+
+		</div>
+		<button class="validButton" type="button">
+			@Html.ActionLink("Catalogue", "Catalog", "Event", new { @class = "button" })
+		</button>
+
+	</div>
+
+	<div class="profileBanner" id="memberBanner">
+		<div class="bannerGroup">
+
+			<div class="bannerTitle">
+				<h2>Adhérent</h2>
+				<h3>gratuit</h3>
+			</div>
+
+			<div class="bannerText">
+				<p>&#x2713 Consultation du catalogue</p>
+				<p>&#x2713 Accéder à la billeterie</p>
+				<p>&#x2713 Personnalisation des recherches</p>
+			</div>
+		</div>
+
+		<button class="validButton" type="button">
+			@Html.ActionLink("S'inscrire", "MemberRegistration", "Registration", new { @class = "button" })
+		</button>
+
+	</div>
+
+	<div class="profileBanner" id="premiumBanner">
+		<div class="bannerGroup">
+
+			<div class="bannerTitle">
+				<h2>Premium</h2>
+				<h3>3.99 € /mois*</h3>
+			</div>
+
+			<div class="bannerText">
+				<p>&#x2713 Consultation du catalogue</p>
+				<p>&#x2713 Accéder à la billeterie</p>
+				<p>&#x2713 Personnalisation des recherches</p>
+				<p>&#x2713 Personnalisation du profil</p>
+				<p>&#x2713 Accès à la communauté</p>
+				<p>&#x2713 Organisation session de jam</p>
+			</div>
+
+		</div>
+
+		<button class="validButton" type="button">
+			@Html.ActionLink("S'inscrire", "MemberRegistration", "Registration", new { @class = "button" })
+		</button>
+
+	</div>
+
+</div>
 
 

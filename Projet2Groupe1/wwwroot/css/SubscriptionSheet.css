@@ -1,0 +1,77 @@
+﻿
+#contenu {
+    display: grid;
+    justify-content: center; 
+    align-items: top; 
+    height: 100vh; /* Utiliser toute la hauteur de la fenêtre */
+    color: #191d37;
+}
+
+.switch {
+text-align: center;
+margin-top: 50px;
+}
+
+    .switch button {
+        background-color: #63e6fc;
+        border-radius: 12px;
+        border-width: 4px;
+        border-color: #191d37;
+        border-style: solid;
+        padding: 8px 18px;
+    }
+
+    .switch a {
+        text-decoration: none;
+        padding: 8px 18px;
+    }
+
+.profileBanners {
+    display: flex;
+}
+
+.profileBanner {
+    justify-items: center;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 12px;
+    border-width: 4px;
+    border-color: #191d37;
+    border-style: solid;
+}
+
+.bannerTitle {
+    background-color: white;
+    border-radius: 12px;
+    padding: 12px 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+    .profileBanners button {
+        background-color: white;
+        border-radius: 12px;
+        padding: 8px 18px;
+        border: none;
+    }
+
+    .profileBanners a {
+        text-decoration: none;
+        padding: 8px 18px;
+    }
+
+p {
+    padding: 20px;
+}
+
+#visitorBanner {
+        background-color: #ffd400;
+    }
+
+#memberBanner {
+    background-color: #ff8500;
+}
+
+#premiumBanner {
+    background-color: #ef188e;
+}
