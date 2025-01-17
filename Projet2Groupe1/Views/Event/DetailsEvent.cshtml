@@ -93,7 +93,7 @@
                     success: function (response) {
                         if (response.success) {
                             alert("Image sauvegardée");
-                            location.reload(); // Recharge la page pour voir la nouvelle image
+                            location.href("/Event/DetailsEvent/"+@Model.Event.Id); // Recharge la page pour voir la nouvelle image
                         } else {
                             alert("Erreur: " + response.message);
                         }

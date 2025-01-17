@@ -101,7 +101,8 @@ namespace Projet2Groupe1.Controllers
                         eventViewModel.Event = eventItem;
 
                     };
-
+                    TempData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                    Console.WriteLine("Role est a " + TempData["Role"]);
                     return View(eventViewModel);
                 }
                 return RedirectToAction("CreateEvent", eventViewModel);
