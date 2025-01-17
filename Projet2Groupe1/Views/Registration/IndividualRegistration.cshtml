@@ -4,11 +4,12 @@
 }
 
 <div class="switch">
-	<button class="switchButton" type="button">Particulier</button>
+	<button class="switchButton" id="particularButton" type="button">
+		@Html.ActionLink("Particullier", "IndividualRegistration", "Registration", new { @class = "switchButton" })
+	</button>
 	<button class="switchButton" type="button">
 		@Html.ActionLink("Professionnel", "ProfessionalRegistration", "Registration", new { @class = "switchButton" })
 	</button>
-
 </div>
 
 
@@ -23,7 +24,7 @@
 			</div>
 
 			<div class="bannerText">
-				<p>&#x2713; Consultation du catalogue</p>
+				<p>&#x2713; Consultation du<br />catalogue</p>
 			</div>
 
 		</div>
@@ -42,9 +43,9 @@
 			</div>
 
 			<div class="bannerText">
-				<p>&#x2713 Consultation du catalogue</p>
+				<p>&#x2713 Consultation du<br />catalogue</p>
 				<p>&#x2713 Accéder à la billeterie</p>
-				<p>&#x2713 Personnalisation des recherches</p>
+				<p>&#x2713 Personnalisation des<br />recherches</p>
 			</div>
 		</div>
 
@@ -63,9 +64,9 @@
 			</div>
 
 			<div class="bannerText">
-				<p>&#x2713 Consultation du catalogue</p>
+				<p>&#x2713 Consultation du<br />catalogue</p>
 				<p>&#x2713 Accéder à la billeterie</p>
-				<p>&#x2713 Personnalisation des recherches</p>
+				<p>&#x2713 Personnalisation des<br />recherches</p>
 				<p>&#x2713 Personnalisation du profil</p>
 				<p>&#x2713 Accès à la communauté</p>
 				<p>&#x2713 Organisation session de jam</p>
