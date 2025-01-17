@@ -45,17 +45,17 @@ namespace Projet2Groupe1.Controllers
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
+                // 
+                //if (user.StatusRegistration == statusRegistration.PENDING)
+                //{
+                //    return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
+                //}
+                //else if (user.StatusRegistration == statusRegistration.REFUSED)
+                //{
+                //    return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
+                //}
 
-                if (user.StatusRegistration == statusRegistration.PENDING)
-                {
-                    return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Erreur, votre compte est en attente de validation. Il sera valide dans les 24h suivant l'inscription." });
-                }
-                else if (user.StatusRegistration == statusRegistration.REFUSED)
-                {
-                    return RedirectToAction("Error", "Error", new { errorCode = 2, message = "Erreur, votre compte a ete refuse. Veuillez contacter l'administrateur." });
-                }
-
-
+                Console.WriteLine("user vaut " + user.Mail + " et osn mdp " + user.Password);
                 if (user != null) // bon mot de passe
                 {
                     Console.WriteLine("connexion reussie");
@@ -66,8 +66,6 @@ namespace Projet2Groupe1.Controllers
                          new Claim(ClaimTypes.Role, user.Role.ToString()),
                     };
                     
-                    Console.WriteLine(userClaims);
-
                     var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
                     var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });

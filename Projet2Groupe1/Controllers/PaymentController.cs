@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
@@ -58,16 +60,42 @@ namespace Projet2Groupe1.Controllers
             {
                 Console.WriteLine("Le modèle Paiement est null !");
                 return View("Error"); // Ou une autre vue appropriée
-            }
-            using (IMemberService ims = new MemberService(new DataBaseContext())) 
-            { 
-                Member Member = ims.GetMember(Paiement.MemberId);
-                Console.WriteLine("Le Member avant modification : " + Member.ToString());
-                Member.IsPayed = true;
-                Member UpdatedMember = ims.UpdateMember(Member);
-                
-                Console.WriteLine("Le Member apres modification : " + UpdatedMember.ToString());
+            } 
+            else 
+            {
+                using (IUserService ius = new UserService(new DataBaseContext()))
+                using (IMemberService ims = new MemberService(new DataBaseContext()))
+                {
+                    Member Member = ims.GetMember(Paiement.MemberId);
+                    Console.WriteLine("Le Member avant modification : " + Member.ToString());
+                    Member.IsPayed = true;
+                    Member.IsPremium = true;
 
+                    if (HttpContext.User.Identity.IsAuthenticated)
+                    {
+                        // modif bdd du role
+                        User user = ius.GetUser(HttpContext.User.Identity.Name); // je recupere l id
+                        user.Role = UserRole.PREMIUM; // je modifie le role MEMBER -> PREMIUM
+                        ius.UpdateUserRole(user); // j'update mon user
+
+                        //changement des claims
+                        List<Claim> userClaims = new List<Claim>()
+                    {
+                         new Claim(ClaimTypes.Name, user.Id.ToString()),
+                         new Claim(ClaimTypes.Role, user.Role.ToString()),
+                    };
+
+                        var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+                        var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+
+                        HttpContext.SignInAsync(userPrincipal);
+
+                        // changement de role
+                        ViewData["Role"] = User.FindFirst(ClaimTypes.Role)?.Value; // jaffecte le role a PREMIUM pour le layout
+                    }
+                    Member UpdatedMember = ims.UpdateMember(Member);
+                    Console.WriteLine("Le Member apres modification : " + UpdatedMember.ToString());
+                }
             }
                 Console.WriteLine("Apres paiement valide - memberId vaut :" + Paiement.MemberId);
             return RedirectToAction("Connection", "Login");

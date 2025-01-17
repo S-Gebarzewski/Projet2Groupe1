@@ -9,5 +9,6 @@
         public User Authentication(string Mail, string Password);
         public User UpdateUser(User UpdatingUser);
         public User UpdateUserStatus(User UpdatingUser);
+        public User UpdateUserRole(User UpdatingUser);  
     }
 }
