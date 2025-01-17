@@ -13,7 +13,6 @@ margin-top: 50px;
 }
 
     .switch button {
-        background-color: #63e6fc;
         border-radius: 12px;
         border-width: 4px;
         border-color: #191d37;
@@ -25,6 +24,14 @@ margin-top: 50px;
         text-decoration: none;
         padding: 8px 18px;
     }
+
+#particularButton {
+    background-color: #63e6fc;
+}
+
+#professionalButton {
+    background-color: #ffd400;
+}
 
 .profileBanners {
     display: flex;
@@ -74,4 +81,8 @@ p {
 
 #premiumBanner {
     background-color: #ef188e;
+}
+
+#organizerBanner {
+    background-color: #1a6ee8;
 }

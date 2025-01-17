@@ -1,20 +1,40 @@
 ﻿@{
-    Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Inscription";
+	Layout = "_layoutHeaderFooter";
+	ViewBag.Title = "Inscription";
 }
 
+<div class="switch">
+	<button class="switchButton" type="button">
+		@Html.ActionLink("Particullier", "IndividualRegistration", "Registration", new { @class = "switchButton" })
+	</button>
+	<button class="switchButton" id="professionalButton" type="button">
+		@Html.ActionLink("Professionnel", "ProfessionalRegistration", "Registration", new { @class = "switchButton" })
+	</button>
+</div>
 
-<div>Inscription </div>
+<div class="profileBanners">
 
+	<div class="profileBanner" id="organizerBanner">
+		<div class="bannerGroup">
 
+			<div class="bannerTitle">
+				<h2>Organisateur</h2>
+				<h3>3% /billet*</h3>
+			</div>
 
-@Html.ActionLink("Particullier", "IndividualRegistration", "Registration", new { @class = "button" })
+			<div class="bannerText">
+				<p>&#x2713; Consultation du catalogue</p>
+				<p>&#x2713; Organiser un concert</p>
+				<p>&#x2713; Organiser un festival</p>
+				<p>&#x2713; Organiser une<br />rencontre / dédicace</p>
 
-<button class="professional" type="button">Professionnel</button>
+			</div>
 
+		</div>
+		<button class="validButton" type="button">
+			@Html.ActionLink("ouvrir un compte", "OrganizerRegistration", "Registration", new { @class = "button" })
+		</button>
 
-<div>Organisateur </div>
-@Html.ActionLink("Créer un compte", "RegisterOrganizer", "Registration", new { @class = "button" })
+	</div>
 
-<div>Prestataire </div>
-@Html.ActionLink("Créer un compte", "ProviderRegistration", "Registration", new { @class = "button" })
+</div>
