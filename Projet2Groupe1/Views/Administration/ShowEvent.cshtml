@@ -34,7 +34,16 @@
                             <td>@evenment.Id</td>
                             <td>@evenment.NameEvent</td>
                             <td>@evenment.TypeEvent</td>
-                            <td>@evenment.PhotoData</td>
+                            <td>
+
+                                @{
+                                    String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@evenment.PhotoData) + "";
+
+
+                                    <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
+
+                                }
+                            </td>
                             <td>
                                 <select id="StatusRegistration" name="StatusRegistration">
                                     <option value="" disabled selected>@evenment.StatusRegistration.ToString()</option>

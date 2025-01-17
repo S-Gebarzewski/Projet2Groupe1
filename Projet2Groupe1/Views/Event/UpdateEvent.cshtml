@@ -6,32 +6,12 @@
     ViewBag.Role = "ORGANIZER";
 }
 
-
-
-<h2>Manage Event</h2>
 <head>
-    <style>
-        table {
-            width: 60%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        tr.selected {
-            background-color: #f0f8ff; 
-        }
-
-        button {
-            padding: 5px 10px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Vos évenements</title>
+    <link href="~/css/UpdateEvent.css" rel="stylesheet" />
 </head>
+<h2>Vos évenements</h2>
 <form id="eventForm" method="post" action="@Url.Action("UpdateEvents", "Event")">
 
     <input type="hidden" id="eventId" name="Event.Id" />
@@ -44,19 +24,21 @@
 <table id="eventTable">
     <thead>
         <tr>
-            <th>Image</th>
+            <th></th>
             <th>Nom de l'évenement</th>
             <th>Type Evenement</th>
             <th>Date de debut d'événement</th>
             <th>Date de fin d'événement</th>
             <th>Artiste</th>
+            <th>Etat de la demande</th>
+
 
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Events)
         {
-                <tr data-id="@item.Id">
+            <tr data-id="@item.Id">
                      <td> 
                          @{ 
                           String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.PhotoData) + ""; 
@@ -68,9 +50,11 @@
                      </td> 
                 <td>@item.NameEvent</td>
                 <td>@item.TypeEvent</td>
-                <td>@item.StartEvent</td>
-                <td>@item.EndEvent</td>
+                <td>@item.StartEvent.ToString("dd/MM/yyyy")</td>
+                <td>@item.EndEvent.ToString("dd/MM/yyyy")</td>
                 <td>@item.Artist.NickNameArtist</td>
+                <td>@item.StatusRegistration</td>
+
 
             </tr>
         }
@@ -114,7 +98,7 @@
         if (this.textContent === 'Editer Evenement') {
             cells.forEach((cell, index) => {
                 const currentValue = cell.innerText;
-                if(index === 0) {
+                if(index === 0 ||index === 6) {
 
                 }
                 else if (index === 2) {
@@ -125,7 +109,8 @@
                             <option value="SIGNINGSESSION" ${currentValue === 'SIGNINGSESSION' ? 'selected' : ''}>SIGNINGSESSION</option>
                         </select>
                     `;
-                } else {
+                } 
+                else {
                     cell.innerHTML = `<input type="text" value="${currentValue}" />`;
                 }
             });
@@ -143,7 +128,7 @@
             updateHiddenFields(cells);
 
             cells.forEach((cell, index) => {
-                if (index > 0) {
+                if (index > 0 && index !==6) {
                     if (index === 2) {
                         const select = cell.querySelector('select');
                         cell.innerHTML = select.value;
