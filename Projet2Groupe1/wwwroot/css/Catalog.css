@@ -1,5 +1,9 @@
 ﻿/* Container principal */
-
+.catalog-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .search-section {
     background-color: #f8f8f8; /* Couleur du bandeau, à ajuster selon vos besoins */
     padding: 30px 40px; /* Plus d'espace vertical et horizontal */
@@ -33,41 +37,48 @@
         flex: 1; /* La barre de recherche s'étend */
     }
 
-.main {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+
 
 /* Grille des événements */
 .events-grid {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    /* Ajoutez ces propriétés : */
+    margin-top: 40px; /* Espace entre la search bar et la grille */
+    padding: 0 40px; /* Même padding horizontal que la search-section */
+    width: 1200px; /* Même largeur maximale que filters-wrapper */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Carte d'événement */
 .event-card {
-    max-width: 900px;
-    margin: 0 auto;
+    width: 1200px;
     display: flex;
     justify-content: space-between;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    overflow: hidden;
+    min-height: 200px;
 }
 
 /* Section gauche avec image et infos */
-.left-section {
+.left-section-event-card {
     display: flex;
-    gap: 20px;
-    padding: 20px;
-    flex: 1;
+    gap: 100px;
+    padding: 0;
+ 
+    /* flex: 1;*/
 }
 
 .event-picture {
-    width: 180px;
-    height: 120px;
+    width: 200px;
+    height: auto;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .event-card-image {
@@ -81,10 +92,11 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 80%; /* Prendra 80% de la hauteur */
+    justify-content: center; /* Centre le contenu verticalement dans ces 80% */
 }
 
 .event-title {
-    font-family: 'Urbanist', sans-serif;
     font-size: 1.2rem;
     font-weight: 500;
     margin: 0;
@@ -96,7 +108,7 @@ time, address {
 }
 
 /* Section droite avec prix et bouton */
-.right-section {
+.right-section-event-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,7 +127,7 @@ time, address {
     margin: 0;
 }
 
-.button {
+.button-reservation {
     background-color: #FF8500;
     color: white;
     text-decoration: none;
@@ -130,7 +142,7 @@ time, address {
     }
 
 /* Media queries pour le responsive */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .event-card {
         flex-direction: column;
     }
@@ -147,4 +159,4 @@ time, address {
     .right-section {
         align-items: stretch;
     }
-}
+}*/

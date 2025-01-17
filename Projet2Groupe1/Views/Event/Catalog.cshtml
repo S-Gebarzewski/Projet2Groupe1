@@ -16,7 +16,7 @@
 }
 
 
-
+<div class="catalog-container">
 <section class="search-section">
  @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
     @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
@@ -40,12 +40,12 @@
 
 
 	
-	<main>
+	
         <section class="events-grid">
         @foreach (var eventItem in Model)
         {
         <article class="event-card">
-            <section class="left-section">
+            <section class="left-section-event-card">
 			<div class="event-picture">
 				
 	    	@if (eventItem.PhotoData != null)
@@ -69,7 +69,7 @@
             </div>
             </section>
 
-             <section class="right-section">
+             <section class="right-section-event-card">
                 @if (eventItem?.Billetterie?.UnitPriceTicket != null)
                 {
                     <p class="price"> à partir de  @eventItem.Billetterie.UnitPriceTicket €</p>
@@ -78,13 +78,13 @@
                 {
                     <p class="price">Prix non disponible</p>
                 }
-                @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button" })
+                @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button-reservation" })
             </section>
         </article>
         }
     </section>
-    </main>
-         
+    </div>
+	
  
 
       
