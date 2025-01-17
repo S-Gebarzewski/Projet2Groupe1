@@ -1,0 +1,6 @@
+﻿.ErrorPageBackground {
+    background-image: url('/images/ErrorBackground.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100vw;
+}
