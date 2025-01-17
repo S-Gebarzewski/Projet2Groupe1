@@ -1,8 +1,42 @@
 ﻿.RenderSectionDashboardAdmin {
     display:flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .adminStatistics {
     border: 3px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.adminStatisticsData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.adminStatisticsFirstRow, .adminStatisticsSecondRow {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+.adminStatistics h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.adminStatistics p {
+    margin: 0;
+    padding: 0;
+}
+
+.adminStatisticsFirstRow > div, .adminStatisticsFirstRow > p, .adminStatisticsSecondRow > div, .adminStatisticsSecondRow > p {
+    /*    border: 3px solid black;*/
 }

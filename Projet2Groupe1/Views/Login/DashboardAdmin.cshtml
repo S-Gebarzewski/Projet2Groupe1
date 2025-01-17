@@ -8,18 +8,34 @@
     ViewBag.Title = "Espace Personnel";
     ViewBag.Role = "ADMIN";
 }
-<section ="RenderSectionDashboardAdmin"
+<section class="RenderSectionDashboardAdmin">
     <p>Bonjour @ViewData["Role"]</p>
 
     <div class="adminStatistics">
-        <p class="">Statistiques d'utilisation de la plateforme</p>
-        <div class="adminStatisticsFirstRow">
-            <p class="adminTotalVisitors">Visiteurs</p>
-            <p class="adminTotalMembers">Adherents</p>
-        </div>
-        <div class="adminStatisticsSecondRow">
-            <p class="adminTotalPremiums">Premium
-            <p class="adminTotalEvents">Evenements</p>
+        <h3 class="title">Statistiques d'utilisation de la plateforme</h3>
+        <div class="adminStatisticsData">
+            <div class="adminStatisticsFirstRow">
+                <div class=""></div>
+                <p class="adminNumberVisitors">12578</p>
+                <div></div>
+                <p class="adminTotalVisitors">Visiteurs</p>
+                <div></div>
+                <p class="adminNumberMembers">2483</p>
+                <div></div>
+                <p class="adminTotalMembers">Adherents</p>
+                <div></div>
+            </div>
+            <div class="adminStatisticsSecondRow">
+                <div class=""></div>
+                <p class="adminNumberPremiums">548</p>
+                <div></div>
+                <p class="adminTotalPremiums">Premium</p>
+                <div></div>
+                <p class="adminNumberEvents">1042</p>
+                <div></div>
+                <p class="adminTotalEvents">Evenements</p>
+                <div></div>
+            </div>
         </div>
     </div>
 </section>
