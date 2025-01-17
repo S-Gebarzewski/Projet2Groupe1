@@ -15,7 +15,17 @@ namespace Projet2Groupe1.Controllers
 
             using (IUserService ius = new UserService(new DataBaseContext()))
             {
-                User user = ius.GetUser(HttpContext.User.Identity.Name);
+                User user = null;
+                if (TempData["userId"] == null) // dans le cas ou je me connecte a mon compte et je click sur devenir prémium
+                {
+                    user = ius.GetUser(HttpContext.User.Identity.Name);
+                }
+                else
+                {
+                    
+                    user = ius.GetUser(int.Parse(TempData["userId"].ToString())); // dans le cas ou la demande est faites en cours de registration
+                }
+
                 Console.WriteLine("le user id est " + user.Id);
                 if (user.Id != null)
                 {

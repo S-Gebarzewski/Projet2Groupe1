@@ -12,7 +12,7 @@
     {
         <p>@TempData["Message"]</p>
         <p>@TempData["MemberId"]</p>
-
+        <input type="hidden" name="userID" value="@TempData["userId"]" />
         <input type="hidden" name="MemberId" value="@TempData["MemberId"]" />
 
         <p>Coordonees bancaire</p>

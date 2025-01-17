@@ -44,6 +44,7 @@ namespace Projet2Groupe1.Controllers
                             if (!member.IsPayed)
                             {
                                 TempData["MemberId"] = member.Id; 
+                                TempData["userId"] = user.Id;  // j'enregistre le userId dans le tempData pour le recupérer dans le controlleur de paiement
                                 Console.WriteLine("Apres l avoir mis dans le view bag member.Id vaut : " + member.Id);
                                 TempData["Message"] = "Veuillez effectuer le paiement pour finaliser votre inscription.";
                                 return RedirectToAction("Payment", "Payment");
