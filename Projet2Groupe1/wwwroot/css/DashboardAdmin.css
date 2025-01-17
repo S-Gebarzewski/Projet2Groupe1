@@ -1,0 +1,8 @@
+﻿.RenderSectionDashboardAdmin {
+    display:flex;
+    flex-direction:column;
+}
+
+.adminStatistics {
+    border: 3px solid black;
+}

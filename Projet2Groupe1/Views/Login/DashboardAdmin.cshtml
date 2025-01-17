@@ -8,7 +8,18 @@
     ViewBag.Title = "Espace Personnel";
     ViewBag.Role = "ADMIN";
 }
+<section ="RenderSectionDashboardAdmin"
+    <p>Bonjour @ViewData["Role"]</p>
 
-<div>Bonjour @ViewData["Role"]</div>
-
-
+    <div class="adminStatistics">
+        <p class="">Statistiques d'utilisation de la plateforme</p>
+        <div class="adminStatisticsFirstRow">
+            <p class="adminTotalVisitors">Visiteurs</p>
+            <p class="adminTotalMembers">Adherents</p>
+        </div>
+        <div class="adminStatisticsSecondRow">
+            <p class="adminTotalPremiums">Premium
+            <p class="adminTotalEvents">Evenements</p>
+        </div>
+    </div>
+</section>
