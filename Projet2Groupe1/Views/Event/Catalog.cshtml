@@ -49,7 +49,9 @@
 				
 	    	@if (eventItem.PhotoData != null)
             {
-                <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" src="data:image.jpg;base64," + Convert.ToBase64String(eventItem.PhotoData); />
+
+                        String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(eventItem.PhotoData);
+                        <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" src="@srcValue" />
              }
              else
              {
