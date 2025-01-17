@@ -1,8 +1,42 @@
 ﻿/* Container principal */
-#contenu {
-    max-width: 1200px;
+
+.search-section {
+    background-color: #f8f8f8; /* Couleur du bandeau, à ajuster selon vos besoins */
+    padding: 30px 40px; /* Plus d'espace vertical et horizontal */
+}
+
+.filters-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espace entre les éléments */
+    max-width: 1200px; /* Cohérent avec votre #contenu */
     margin: 0 auto;
-    padding: 0 40px;
+}
+
+    /* Style commun pour les dropdowns et la barre de recherche */
+    .filters-wrapper select,
+    .search-wrapper input {
+        height: 40px; /* Hauteur uniforme */
+        padding: 0 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        min-width: 150px; /* Largeur minimum pour les dropdowns */
+    }
+
+.search-wrapper {
+    display: flex;
+    gap: 10px;
+    flex: 1; /* Prend l'espace restant */
+}
+
+    .search-wrapper input {
+        flex: 1; /* La barre de recherche s'étend */
+    }
+
+.main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Grille des événements */
@@ -74,6 +108,7 @@ time, address {
 }
 
 .price {
+    color: #FF8500;
     font-family: 'Urbanist', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
@@ -81,7 +116,7 @@ time, address {
 }
 
 .button {
-    background-color: #FF6B4A;
+    background-color: #FF8500;
     color: white;
     text-decoration: none;
     padding: 10px 20px;
