@@ -16,12 +16,15 @@
 }
 
 
+<div class="catalog-container">
 
-<div class="search-container">
+
+
+<section class="search-section-catalog">
  @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
     @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
 	{
-        <nav class="filters-wrapper">
+        <nav class="filters-wrapper-catalog">
             @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
 						        "Catégories",
                                 new { onchange = "this.Form.submit()" })
@@ -29,45 +32,56 @@
 						        "Villes", 
                                 new { onchange = "this.Form.submit()" })
     
-            <div class="search-bar">
+            <div class="search-wrapper-catalog">
                 <!--premier mot entre "" renvoie au paramètre que je veux récupérer dans le controller -->
 		            @Html.TextBox("search", null, new { placeholder = "Evenement, artiste " })
-                <button type="submit" class="search-button">Rechercher</button>
+                <button type="submit" class="search-icon-catalog"></button>
              </div>
          </nav>
     }
-</div>
+</section>
 
-<div class="events-container">
+    <section class="picture-decoration">
+        <img src="~/images/picture_catalog1.jpg" alt="Decoration" id="picture-decoration1" />
+        <img src="~/images/picture_catalog2.jpg" alt="Decoration" id="picture-decoration2" />
+        <img src="~/images/picture_catalog3.jpg" alt="Decoration" id="picture-decoration3" />
+    </section>
+
 	
 	
+        <section class="events-grid">
         @foreach (var eventItem in Model)
         {
-        <div class="event-card">
-            <section class="left-section">
-			<div class="event-card-picture">
+        <article class="event-card">
+            <section class="left-section-event-card">
+			<div class="event-picture">
 				
 	    	@if (eventItem.PhotoData != null)
             {
 
+
                         String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(eventItem.PhotoData);
                         <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" src="@srcValue" />
+
+
              }
              else
              {
-			 <img class="event-card-image" width="300" height="200" style="border:1px solid #000000" 
+			 <img class="event-card-image" 
               src = "@Url.Action("GetDefaultImage", "Event", new { type = eventItem.TypeEvent })"/>
                       
              }
             </div>
                 
-            <div class="info-event">
-                    <h2 class="event-card-title">@eventItem.NameEvent </h2>
-                <p class="event-card-date">@eventItem.StartEvent.ToString("dd/MM/yyyy") - @eventItem.EndEvent.ToString("dd/MM/yyyy")</p>
-			<p class="event-card-location">@eventItem.Adress.City</p>
+            <div class="event-info">
+                    <h2 class="event-title">@eventItem.NameEvent </h2>
+                <time datetime="event-card-date">@eventItem.StartEvent.ToString("dd/MM/yyyy") - @eventItem.EndEvent.ToString("dd/MM/yyyy")
+                </time>
+			<adress>@eventItem.Adress.City</adress>
             </div>
             </section>
-             <section class="right-section">
+
+             <section class="right-section-event-card">
                 @if (eventItem?.Billetterie?.UnitPriceTicket != null)
                 {
                     <p class="price"> à partir de  @eventItem.Billetterie.UnitPriceTicket €</p>
@@ -76,18 +90,20 @@
                 {
                     <p class="price">Prix non disponible</p>
                 }
-                @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button" })
+                @Html.ActionLink("Réserver", "PurchaseTicket", "Ticket", new { id = eventItem.Id }, new { @class = "button-reservation" })
             </section>
-        </div>
+        </article>
         }
-         
+    </section>
+    </div>
+	
  
 
       
       
             
 
-</div>
+
 
 
 
