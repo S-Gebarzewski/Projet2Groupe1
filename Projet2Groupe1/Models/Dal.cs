@@ -23,6 +23,7 @@ namespace Projet2Groupe1.Models
             _organizerService = new OrganizerService(_dbContext);
             _eventService = new EventService(_dbContext);
             _ticketService = new TicketService(_dbContext);
+            _memberService = new MemberService(_dbContext);
 
         }
 
@@ -48,8 +49,11 @@ namespace Projet2Groupe1.Models
             _userService.CreateUser("Organizer", "ISIKA", "0450452356", "organizer@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.ORGANIZER);
             _userService.CreateUser("Provider", "ISIKA", "0450452356", "provider@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.PROVIDER);
             _userService.CreateUser("Member", "ISIKA", "0450452356", "member@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.MEMBER);
+            _memberService.CreateMember(20, "Lille", "59000", false, false, 6);
             _userService.CreateUser("Premium", "ISIKA", "0450452356", "premium@gmail.com", "1234", true, statusRegistration.ACCEPTED, UserRole.PREMIUM);
 
+            
+            
 
             var olympiaAddress = new Adress
             {

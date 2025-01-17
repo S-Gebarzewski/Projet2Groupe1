@@ -46,7 +46,6 @@ namespace Projet2Groupe1.Controllers
             {
                 User user = ius.Authentication(userViewModel.User.Mail, userViewModel.User.Password);
 
-
                 if (user != null) // bon mot de passe
                 {
                     if (user.StatusRegistration == statusRegistration.PENDING)
@@ -66,8 +65,6 @@ namespace Projet2Groupe1.Controllers
                          new Claim(ClaimTypes.Role, user.Role.ToString()),
                     };
                     
-                    Console.WriteLine(userClaims);
-
                     var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
                     var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });

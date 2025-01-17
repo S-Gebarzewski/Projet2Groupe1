@@ -59,7 +59,7 @@ namespace Projet2Groupe1.Models
                 ExistingUser.Mail = user.Mail;  
                 ExistingUser.Password = EncodeMD5(user.Password);  
                 ExistingUser.Newsletter = user.Newsletter;
-                ExistingUser.Role= user.Role;
+                ExistingUser.Role = user.Role;
                 ExistingUser.StatusRegistration = user.StatusRegistration;
                 ExistingUser.PhotoData = user.PhotoData;
 
@@ -75,6 +75,18 @@ namespace Projet2Groupe1.Models
             User ExistingUser = GetUser(UpdatingUser.Id);
 
             ExistingUser.StatusRegistration = UpdatingUser.StatusRegistration;
+
+            _dbContext.Users.Update(ExistingUser);
+            _dbContext.SaveChanges();
+
+            return ExistingUser;
+        }
+
+        public User UpdateUserRole(User UpdatingUser)
+        {
+            User ExistingUser = GetUser(UpdatingUser.Id);
+
+            ExistingUser.Role = UpdatingUser.Role;
 
             _dbContext.Users.Update(ExistingUser);
             _dbContext.SaveChanges();

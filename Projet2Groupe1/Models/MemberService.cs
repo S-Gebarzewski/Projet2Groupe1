@@ -1,4 +1,6 @@
-﻿namespace Projet2Groupe1.Models
+﻿using System.Linq;
+
+namespace Projet2Groupe1.Models
 {
     public class MemberService : IMemberService
     {
@@ -30,9 +32,15 @@
 
         //Recupere une l'id String depuis l'URL
         //et fait une recuperation en BDD du member correspondant
-        public Member GetMember(int id)
-        {
+        public Member GetMember(int id) { 
+        
             return _dbContext.Members.Find(id);
+        }
+
+        public Member GetMemberByUserId(int userId) { 
+        
+
+            return _dbContext.Members.FirstOrDefault(x => x.UserId == userId);
         }
 
         //Recupere un id de type String depuis l'URL

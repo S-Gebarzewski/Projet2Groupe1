@@ -6,6 +6,7 @@
         public Member searchMember(int id);
         public Member GetMember(int id);
         public Member GetMember(string idStr);
+        public Member GetMemberByUserId(int userId);
         public Member UpdateMember(Member UpdatingMember);
     }
 }
