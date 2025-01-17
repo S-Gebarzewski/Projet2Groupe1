@@ -11,12 +11,13 @@ body {
 }
 
 #header {
-    background-color: #395bd8; /*couleur bandeau*/
+    /*background-color: #395bd8;*/ /*couleur bandeau*/
     width: 100%;
     /*padding: 10px 20px;*/
     justify-content: space-between;
     height: 106px;
-
+    color: #191d37;
+    border-bottom: solid;
 }
 
 .header-container {
@@ -62,18 +63,19 @@ body {
     align-content: space-between;
     font-size: 1.2em;
     font-weight: 700;
+    margin-top: 15px;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px; /* Espace entre les liens */
+    gap: 40px; /* Espace entre les liens */
     align-items: center;
 }
 
     .nav-links a {
-        color: white;
+        color: #191d37;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 700;
         white-space: nowrap; /* Empêche le texte de passer à la ligne */
     }
 

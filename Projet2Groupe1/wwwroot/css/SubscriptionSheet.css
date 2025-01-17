@@ -1,8 +1,8 @@
 ﻿
-#contenu {
+#subscritpionContent {
     display: grid;
-    justify-content: center; 
-    align-items: top; 
+    justify-content: center;
+    align-items: top;
     height: 100vh; /* Utiliser toute la hauteur de la fenêtre */
     color: #191d37;
 }

@@ -1,8 +1,9 @@
 ﻿#HeroSection {
     background-image: url('/images/HeroSection.svg');
     background-repeat: no-repeat;
-    height: 71.99vh;
-    width: 100vw;
+    background-size: cover;
+    height: 600px;
+    width: 100%;
     color:white;
 }
 
@@ -44,7 +45,7 @@
 
 #Ticketing, #Community, #Evenment, #Service {
     width: 38.738vw;
-    height: 31.57vh;
+    height: 35vh;
     color: red;
     align-content: end;
     background-repeat: no-repeat;
@@ -60,18 +61,26 @@
 
 #Ticketing {
     background-image: url('/images/Billeterie_LandingPage.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #Community {
     background-image: url('/images/Communaute_LandingPage.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #Evenment {
     background-image: url('/images/Evenement_LandingPage.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #Service {
     background-image: url('/images/Service_LandingPage.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #Ticketing p {
@@ -92,4 +101,27 @@
 
 #Professional {
     margin-bottom: 7vh;
+}
+
+.presentation {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px;
+}
+
+#PresentationTicketing {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#PresentationCommunity {
+    margin-bottom: 50px;
+}
+
+#PresentationEvenment {
+    margin-bottom: 50px;
+}
+
+#PresentationService {
+    margin-bottom: 10px;
 }
