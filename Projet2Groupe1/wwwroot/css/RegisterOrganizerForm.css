@@ -93,7 +93,7 @@ label {
 
 #FormOrganizer #btn {
     display: block;
-    margin: auto;
+    margin: 0px 10px 10px 10px;
     height: 40px;
     width: 150px;
     border-radius: 12px;
