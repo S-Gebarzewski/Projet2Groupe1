@@ -94,8 +94,9 @@ namespace Projet2Groupe1.Controllers
                         QuantityPurchased = t.Quantity,
 
                     }).ToList();
-
-                    return(View(tvm));
+                    ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                    ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                    return (View(tvm));
                 }
                 else
                 {
