@@ -5,55 +5,85 @@
     ViewBag.Title = "Réserver billets";
 }
 
-<div>
 
-<h1>Mon événement </h1>
 
-<table border="1">
-    <tr>
-        <th>Nom</th>
-        <th>Heure de début</th>
-        <th>Heure de fin</th>
-        <th>Type d'événement</th>
-     
-    </tr>
-    
-        <tr>
-            <td>@Model.Event.NameEvent</td>
-            <td>@Model.Event.StartEvent</td>
-            <td>@Model.Event.EndEvent</td>
-            <td>@Model.Event.TypeEvent.</td>
-    
-            
 
-         </tr>
-    
-</table>
 
-    <div>
+<div class="event-details-container">
+
+    <div class="event-details-header-banner">
+        <span>Mon événement</span>
+    </div>
+        
+    <header class="event-details-header">
+			<h1 class="event-details-title">@Model.Event.NameEvent</h1>
+    </header>
+
+        <div class="event-details-content">
+        <div class="event-details-side-banner"></div>
+            <dl class="event-details-info">
+            <div class="info-groupe">
+                <dt class="event-details-label">Date de début :</dt>
+                <dd class="event-details-value">@Model.Event.StartEvent.ToString("dd/MM/yyyy HH:mm")</dd>
+            </div>
+            <div class="info-groupe">
+                <dt class="event-details-label">Date de fin :</dt>
+                <dd class="event-details-value">@Model.Event.EndEvent.ToString("dd/MM/yyyy HH:mm")</dd>
+            </div>
+            <div class="info-groupe">
+                <dt class="event-details-label">Type d'événement :</dt>
+                <dd class="event-details-value">@Model.Event.TypeEvent</dd>
+			</div>
+            <div class="info-groupe">
+                <dt class="event-details-label">Adresse :</dt>
+                <dd class="event-details-value">
+                    <address class="event-details-address">
+                        @Model.Event.Adress.StreetNumber @Model.Event.Adress.StreetName<br />
+                        @Model.Event.Adress.ZipCode @Model.Event.Adress.City
+                    </address>
+                </dd>
+            </div>
+            <div class="info-groupe">
+                <dt class="event-details-label">Artiste :</dt>
+                <dd class="event-details-value"> @Model.Event.Artist.NickNameArtist</dd>
+			</div>
+            <div class="info-groupe">
+                <dt class="event-details-label">Nombre de billets :</dt>
+                <dd class="event-details-value"> @Model.Event.Billetterie.NumberTotalTicket</dd>
+            </div>
+            <div class="info-groupe">
+                <dt class="event-details-label"> Prix des billets :</dt>
+                <dd class="event-details-value"> @Model.Event.Billetterie.UnitPriceTicket</dd>
+            </div>
+            </dl>
+
+
+        <section class="event-details-media">
+            <figure class="event-details-figure">
 		@if (Model.Event.PhotoData != null)
 		{
             String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(Model.Event.PhotoData) + "";
-            
-               
-                <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
+                <img id="personnalized-event-details-image" src=@srcValue />
             
 		}
         else{ 
-       <img width="200" height="200" style="border:1px solid #000000" 
-         src="@Url.Action("GetDefaultImage", "Event", new { type = Model.Event.TypeEvent })" /> 
+       <img id="default-details-image"
+         src="@Url.Action("GetDefaultImage", "Event", new { type = Model.Event.TypeEvent })" />
+        <figcaption class="event-details-caption">Image par défaut </figcaption>
 
          }
+
+
+       <form class="event-details-upload">
+          <label class="event-details-label" for="txtFile">Choisir une nouvelle image :</label>
+          <input type="file" id="txtFile" class="event-details-input" accept="image/*" aria-label="Sélectionner une image" />
+           <button type="button" id="btnSave" class="event-details-button">Sauvegarder l'image</button>
+       </form>
+             
+
+    </figure>
+    </section>
 </div>
-
-<div>
-    
-    <input id="txtFile" type="file" value="Upload File" />
-
-    <button id="btnSave">Sauvegarder image</button>
-
-
-    <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" />
 </div>
 
    <!--~ pour bien récup le fichier -->
@@ -65,7 +95,12 @@
         $("#txtFile").change(function (event) {
             var files = event.target.files;
             if (files.length > 0) {
-                $("#imgViewer").attr("src", window.URL.createObjectURL(files[0]));
+                // $("#imgViewer").attr("src", window.URL.createObjectURL(files[0]));
+              // Met à jour l'image existante (qu'elle soit personnalisée ou par défaut)
+        $("#personnalized-event-details-image, #default-details-image").attr("src", window.URL.createObjectURL(files[0]));
+
+    // Cache la légende "Image par défaut" si elle existe
+         $(".event-details-caption").hide();
             }
         });
 
@@ -110,4 +145,4 @@
             $("#imgViewer").attr("src", "");
         }
     </script>
-    </div>
+    
