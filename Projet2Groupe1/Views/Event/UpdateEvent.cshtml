@@ -40,13 +40,18 @@
         {
             <tr data-id="@item.Id">
                      <td> 
-                         @{ 
+                         @if(item.PhotoData!=null)
+                         { 
                           String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.PhotoData) + ""; 
 
 
                          <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue /> 
 
                          }  
+                         else{
+                            <img class="event-card-image"
+                                 src="@Url.Action("GetDefaultImage", "Event", new { type = item.TypeEvent })" />
+                         }
                      </td> 
                 <td>@item.NameEvent</td>
                 <td>@item.TypeEvent</td>
