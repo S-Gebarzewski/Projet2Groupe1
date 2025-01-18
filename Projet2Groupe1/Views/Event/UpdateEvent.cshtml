@@ -8,12 +8,14 @@
 
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Vos évenements</title>
+
     <link href="~/css/UpdateEvent.css" rel="stylesheet" />
 </head>
-<h2>Vos évenements</h2>
-<form id="eventForm" method="post" action="@Url.Action("UpdateEvents", "Event")">
 
+<h2 class="page-title">Vos événements</h2>
+
+<form id="eventForm" method="post" action="@Url.Action("UpdateEvents", "Event")">
+    <!-- Hidden fields for event data -->
     <input type="hidden" id="eventId" name="Event.Id" />
     <input type="hidden" id="eventName" name="Event.NameEvent" />
     <input type="hidden" id="typeEvent" name="Event.TypeEvent" />
@@ -21,62 +23,74 @@
     <input type="hidden" id="endEvent" name="Event.EndEvent" />
     <input type="hidden" id="artistName" name="Event.Artist.NickNameArtist" />
 
-<table id="eventTable">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Nom de l'évenement</th>
-            <th>Type Evenement</th>
-            <th>Date de debut d'événement</th>
-            <th>Date de fin d'événement</th>
-            <th>Artiste</th>
-            <th>Etat de la demande</th>
-
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Events)
-        {
-            <tr data-id="@item.Id">
-                     <td> 
-                         @{ 
-                          String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.PhotoData) + ""; 
-
-
-                         <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue /> 
-
-                         }  
-                     </td> 
-                <td>@item.NameEvent</td>
-                <td>@item.TypeEvent</td>
-                <td>@item.StartEvent.ToString("dd/MM/yyyy")</td>
-                <td>@item.EndEvent.ToString("dd/MM/yyyy")</td>
-                <td>@item.Artist.NickNameArtist</td>
-                <td>@item.StatusRegistration</td>
-
-
+    <!-- Event table -->
+    <table id="eventTable" class="event-table">
+        <thead>
+            <tr class="event-header-row">
+                <th class="event-header">Image de l'évenement</th>
+                <th class="event-header">Nom de l'événement</th>
+                <th class="event-header">Type de l'événement</th>
+                <th class="event-header">Date de début</th>
+                <th class="event-header">Date de fin</th>
+                <th class="event-header">Artiste</th>
+                <th class="event-header">État de la demande</th>
             </tr>
-        }
-    </tbody>
-</table>
-    <div style="text-align: center; margin-top: 20px;">
-        <button type="button" id="editButton">Editer Evenement</button>
-        <button type="button" id="deleteButton">Supprimer Evenement</button>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Events)
+            {
+                <tr class="event-row" data-id="@item.Id">
+                    <td class="event-photo">
+                        @{
+                            string srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.PhotoData);
+                        }
+                        <img id="imgViewer" width="150" height="150" style="border:1px solid #000000" src=@srcValue />
+                    </td>
+                    <td class="event-cell event-name">@item.NameEvent</td>
+                    <td class="event-cell event-type">@item.TypeEvent</td>
+                    <td class="event-cell event-start">@item.StartEvent.ToString("dd/MM/yyyy")</td>
+                    <td class="event-cell event-end">@item.EndEvent.ToString("dd/MM/yyyy")</td>
+                    <td class="event-cell event-artist">@item.Artist.NickNameArtist</td>
+                    <td class="event-cell event-status">
+                        <span id="spanEventStatus">
+                        @if (@item.StatusRegistration.ToString().Equals("ACCEPTED")){
+                            <img src="~/images/icon_check_mark_accept.png" class="icone" style="margin-right:5px">
+                            
+                        }
+                            else if (@item.StatusRegistration.ToString().Equals("PENDING"))
+                            {
+                                <img src="~/images/icon_pending.png" class="icone" style="margin-right:5px">
+                            }
+                            else
+                            {
+                                <img src="~/images/icon_cross.png" class="icone" style="margin-right:5px" />
+                                
+                            }
+                        @item.StatusRegistration
+                        </span>
+                        </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Action buttons -->
+    <div class="button-container">
+        <button type="button" id="editButton" class="action-button">Éditer Événement</button>
+        <button type="button" id="deleteButton" class="action-button">Supprimer Événement</button>
     </div>
 </form>
 
-
 <script>
-       let selectedRow = null;
-  
-    document.querySelectorAll('#eventTable tbody tr').forEach(row => {
+    // Script for handling event selection and button actions
+    let selectedRow = null;
+
+    document.querySelectorAll('.event-row').forEach(row => {
         row.addEventListener('click', function () {
             if (selectedRow) {
                 selectedRow.classList.remove('selected');
             }
-
-            
             selectedRow = this;
             this.classList.add('selected');
             const eventId = selectedRow.getAttribute('data-id');
@@ -84,24 +98,21 @@
         });
     });
 
-    
     document.getElementById('editButton').addEventListener('click', function (event) {
-        document.getElementById('deleteButton').disabled=true;
-        console.log('Selected Row:'+ selectedRow);
+        document.getElementById('deleteButton').disabled = true;
         if (!selectedRow) {
-            alert('Selectionner un évenement a modifier');
+            alert('Sélectionnez un événement à modifier.');
             return;
         }
 
         const cells = selectedRow.querySelectorAll('td');
 
-        if (this.textContent === 'Editer Evenement') {
+        if (this.textContent === 'Éditer Événement') {
             cells.forEach((cell, index) => {
                 const currentValue = cell.innerText;
-                if(index === 0 ||index === 6) {
+                if (index === 0 || index === 6) return;
 
-                }
-                else if (index === 2) {
+                if (index === 2) {
                     cell.innerHTML = `
                         <select>
                             <option value="CONCERT" ${currentValue === 'CONCERT' ? 'selected' : ''}>CONCERT</option>
@@ -109,14 +120,12 @@
                             <option value="SIGNINGSESSION" ${currentValue === 'SIGNINGSESSION' ? 'selected' : ''}>SIGNINGSESSION</option>
                         </select>
                     `;
-                } 
-                else {
-                    cell.innerHTML = `<input type="text" value="${currentValue}" />`;
+                } else {
+                    cell.innerHTML = `<input class = "input-class" type="text" value="${currentValue}" />`;
                 }
             });
-               this.textContent = 'Enregistrer';
-              } else {
-            
+            this.textContent = 'Enregistrer';
+        } else {
             function updateHiddenFields(cells) {
                 document.getElementById('eventName').value = cells[1].querySelector('input').value;
                 document.getElementById('typeEvent').value = cells[2].querySelector('select').value;
@@ -128,7 +137,7 @@
             updateHiddenFields(cells);
 
             cells.forEach((cell, index) => {
-                if (index > 0 && index !==6) {
+                if (index > 0 && index !== 6) {
                     if (index === 2) {
                         const select = cell.querySelector('select');
                         cell.innerHTML = select.value;
@@ -140,22 +149,22 @@
             });
 
             document.getElementById('eventForm').submit();
-            this.textContent = 'Editer Evenement';
+            this.textContent = 'Éditer Événement';
             selectedRow.classList.remove('selected');
             selectedRow = null;
         }
         event.preventDefault();
     });
+
     document.getElementById('deleteButton').addEventListener('click', function () {
         if (!selectedRow) {
-            alert('Selectionner un évenement à supprimer');
+            alert('Sélectionnez un événement à supprimer.');
             return;
         }
 
-        if (confirm('Voulez-vous vraiment supprimer cet événement?')) {
+        if (confirm('Voulez-vous vraiment supprimer cet événement ?')) {
             document.getElementById('eventForm').action = '@Url.Action("DeleteEvent", "Event")';
             document.getElementById('eventForm').submit();
         }
     });
-
 </script>
