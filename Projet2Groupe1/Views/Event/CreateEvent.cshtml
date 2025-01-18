@@ -1,27 +1,25 @@
 ﻿@model Projet2Groupe1.ViewModels.EventViewModel
 
 @{
-	Layout = "_layoutHeaderFooter";
-	ViewBag.Title = "Inscription";
+	Layout = "_LayoutDashboard";
+	ViewBag.Title = "Espace Personnel";
+	ViewBag.Role = "ORGANIZER";
 }
 
-<!DOCTYPE html>
 <head>
 	<link href="~/css/CreatEvent.css" rel="stylesheet" />
 </head>
 
-<html>
 
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<title>Organiser évenements</title>
 
-</head>
+
 
 <div>
+
 	<section id="FormEvent">
+		<h2 id="title">Créer votre événement</h2>
 		<div id="centralColumn">
-			<h2 id="title">Créer votre événement</h2>
+			
 			@using (Html.BeginForm())
 			{
 
@@ -107,22 +105,12 @@
 						@Html.ValidationMessageFor(m => Model.Event.Billetterie.UnitPriceTicket)
 					</div>
 				</div>
-
-
-
-
 				<div id="finalBlock">
-
-					<input id="btn" type="submit" value="Je Crée mon événement" />
-
+					<input id="btn" type="submit" value="Je crée mon événement" />
 				</div>
-
-
-
 			}
 		</div>
 
 	</section>
 </div>
 
-</html>

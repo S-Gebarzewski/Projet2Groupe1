@@ -1,6 +1,6 @@
 ﻿
 
-#FormEvent {
+#FormSession {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -10,12 +10,12 @@
     padding: 20px;
 }
 
-    #FormEvent #leftColumn, #rightColumn {
+    #FormSession #leftColumn, #rightColumn {
         flex: 0.17;
         padding: 10px
     }
 
-    #FormEvent #centralColumn {
+    #FormSession #centralColumn {
         border: solid, 1px, white;
         padding: 10px
     }
@@ -24,24 +24,25 @@ label {
     font-size: 16px
 }
 
-#FormEvent > div {
+#FormSession > div {
     display: flex;
     flex-direction: column;
     margin: 2px;
 }
 
-#FormEvent form #Input {
+#FormSession form #Input {
     background-color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#FormEvent input {
+#FormSession input {
     border-radius: 12px;
     border: solid black 3px;
     height: 40px;
 }
+
 #SecondRow {
     height: inherit;
     width: inherit;
@@ -53,28 +54,27 @@ label {
 }
 
 
-#FirstRow > *,
-#SecondRow > *,
-#ThirdRow > *,
-#FourthRow > *,
-#FifthRow > *,
-#SixthRow > * {
-    display: flex;
-    flex-direction: column;
-}
+    #FirstRow > *,
+    #SecondRow > *,
+    #ThirdRow > *,
+    #FourthRow > *,
+    #FifthRow > *,
+    #SixthRow > * {
+        display: flex;
+        flex-direction: column;
+    }
 
 
 #title {
     text-align: center;
-
-    width: 100%; 
+    width: 100%;
 }
 
-#NameEvent, #StartEvent, #Artist, #TicketNumber, #TicketType, #TicketPrice, #StreetNumber, #City {
+#NameSession, #StartSession, #StreetNumber, #ZipCode, #PlaceNumber {
     margin-right: 3vw;
 }
 
-#StartEvent, #EndEvent {
+#StartSession, #EndSession {
     width: 18.5vw;
 }
 
@@ -89,7 +89,7 @@ label {
     font-size: 16px;
 }
 
-#FormEvent #btn {
+#FormSession #btn {
     display: block;
     margin: 0px 10px 10px 10px;
     height: 40px;
@@ -98,15 +98,16 @@ label {
     border: solid black 3px;
     font-size: 16px;
     font-weight: bold;
-    background-color: rgba(26, 110, 232, 1);
+    background-color: rgba(239, 24, 142, 1);
     color: white;
 }
-#FormEvent select {
-    border-radius: 12px; 
+
+#FormSession select {
+    border-radius: 12px;
     border: solid black 3px;
-    height: 40px; 
-    width : 18.5vw;
+    height: 40px;
+    width: 18.5vw;
     padding: 0 10px;
-    font-size: 16px; 
-    background-color: white; 
+    font-size: 16px;
+    background-color: white;
 }

@@ -5,87 +5,100 @@
     ViewBag.Title = "Espace Personnel";
     ViewBag.Role = "PREMIUM";
 }
+<head>
+	<link href="~/css/CreateJamSession.css" rel="stylesheet" />
+</head>
 
 
 
-@using (Html.BeginForm("CreateJamSession", "JamSession", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div>
+
+	<section id="FormSession">
+		<h2 id="title">Créer votre session de jam</h2>
+		<div id="centralColumn">
+
+			@using (Html.BeginForm())
+			{
+
+				<div id="FirstRow">
+					<div id="NameSession">
+						@Html.LabelFor(m => Model.JamSession.Title, "Titre de la session") 
+						@Html.TextBoxFor(m => Model.JamSession.Title)
+						@Html.ValidationMessageFor(m => Model.JamSession.Title)
+					</div>
+
+					
+						<div id="Description">
+							@Html.LabelFor(m => Model.JamSession.Description, "Description") 
+							@Html.TextBoxFor(m => Model.JamSession.Description)
+							@Html.ValidationMessageFor(m => Model.JamSession.Description)
+						</div>
+					
+				</div>
 
 
-{
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Title, "Titre de la session") :
-        @Html.TextBoxFor(m => Model.JamSession.Title)
-        @Html.ValidationMessageFor(m => Model.JamSession.Title)
-    </div>
+				<div id="SecondRow">
+					<div id="StartSession">
+					@Html.LabelFor(m => Model.JamSession.StartSession, "Heure et date de début") 
+					@Html.TextBoxFor(m => Model.JamSession.StartSession, new { Type = "datetime-local", })
+					@Html.ValidationMessageFor(m => Model.JamSession.StartSession)
+					</div>
+					<div id="EndSession">
+						@Html.LabelFor(m => Model.JamSession.EndSession, "Heure et date de fin") 
+						@Html.TextBoxFor(m => Model.JamSession.EndSession, new { Type = "datetime-local" })
+						@Html.ValidationMessageFor(m => Model.JamSession.EndSession)
+					</div>
+				</div>
 
-    <div>
-        @Html.LabelFor(m => Model.JamSession.StartSession, "Heure de début") :
-        @Html.TextBoxFor(m => Model.JamSession.StartSession, new { Type = "datetime-local", })
-        @Html.ValidationMessageFor(m => Model.JamSession.StartSession)
-    </div>
+				<div id="ThirdRow">
+					<div id="StreetNumber">
+						@Html.LabelFor(m => Model.JamSession.Adress.StreetNumber, "Numéro de rue") 
+						@Html.TextBoxFor(m => Model.JamSession.Adress.StreetNumber)
+						@Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetNumber)
+					</div>
 
-    <div>
-        @Html.LabelFor(m => Model.JamSession.EndSession, "Heure de fin") :
-        @Html.TextBoxFor(m => Model.JamSession.EndSession, new { Type = "datetime-local" })
-        @Html.ValidationMessageFor(m => Model.JamSession.EndSession)
-    </div>
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Description, "Description") :
-        @Html.TextBoxFor(m => Model.JamSession.Description)
-        @Html.ValidationMessageFor(m => Model.JamSession.Description)
-    </div>
+					<div id="StreetName">
+						@Html.LabelFor(m => Model.JamSession.Adress.StreetName, "Nom de voie") 
+						@Html.TextBoxFor(m => Model.JamSession.Adress.StreetName)
+						@Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetName)
+					</div>
+				</div>
 
-    @*Ici débute l'adresse ========================================================================*@
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Adress.StreetNumber, "Numéro de rue") :
-        @Html.TextBoxFor(m => Model.JamSession.Adress.StreetNumber)
-        @Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetNumber)
-    </div>
+				<div id="FourthRow">
+					<div id="ZipCode">
+						@Html.LabelFor(m => Model.JamSession.Adress.ZipCode, "Code postal") 
+						@Html.TextBoxFor(m => Model.JamSession.Adress.ZipCode)
+						@Html.ValidationMessageFor(m => Model.JamSession.Adress.ZipCode)
+					</div>
 
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Adress.StreetName, "Nom de voie") :
-        @Html.TextBoxFor(m => Model.JamSession.Adress.StreetName)
-        @Html.ValidationMessageFor(m => Model.JamSession.Adress.StreetName)
-    </div>
+					<div id="City">
+						@Html.LabelFor(m => Model.JamSession.Adress.City, "Ville") 
+						@Html.TextBoxFor(m => Model.JamSession.Adress.City)
+						@Html.ValidationMessageFor(m => Model.JamSession.Adress.City)
+					</div>
+				</div>
 
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Adress.ZipCode, "Code postal") :
-        @Html.TextBoxFor(m => Model.JamSession.Adress.ZipCode)
-        @Html.ValidationMessageFor(m => Model.JamSession.Adress.ZipCode)
-    </div>
+				<div id="FifthRow">
+					<div id="PlaceNumber">
+						@Html.LabelFor(m => Model.JamSession.NumberPlaces, "Nombre total de places") 
+						@Html.TextBoxFor(m => Model.JamSession.NumberPlaces)
+						@Html.ValidationMessageFor(m => Model.JamSession.NumberPlaces)
+					</div>
 
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Adress.City, "Ville") :
-        @Html.TextBoxFor(m => Model.JamSession.Adress.City)
-        @Html.ValidationMessageFor(m => Model.JamSession.Adress.City)
-    </div>
+					<div id="Instruments">
+						@Html.LabelFor(m => Model.JamSession.Instruments, "Instruments") 
+						@Html.TextBoxFor(m => Model.JamSession.Instruments)
+						@Html.ValidationMessageFor(m => Model.JamSession.Instruments)
+					</div>
+				</div>
+				
+				
+				<div id="finalBlock">
+					<input id="btn" type="submit" value="Je crée ma session de jam" />
+				</div>
+			}
+		</div>
 
-    @*Ici se termine l'adresse ======================================================================*@
+	</section>
+</div>
 
-    
-
-    @* <div> *@
-    @*     @Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement") : *@
-    @*     @Html.DropDownListFor( *@
-    @*             m => Model.Event.TypeEvent, *@
-    @*             new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))), *@
-    @*             "Sélectionnez un type" *@
-    @*             ) *@
-    @*     @Html.ValidationMessageFor(m => Model.Event.TypeEvent) *@
-    @* </div> *@
-
-    <div>
-        @Html.LabelFor(m => Model.JamSession.NumberPlaces, "Nombre total de places") :
-        @Html.TextBoxFor(m => Model.JamSession.NumberPlaces)
-        @Html.ValidationMessageFor(m => Model.JamSession.NumberPlaces)
-    </div>
-    <div>
-        @Html.LabelFor(m => Model.JamSession.Instruments, "Instruments") :
-        @Html.TextBoxFor(m => Model.JamSession.Instruments)
-        @Html.ValidationMessageFor(m => Model.JamSession.Instruments)
-    </div>
-
-
-
-    <input type="submit" value="je crée mon événement" />
-}
