@@ -31,10 +31,10 @@
                     @using (Html.BeginForm("HandlerEvent", "Administration", FormMethod.Post))
                     {
                         <tr>
-                            <td>@evenment.Id</td>
+                            <td class="adminCenterElement">@evenment.Id</td>
                             <td>@evenment.NameEvent</td>
-                            <td>@evenment.TypeEvent</td>
-                            <td>
+                            <td class="adminCenterElement">@evenment.TypeEvent</td>
+                            <td class="adminCenterElement">
                                 @if(@evenment.PhotoData ==null)
                                 {
                                     <img id="imgViewer" style="border:1px solid #000000"/>
@@ -42,20 +42,17 @@
 
                                 else{
                                     String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@evenment.PhotoData) + "";
-
-
                                     <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
-
                                 }
                             </td>
-                            <td>
+                            <td class="adminCenterElement">
                                 <select id="StatusRegistration" name="StatusRegistration">
                                     <option value="" disabled selected>@evenment.StatusRegistration.ToString()</option>
                                     <option value="@statusRegistration.ACCEPTED">Accepter</option>
                                     <option value="@statusRegistration.REFUSED">Refuser</option>
                                 </select>
                             </td>
-                            <td>
+                            <td class="adminCenterElement">
                                 <input type="hidden" name="Id" value="@evenment.Id" />
                                 <button type="submit">Mettre à jour</button>
                             </td>

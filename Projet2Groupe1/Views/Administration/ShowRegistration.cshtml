@@ -9,10 +9,60 @@
 
 }
 
+<section>
+    <div id="OrganizerTable">
+            <h2>Gestion des inscriptions Organisateurs</h2>
+            @if(Model.OrganizerStatusPending.Count() > 0) 
+            {
+                <table border="1" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Prenom</th>
+                            <th>Nom</th>
+                            <th>Role</th>
+                            <th>Etat de la demande</th>
+                            <th>Decision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.OrganizerStatusPending)
+                        {
+                            @using (Html.BeginForm("HandlerRegistration", "Administration", FormMethod.Post))
+                            {
+                                <tr>
+                                    <td class="adminCenterElement">@user.Id</td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td class="adminCenterElement">@user.Role</td>
+                                    <td class="adminCenterElement">
+                                        <select id="StatusRegistration" name="StatusRegistration">
+                                            <option value="" disabled selected>@user.StatusRegistration.ToString()</option>
+                                            <option value="@statusRegistration.ACCEPTED">Accepter</option>
+                                            <option value="@statusRegistration.ACCEPTED">Refuser</option>
+                                        </select>
+                                    </td>
+                                    <td class="adminCenterElement">
+                                        <input type="hidden" name="Id" value="@user.Id" />
+                                        <button type="submit">Mettre à jour</button>
+                                    </td>
 
-<div id="OrganizerTable">
-        <h2>Gestion des inscriptions Organisateurs</h2>
-        @if(Model.OrganizerStatusPending.Count() > 0) 
+                                </tr>
+                            }
+                        } 
+       
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div>Aucune demande d'enregistrement en attente</div>
+            }
+    </div>
+
+    <div id="ProviderTable">
+        <h2>Gestion des inscriptions Prestataire</h2>
+        @if (Model.ProviderStatusPending.Count() > 0)
         {
             <table border="1" style="width: 100%; border-collapse: collapse;">
                 <thead>
@@ -26,31 +76,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var user in Model.OrganizerStatusPending)
+                    @foreach (var user in Model.ProviderStatusPending)
                     {
                         @using (Html.BeginForm("HandlerRegistration", "Administration", FormMethod.Post))
                         {
                             <tr>
-                                <td>@user.Id</td>
+                                <td class="adminCenterElement">@user.Id</td>
                                 <td>@user.FirstName</td>
                                 <td>@user.LastName</td>
-                                <td>@user.Role</td>
-                                <td>
+                                <td class="adminCenterElement">@user.Role</td>
+                                <td class="adminCenterElement">
                                     <select id="StatusRegistration" name="StatusRegistration">
                                         <option value="" disabled selected>@user.StatusRegistration.ToString()</option>
                                         <option value="@statusRegistration.ACCEPTED">Accepter</option>
                                         <option value="@statusRegistration.ACCEPTED">Refuser</option>
                                     </select>
                                 </td>
-                                <td>
+                                <td class="adminCenterElement">
                                     <input type="hidden" name="Id" value="@user.Id" />
                                     <button type="submit">Mettre à jour</button>
                                 </td>
-
                             </tr>
                         }
-                    } 
-       
+                    }
+
                 </tbody>
             </table>
         }
@@ -58,54 +107,5 @@
         {
             <div>Aucune demande d'enregistrement en attente</div>
         }
-</div>
-
-<div id="ProviderTable">
-    <h2>Gestion des inscriptions Prestataire</h2>
-    @if (Model.ProviderStatusPending.Count() > 0)
-    {
-        <table border="1" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Prenom</th>
-                    <th>Nom</th>
-                    <th>Role</th>
-                    <th>Etat de la demande</th>
-                    <th>Decision</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model.ProviderStatusPending)
-                {
-                    @using (Html.BeginForm("HandlerRegistration", "Administration", FormMethod.Post))
-                    {
-                        <tr>
-                            <td>@user.Id</td>
-                            <td>@user.FirstName</td>
-                            <td>@user.LastName</td>
-                            <td>@user.Role</td>
-                            <td>
-                                <select id="StatusRegistration" name="StatusRegistration">
-                                    <option value="" disabled selected>@user.StatusRegistration.ToString()</option>
-                                    <option value="@statusRegistration.ACCEPTED">Accepter</option>
-                                    <option value="@statusRegistration.ACCEPTED">Refuser</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="hidden" name="Id" value="@user.Id" />
-                                <button type="submit">Mettre à jour</button>
-                            </td>
-
-                        </tr>
-                    }
-                }
-
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div>Aucune demande d'enregistrement en attente</div>
-    }
-</div>
+    </div>
+</section>
