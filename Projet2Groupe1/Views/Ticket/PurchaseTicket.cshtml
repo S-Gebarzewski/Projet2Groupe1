@@ -10,58 +10,66 @@
         Layout = "_layoutHeaderFooter";
     }
     ViewBag.Title = "Achat billets";
+    decimal total = Model.TicketQuantityAvailable * Model.Billetterie.UnitPriceTicket;
 }
 
-<h1>PANIER</h1>
+<div class="purchase-ticket-container">
+  <div class="purchase-ticket-event-image">
 
-<div>Achat billets </div>
+        @if (Model.Event.PhotoData != null)
+        {
+            String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(Model.Event.PhotoData);
+            <img src="@srcValue" alt="@Model.Event.NameEvent" />
+        }
+        else
+        {
+            <img src="@Url.Action("GetDefaultImage", "Event", new { type = Model.Event.TypeEvent })"
+                 alt="@Model.Event.NameEvent" />
+        }
 
-<p>@Model.Event.Artist.NickNameArtist</p>
+  </div>
 
-<p>@Model.Event.NameEvent</p>
-<p>PLus que @Model.Billetterie.NumberTotalTicket billets disponibles</p>
+    <h1 class="purchase-ticket-title">@Model.Event.NameEvent</h1>
+    <p class="purchase-ticket-artist">@Model.Event.Artist.NickNameArtist</p>
+    <p class="purchase-ticket-availability">Plus que <span class="purchase-ticket-number"> @Model.Billetterie.NumberTotalTicket </span> billets disponibles</p>
 
-<p>Prix unitaire : @Model.Billetterie.UnitPriceTicket €</p>
+    @using (Html.BeginForm("PurchaseTicket", "Ticket", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.Event.Id)
+        @Html.HiddenFor(m => m.User.Id)
+        @Html.HiddenFor(m => m.Billetterie.Id)
 
-<div>Je suis un billet</div>
-<!-- renvoie "connexion obligatoire" ou ouvre champs pour entrer info carte bleue-->
-@using (Html.BeginForm("PurchaseTicket", "Ticket", FormMethod.Post))
+        <div class="purchase-ticket-price-info">
+            <p>Prix unitaire : <span id="unitPrice"> @Model.Billetterie.UnitPriceTicket</span> €</p>
 
-{
-	@Html.HiddenFor(m => m.Event.Id)
-    @Html.HiddenFor(m => m.User.Id)
-    @Html.HiddenFor(m => m.Billetterie.Id)
-	
-    
-    <div>
-        @Html.LabelFor(m => Model.TicketQuantityAvailable, "Nombres billets") :
-        @Html.TextBoxFor(m => Model.TicketQuantityAvailable)
-        @Html.ValidationMessageFor(m => Model.TicketQuantityAvailable)
-    </div>
+         <div class="quantity-total-row">
+            @Html.LabelFor(m => Model.TicketQuantityAvailable, "Nombres billets :") 
+            @Html.TextBoxFor(m => Model.TicketQuantityAvailable, new { type = "number", min = "1", id = "purchase-ticket-quantity" })
+            @Html.ValidationMessageFor(m => Model.TicketQuantityAvailable)
+		 </div>
+            <p>Total : <span id="total"> @total</span>  €</p>
 
-    @* 
-         <label for="UnitPriceTicket">Nombre 1:</label> 
-         <input type="number" name="UnitPriceTicket" id="number1" required /> 
-
-        <label for="TicketQuantityAvailable">Nombre 2:</label>
-    <input type="number" name="TicketQuantityAvailable" id="number2" required />
-
-    <button type="submit">Calculer la somme</button> 
-    
-
-    <p>Résultat: @ViewBag.Result</p>  *@
-    
-
-
-
-
-    <input type="submit" value="Acheter Billets" />
-
-
-
-
+            <button type="submit" class="purchase-ticket-submit">Acheter les billets</button>
+        </div>
 
 }
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const quantityInput = document.getElementById('quantity');
+        const unitPrice = parseFloat(document.getElementById('unitPrice').textContent);
+        const totalSpan = document.getElementById('total');
+
+        function updateTotal() {
+            const quantity = parseInt(quantityInput.value) || 0;
+            const total = quantity * unitPrice;
+            totalSpan.textContent = total.toFixed(2);
+        }
+
+        quantityInput.addEventListener('input', updateTotal);
+        updateTotal(); // Calculer le total initial
+    });
+</script>
 
 
 
