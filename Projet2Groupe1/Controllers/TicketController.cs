@@ -1,5 +1,7 @@
-﻿using System.Security.Claims;
+﻿using System.Net.Sockets;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
 
@@ -37,6 +39,7 @@ namespace Projet2Groupe1.Controllers
         [HttpPost]
         public IActionResult PurchaseTicket(TicketViewModel ticketViewModel)
         {
+
             using (ITicketService its = new TicketService(new DataBaseContext()))
             {
                 using (IUserService ius = new UserService(new DataBaseContext()))
@@ -56,14 +59,14 @@ namespace Projet2Groupe1.Controllers
 
                     ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
                     ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-                    if (its.BuyTicket(ticketViewModel.TicketQuantityAvailable, ticketViewModel.Event.Id ))
+
+                    if (its.BuyTicket(ticketViewModel.TicketQuantityAvailable, ticketViewModel.Event.Id))
                     {
                         its.CreateTicket
                             (ticketViewModel.Billetterie.Id, ticketViewModel.Event.Id, UserId, ticketViewModel.TicketQuantityAvailable);
                         ViewBag.Result = ticketViewModel.Billetterie.UnitPriceTicket * ticketViewModel.TicketQuantityAvailable;
-                        //ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
-                        //ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-                        return View("SuccessTicket");
+
+                        return View("SuccessPurchaseTickets");
                     }
                     else
                     {
@@ -72,9 +75,7 @@ namespace Projet2Groupe1.Controllers
                             Event eventItem = ies.searchEvent(ticketViewModel.Event.Id);
                             ticketViewModel.Event = eventItem;
                             ticketViewModel.Billetterie = eventItem.Billetterie;
-                            //// manque les view data role et isauthenticated
-                            //ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
-                            //ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
                             ModelState.AddModelError("TicketQuantityAvailable", "Il n'y a pas suffisamment de billets disponibles.");
                             return View(ticketViewModel);
                         }
@@ -105,22 +106,33 @@ namespace Projet2Groupe1.Controllers
                 }
                 else
                 {
-                    return View("Error"); // return view error
+                    return RedirectToAction("Error", "Error", new { errorCode = 7, Message = "L'evenement que vous avez choisi n'est plus disponible." });
                 }
             }
         }
-        
+
+        [HttpPost]
         public IActionResult SuccessPurchaseTickets(PaymentViewModel PaymentViewModel) 
         {
             Console.WriteLine("Je suis dans SuccessPurchaseTickets");
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Veuillez vous connecter ou vous inscrire pour acheter votre billet." });
+                foreach (var key in ModelState.Keys)
+                {
+                    var state = ModelState[key];
+                    foreach (var error in state.Errors)
+                    {
+                        Console.WriteLine($"Clé : {key}, Erreur : {error.ErrorMessage}");
+                    }
+                }
+                return RedirectToAction("Error", "Error", new { errorCode = 6, Message = "Le paiement n'a pas ete valide. Veuillez recommencer le paiement." });
             }
             else
             {
-
-                return View();
+                ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                string actionPath = "Dashboard" + ViewData["Role"];
+                return RedirectToAction(actionPath, "Login");
             }
         }
     }

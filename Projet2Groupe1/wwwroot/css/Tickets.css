@@ -150,7 +150,7 @@
 
 
 /* Start CSS SuccessTickets*/
-.paymentView {
+.TicketPaymentView {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,12 +158,12 @@
     margin: 40px;
 }
 
-    .paymentView h3 {
-        font-size: 26px;
-        margin-bottom: 10px;
-    }
+.TicketPaymentView h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
 
-#paymentContent {
+.TicketPaymentContent {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -171,7 +171,7 @@
     width: 500px;
 }
 
-.inputPayment {
+.TicketInputPayment {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
@@ -179,7 +179,7 @@
     font-weight: 700;
 }
 
-.fieldPayment {
+.TicketFieldPayment {
     padding: 10px;
     font-size: 20px;
     border: 1px solid #ddd;
@@ -196,16 +196,16 @@
     gap: 5px;
 }
 
-    .cardIcon img {
-        width: 140px;
-        height: auto;
-    }
+.cardIcon img {
+    width: 140px;
+    height: auto;
+}
 
 .submitPayment {
     text-align: center;
 }
 
-#buttonPayment {
+#TicketButtonPayment {
     background-color: #ffd400;
     border: none;
     border-radius: 12px;

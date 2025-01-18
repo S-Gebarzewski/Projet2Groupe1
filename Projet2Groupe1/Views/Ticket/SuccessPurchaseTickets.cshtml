@@ -1,0 +1,49 @@
+﻿@model Projet2Groupe1.ViewModels.PaymentViewModel
+@{
+    if ((bool)ViewData["IsAuthenticated"])
+    {
+        Layout = "_LayoutDashboard";
+    }
+    else
+    {
+        Layout = "_layoutHeaderFooter";
+    }
+    ViewBag.Title = "Achat valide";
+}
+
+
+
+<div class="TicketPaymentView">
+
+	<div class="TicketPaymentContent">
+
+		<h3>Coordonées bancaire</h3>
+
+
+		@using (Html.BeginForm("SuccessPurchaseTickets", "Ticket", FormMethod.Post))
+		{
+			<input type="hidden" name="MemberId" value="1" />
+
+			<div class="TicketInputPayment">
+				@Html.TextBoxFor(m => Model.CreditCardNumber, new { placeholder = "Numero de carte", @class = "TicketFieldPayment" })
+				<div class="cardIcon">
+					<img src="~/images/iconBannerCard.jpg" alt="Icone Cloud" class="icone">
+				</div>
+			</div>
+
+			<div class="TicketInputPayment">
+				@Html.TextBoxFor(m => Model.ExpirationDate, new { placeholder = "MM/AA", @class = "TicketFieldPayment" })
+				@Html.PasswordFor(m => Model.VerificationNumber, new { placeholder = "CVV", @class = "TicketFieldPayment" })
+			</div>
+
+			<h3>Titulaire de la carte</h3>
+			<div class="TicketInputPayment">
+				@Html.TextBoxFor(m => Model.CardHolder, new { placeholder = "Nom", @class = "TicketFieldPayment" })
+			</div>
+			<div class="submitPayment">
+				<input id="TicketButtonPayment" type="submit" value="Payer" />
+			</div>
+		}
+
+	</div>
+</div>

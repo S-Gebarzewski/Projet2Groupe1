@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Sockets;
+using Projet2Groupe1.Models;
 
 namespace Projet2Groupe1.ViewModels
 {
@@ -9,9 +11,9 @@ namespace Projet2Groupe1.ViewModels
         public string CreditCardNumber { get; set; }
 
         [Required(ErrorMessage = "La date d'expiration est obligatoire.")]
-        [DataType(DataType.Date, ErrorMessage = "La date d'expiration doit être une date valide.")]
+        [RegularExpression(@"^(0[1-9]|1[0-2])\/([0-9]{2})$", ErrorMessage = "La date d'expiration doit être au format MM/yy.")]
         [Display(Name = "Date d'expiration")]
-        public DateTime ExpirationDate { get; set; }
+        public string ExpirationDate { get; set; }
 
         [Required(ErrorMessage = "Le code de vérification est obligatoire.")]
         [Range(100, 999, ErrorMessage = "Le code de vérification doit contenir 3.")]
@@ -23,5 +25,6 @@ namespace Projet2Groupe1.ViewModels
         public string CardHolder { get; set; }
 
         public int MemberId { get; set; }
+        public UserTicket? Ticket { get; set; }
     }
 }
