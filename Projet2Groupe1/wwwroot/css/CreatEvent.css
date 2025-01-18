@@ -1,0 +1,101 @@
+﻿
+
+#FormEvent {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+    #FormEvent #leftColumn, #rightColumn {
+        flex: 0.17;
+        padding: 10px
+    }
+
+    #FormEvent #centralColumn {
+        border: solid, 1px, white;
+        padding: 10px
+    }
+
+label {
+    font-size: 16px
+}
+
+#FormEvent > div {
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+}
+
+#FormEvent form #Input {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#FormEvent input {
+    border-radius: 12px;
+    border: solid black 3px;
+    height: 40px;
+}
+#SecondRow {
+    height: inherit;
+    width: inherit;
+}
+
+#FirstRow, #SecondRow, #ThirdRow, #FourthRow, #FifthRow, #SixthRow {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#FirstRow > *,
+#SecondRow > *,
+#ThirdRow > *,
+#FourthRow > *,
+#FifthRow > *,
+#SixthRow > * {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#title {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#NameEvent,#City,#StartEvent, #Artist, #TicketNumber, #TicketType, TicketPrice #StreetNumber, #City {
+    margin-right: 3vw;
+}
+
+#StartEvent, #EndEvent {
+    width: 44%;
+}
+
+
+#finalBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 3vw;
+    font-size: 16px;
+}
+
+#FormEvent #btn {
+    display: block;
+    margin: 0px 10px 10px 10px;
+    height: 40px;
+    width: 150px;
+    border-radius: 12px;
+    border: solid black 3px;
+    font-size: 16px;
+    background-color: rgba(26, 110, 232, 1);
+    color: white;
+}
