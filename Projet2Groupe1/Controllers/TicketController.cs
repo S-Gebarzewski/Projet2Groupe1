@@ -24,10 +24,11 @@ namespace Projet2Groupe1.Controllers
                     ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
                     ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                     return View(ticketViewModel);
-
                 }
-                else {
-                    return View("Error"); }
+                else 
+                {
+                    return RedirectToAction("Error", "Error", new { errorCode = 5, Message = "Veuillez vous connecter ou vous inscrire pour acheter votre billet." });
+                }
 
             }          
         }
@@ -48,21 +49,22 @@ namespace Projet2Groupe1.Controllers
                     if (!uvm.Authenticate)
                     {
                         return RedirectToAction("Error", "Error", new { errorCode = 1,
-                            Message = "Veuillez vous connecter" });
+                            Message = "Veuillez vous connecter ou vous inscrire pour acheter votre billet." });
                     }
 
                     int UserId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.Name).Value);
 
+                    ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                    ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                     if (its.BuyTicket(ticketViewModel.TicketQuantityAvailable, ticketViewModel.Event.Id ))
                     {
                         its.CreateTicket
                             (ticketViewModel.Billetterie.Id, ticketViewModel.Event.Id, UserId, ticketViewModel.TicketQuantityAvailable);
                         ViewBag.Result = ticketViewModel.Billetterie.UnitPriceTicket * ticketViewModel.TicketQuantityAvailable;
-                        ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
-                        ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                        //ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                        //ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                         return View("SuccessTicket");
                     }
-
                     else
                     {
                         using (IEventService ies = new EventService(new DataBaseContext()))
@@ -70,6 +72,9 @@ namespace Projet2Groupe1.Controllers
                             Event eventItem = ies.searchEvent(ticketViewModel.Event.Id);
                             ticketViewModel.Event = eventItem;
                             ticketViewModel.Billetterie = eventItem.Billetterie;
+                            //// manque les view data role et isauthenticated
+                            //ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                            //ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                             ModelState.AddModelError("TicketQuantityAvailable", "Il n'y a pas suffisamment de billets disponibles.");
                             return View(ticketViewModel);
                         }
@@ -100,17 +105,23 @@ namespace Projet2Groupe1.Controllers
                 }
                 else
                 {
-                    return View("Error");
+                    return View("Error"); // return view error
                 }
-
             }
-
-
-
-
-
         }
+        
+        public IActionResult SuccessPurchaseTickets(PaymentViewModel PaymentViewModel) 
+        {
+            Console.WriteLine("Je suis dans SuccessPurchaseTickets");
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Error", new { errorCode = 1, Message = "Veuillez vous connecter ou vous inscrire pour acheter votre billet." });
+            }
+            else
+            {
 
+                return View();
+            }
+        }
     }
-
 }
