@@ -1,43 +1,21 @@
-﻿.event-details-container {
+﻿.event-details-header-banner span {
+   text-align: center;
+    font-size: 40px;
+}
+
+.event-details-container {
     position: relative; /* Pour que les bannières puissent se positionner par rapport à lui */
     padding: 0; /* Enlever le padding pour que les bannières touchent les bords */
-    background-color: #f8f8f8;
+   /* background-color: #f8f8f8;*/
    
 }
 
 #rightCol .event-details-container {
-    margin: -2rem; /* Annule les marges du rightCol */
-    width: calc(100% + 4rem); /* Compense les marges négatives */
+    margin: 20px -80px 0; /* Compense uniquement les marges du rightCol, mais garde un espace en bas */
+    width: calc(100% + 160px); /* Compense les marges latérales */
 }
 
 
-.event-details-header-banner {
-    background-color: #1a6ee8;
-    color: black;
-    padding: 2rem 4rem;
-    margin: 0; /* Enlever les marges */
-    font-size: 1.4rem;
-   /* font-weight: 900;*/
-   
-}
-    .event-detail-header-banner span {
-        margin-left: 2rem; /* Décale "Mon événement" vers la droite */
-
-    }
-
-
-
-
-.event-details-side-banner {
-    width: 60px; /* Bannière plus large */
-    background-color: #1a6ee8;
-    margin: 0; /* Enlever les marges */
-    position: absolute; /* Position absolue pour qu'elle monte jusqu'en haut */
-    left: 0;
-    top: 0;
-    bottom: 0; /* S'étend jusqu'en bas */
-    height: 100%; /* Prend toute la hauteur */
-}
 
 
 
@@ -126,7 +104,7 @@
 }
 
 .event-details-figure {
-    background: #f8f9fa;
+ /*   background: #f8f9fa;*/
     padding: 1.5rem;
     border-radius: 8px;
     display: flex;
@@ -146,7 +124,7 @@
 }
 
 .event-details-caption {
-    color: #6c757d;
+   /* color: #6c757d;*/
     text-align: center;
     margin-top: 0.5rem;
     font-size: 0.9rem;
