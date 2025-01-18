@@ -2,9 +2,9 @@
 .RenderSectionDashboardAdmin {
     display:flex;
     flex-direction: column;
-    margin-left: 5vw;
+    margin-left: 8.5vw;
     gap: 2vh;
-    width:85%;
+    width:75%;
 }
 
 .adminStatistics {
@@ -53,8 +53,10 @@
     padding: 0;
 }
 
+.adminFinancialNumber p:last-child {
+    font-weight: 400;
+}
 /* Section donnees financieres */
-
 .adminFinancialStatistics {
     display: flex;
     flex-direction: column;
