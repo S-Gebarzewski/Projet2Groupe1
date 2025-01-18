@@ -1,0 +1,116 @@
+﻿.purchase-ticket-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-ticket-event-image {
+    margin-bottom: 2rem;
+}
+
+    .purchase-ticket-event-image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+.purchase-ticket-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.purchase-ticket-artist {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.purchase-ticket-availability {
+    color: black;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+.purchase-ticket-number {
+    color: #ff8500;
+}
+.purchase-ticket-price-info {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+}
+.quantity-total-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+#purchase-ticket-quantity {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+    .purchase-ticket-price-info p {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .purchase-ticket-price-info label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    .purchase-ticket-price-info input[type="number"] {
+        width: 100px;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+        .purchase-ticket-price-info input[type="number"]:focus {
+            outline: none;
+            border-color: #ff8500;
+            box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+        }
+
+#total {
+    font-weight: 600;
+    color: #ff8500;
+    font-size: 1.2rem;
+}
+
+.purchase-ticket-submit {
+    width: 100%;
+    padding: 1rem;
+    background-color: #ff8500;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .purchase-ticket-submit:hover {
+        background-color: #ff5533;
+    }
+
+/* Style pour les messages de validation */
+.field-validation-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
