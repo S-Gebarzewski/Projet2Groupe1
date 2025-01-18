@@ -64,7 +64,7 @@ namespace Projet2Groupe1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult RegisterOrganizer(User user,Organizer organizer)
+        public IActionResult OrganizerRegistration(User user,Organizer organizer)
         {
             Console.WriteLine("je suis entre dans RegisterOrganizer");
             using (IUserService ius = new UserService(new DataBaseContext()))
