@@ -84,7 +84,7 @@ label {
 #finalBlock {
     display: flex;
     flex-direction: column;
-    en colonne justify-content: center;
+    justify-content: center;
     align-items: center;
     text-align: center;
     margin-top: 3vw;
@@ -99,6 +99,7 @@ label {
     border-radius: 12px;
     border: solid black 3px;
     font-size: 16px;
+    font-weight: bold;
     background-color: rgba(26, 110, 232, 1);
     color: white;
 }

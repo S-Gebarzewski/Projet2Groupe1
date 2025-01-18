@@ -64,7 +64,8 @@
 
 
 .event-header, .event-cell {
-    width: calc(100% / 7); 
+    width: calc(100% / 7);
+}
 .button-container {
     text-align: center;
     margin-top: 20px;
@@ -87,13 +88,15 @@
 
 
 #editButton {
-    background-color: rgba(26, 110, 232, 1); 
-    color: white; 
-
+    background-color: rgba(26, 110, 232, 1);
+    color: white;
+    border: solid black 3px;
+}
 
 #deleteButton {
     background-color: rgba(26, 110, 232, 1);
-    color: white; 
+    color: white;
+    border: solid black 3px;
 }
 
 
