@@ -77,7 +77,7 @@ label {
 
 #finalBlock {
     display: flex; 
-    flex-direction: column;  en colonne 
+    flex-direction: column;
     justify-content: center; 
     align-items: center; 
     text-align: center; 
@@ -87,12 +87,12 @@ label {
 
 #FormMember #btn {
     display: block;
-    margin: auto;
+    margin: 0px 10px 10px 10px;
     height: 40px;
     width: 150px;
     border-radius: 12px;
     border: solid black 3px;
-    font-size:16px;
+    font-size: 16px;
     background-color: darkorange;
     color: white;
 }

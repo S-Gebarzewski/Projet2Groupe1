@@ -35,8 +35,12 @@
                             <td>@evenment.NameEvent</td>
                             <td>@evenment.TypeEvent</td>
                             <td>
+                                @if(@evenment.PhotoData ==null)
+                                {
+                                    <img id="imgViewer" style="border:1px solid #000000"/>
+                                }
 
-                                @{
+                                else{
                                     String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@evenment.PhotoData) + "";
 
 
