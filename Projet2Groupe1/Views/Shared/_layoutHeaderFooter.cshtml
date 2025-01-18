@@ -21,7 +21,8 @@
 </head>
 
 <body>
-    <div id="header"> <!-- barre -->
+    <div id="header" class="@ViewData["Role"]">
+        <!-- barre -->
         <div class="header-container"> <!-- contenu de la barre -->
 			<a href="@Url.Action("Index", "Home")" class="left-section">
                 <img src="~/images/logoSoundTogetherH.svg" alt="Logo de la plateforme" class="logo-img">
