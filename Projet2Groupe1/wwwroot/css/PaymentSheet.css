@@ -1,0 +1,72 @@
+﻿.paymentView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 40px;
+}
+
+    .paymentView h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+#paymentContent {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+}
+
+.inputPayment {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    position: relative;
+    font-weight: 700;
+}
+
+.fieldPayment {
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.cardIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+    .cardIcon img {
+        width: 140px;
+        height: auto;
+    }
+
+    .submitPayment {
+        text-align: center;
+    }
+
+#buttonPayment {
+    background-color: #ffd400;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 700;
+    margin: 0 auto;
+    width: 460px;;
+}
+
+    #buttonPayment hover {
+        background-color: #ffd400;
+    }

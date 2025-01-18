@@ -1,34 +1,52 @@
 ﻿@model Projet2Groupe1.ViewModels.PaymentViewModel;
 
 @{
-    Layout = "_layoutHeaderFooter";
-    ViewBag.Title = "Paiement";
+	Layout = "_layoutHeaderFooter";
+	ViewBag.Title = "Paiement";
 }
 
+<div class="paymentView">
 
-<div id="paiementContent">
-    <h3>Paiement</h3>
-    @using (Html.BeginForm("Payment", "Payment", FormMethod.Post))
-    {
-        <p>@TempData["Message"]</p>
-        <p>@TempData["MemberId"]</p>
-        <input type="hidden" name="userID" value="@TempData["userId"]" />
-        <input type="hidden" name="MemberId" value="@TempData["MemberId"]" />
+	<div id="paymentContent">
 
-        <p>Coordonees bancaire</p>
-        @Html.LabelFor(m => Model.CreditCardNumber, "Numero de carte")
-        @Html.TextBoxFor(m => Model.CreditCardNumber, new { placeholder = "Numero de carte" })
+		<h3>Coordonées bancaire</h3>
 
-        @Html.LabelFor(m => Model.ExpirationDate, "Date d'expiration")
-        @Html.TextBoxFor(m => Model.ExpirationDate, new { placeholder = "MM/AA" })
 
-        @Html.LabelFor(m => Model.VerificationNumber, "CCV")
-        @Html.PasswordFor(m => Model.VerificationNumber, new { placeholder = "CVV" })
-        <p>Titulaire de la carte</p>
-        @Html.TextBoxFor(m => Model.CardHolder, new { placeholder = "Prenom Nom" })
+		@using (Html.BeginForm("Payment", "Payment", FormMethod.Post))
+		{
+			<input type="hidden" name="userID" value="@TempData["userId"]" />
+			<input type="hidden" name="MemberId" value="@TempData["MemberId"]" />
 
-        <input id="btn" type="submit" value="Je valide le paiement" />
 
-    }
+			<div class="inputPayment">
 
+				@Html.TextBoxFor(m => Model.CreditCardNumber, new { placeholder = "Numero de carte", @class = "fieldPayment" })
+
+				<div class="cardIcon">
+
+					<img src="~/images/iconBannerCard.jpg" alt="Icone Cloud" class="icone">
+				</div>
+			</div>
+
+			<div class="inputPayment">
+
+				@Html.TextBoxFor(m => Model.ExpirationDate, new { placeholder = "MM/AA", @class = "fieldPayment" })
+
+				@Html.PasswordFor(m => Model.VerificationNumber, new { placeholder = "CVV", @class = "fieldPayment" })
+			</div>
+
+
+			<h3>Titulaire de la carte</h3>
+
+			<div class="inputPayment">
+
+				@Html.TextBoxFor(m => Model.CardHolder, new { placeholder = "Nom", @class = "fieldPayment" })
+			</div>
+
+			<div class="submitPayment">
+			<input id="buttonPayment" type="submit" value="Payer" />
+			</div>
+		}
+
+	</div>
 </div>
