@@ -1,25 +1,24 @@
 ﻿
 
 .page-title {
-    text-align: center; /* Centrer horizontalement */
-    font-size: 24px; /* Taille du texte */
-    margin-top: 20px; /* Espacement au-dessus */
-    margin-bottom: 20px; /* Espacement en-dessous */
+    text-align: center; 
+    font-size: 24px; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
    
 }
 
 .event-table {
     width: 100%;
-    border-spacing: 0 10px; /* 10px entre les lignes */
+    border-spacing: 0 10px; 
     border-collapse: separate;
     margin: 10px;
     table-layout: fixed;
-    border-radius: 20px; /* Arrondi des coins externes */
-    overflow: hidden; /* /* Assure un alignement fixe des colonnes */
-    font-size: 12px;
+    border-radius: 20px;
+    overflow: hidden; 
 }
 
-/* En-tête de tableau */
+
 .event-header-row {
     background-color: #f4f4f4;
 }
@@ -28,33 +27,31 @@
     padding: 10px;
     font-weight: bold;
     text-align: left;
-    border-bottom: 2px solid #ddd; /* Ligne séparatrice horizontale */
+    border-bottom: 2px solid #ddd; 
 }
 
-/* Corps du tableau */
+
 .event-row {
-    display: table-row; /* Assure un comportement classique de tableau */
-    border-bottom: 1px solid #ddd; /* Séparation entre les lignes */
+    display: table-row; 
+    border-bottom: 1px solid #ddd;
 }
 
     .event-row:hover {
-        background-color: #f9f9f9; /* Met en évidence une ligne lorsqu'elle est survolée */
+        background-color: #f9f9f9; 
         cursor: pointer;
     }
 
-/* Cellules */
 .event-cell {
     padding: 10px;
     text-align: left;
-    vertical-align: middle; /* Assure un alignement vertical centré */
-    overflow-wrap: break-word; /* Gère les débordements de texte */
+    vertical-align: middle; 
 
 }
 #spanEventStatus{
     display:flex;
     align-items:center;
 }
-/* Spécifique pour l'image */
+
 .event-photo img {
     max-width: 100px;
     max-height: 100px;
@@ -65,52 +62,50 @@
     margin-top:30px;
 }
 
-/* Ajustement des largeurs */
+
 .event-header, .event-cell {
-    width: calc(100% / 7); /* Divise l'espace en colonnes égales */
-}
+    width: calc(100% / 7); 
 .button-container {
     text-align: center;
     margin-top: 20px;
 }
 
-/* Styles communs aux deux boutons */
+
 .action-button {
-    padding: 10px 20px; /* Espacement autour du texte */
-    font-size: 16px; /* Taille de la police */
-    font-weight: bold; /* Mettre le texte en gras */
-    border: none; /* Supprimer la bordure par défaut */
-    border-radius: 8px; /* Coins arrondis */
-    cursor: pointer; /* Changer le curseur pour indiquer que c'est cliquable */
-    transition: all 0.3s ease; /* Transition douce lors des changements */
-    margin: 0 10px; /* Espacement horizontal entre les boutons */
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    margin: 0 10px; 
 }
 .input-class {
     width: 100%;
 }
 
-/* Bouton Editer */
+
 #editButton {
     background-color: rgba(26, 110, 232, 1); 
-    color: white; /* Texte en blanc */
-}
+    color: white; 
 
-/* Bouton Supprimer */
+
 #deleteButton {
     background-color: rgba(26, 110, 232, 1);
-    color: white; /* Texte en blanc */
+    color: white; 
 }
 
-/* Effet de survol des boutons */
+
 .action-button:hover {
-    opacity: 0.8; /* Légère transparence lors du survol */
-    transform: translateY(-2px); /* Légère élévation du bouton */
+    opacity: 0.8; 
+    transform: translateY(-2px); 
 }
 
-/* Bouton désactivé (pour supprimer un événement si aucune ligne n'est sélectionnée) */
+
 .action-button:disabled {
-    background-color: #e0e0e0; /* Couleur grise */
-    color: #9e9e9e; /* Texte gris clair */
-    cursor: not-allowed; /* Curseur en forme de croix */
-    opacity: 0.6; /* Diminuer l'opacité */
+    background-color: #e0e0e0; 
+    color: #9e9e9e; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
 }
