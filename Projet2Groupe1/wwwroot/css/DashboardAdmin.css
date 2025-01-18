@@ -1,35 +1,51 @@
-﻿.RenderSectionDashboardAdmin {
+﻿/* Section utilisation de la plateforme */
+.RenderSectionDashboardAdmin {
     display:flex;
     flex-direction: column;
+    margin-left: 5vw;
+    gap: 2vh;
+    width:100%;
 }
 
 .adminStatistics {
     border: 3px solid black;
     border-radius: 12px;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    width:100%;
 }
 
 .adminStatisticsData {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5rem;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.adminStatisticsFirstRow, .adminStatisticsSecondRow {
+.adminStatisticsFirstColumn, .adminStatisticsSecondColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+}
+
+.adminStatisticsTopLeft, .adminStatisticsTopRight, .adminStatisticsBottomLeft, .adminStatisticsBottomRight {
     display: flex;
     flex-direction: row;
+    flex: 1;
+    gap: 20px;
+    border: 3px solid black;
+    padding: 1vw;
+    border-radius: 12px;
+    justify-content:space-between;
 }
-
-
-
-
 
 .adminStatistics h3 {
     margin: 0;
     padding: 0;
+    font-size: 20px;
+    width: 60vw;
 }
 
 .adminStatistics p {
@@ -37,6 +53,113 @@
     padding: 0;
 }
 
-.adminStatisticsFirstRow > div, .adminStatisticsFirstRow > p, .adminStatisticsSecondRow > div, .adminStatisticsSecondRow > p {
-    /*    border: 3px solid black;*/
+/* Section donnees financieres */
+
+.adminFinancialStatistics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 15px;
+    border: 3px solid black;
+    border-radius: 12px;
+}
+
+.adminFinancialStatistics h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.adminFinancialPremium {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    gap: 1vw;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 1vw;
+}
+
+.adminFinancialPremium img {
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 80px;
+    max-height: 80px;
+    padding-left: 1vw;
+}
+
+.adminFinancialTotal {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    flex: 1;
+}
+
+.adminFinancialTotal p:first-child {
+    font-size: 12px; 
+}
+
+.adminFinancialTotal p:last-child {
+    font-size:20px;
+}
+
+.adminFinancialNumber {
+    justify-content: start;
+    flex: 2;
+}
+
+.adminFinancialPremiumLabel {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    font-size: 15px;
+    align-items: center;
+    flex: 3;
+}
+
+.adminFinancialDetails {
+    display: flex;
+    flex-direction: row; 
+    gap: 1vw;
+}
+
+.adminFinancialDetails > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.adminFinancialDetails > div > p {
+    font-weight: 400;
+}
+
+.adminCA {
+    display:flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.adminCATotal {
+    display: flex;
+    flex-direction: row;
+    width:40%;
+    gap: 1vw;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 1vw;
+}
+
+.adminFinancialTotalLabel {
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    justify-content: space-around;
+}
+
+.adminFinancialTotalLabel > div {
+    text-align: center;
+    flex: 1;
 }

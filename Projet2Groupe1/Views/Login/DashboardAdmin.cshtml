@@ -14,27 +14,90 @@
     <div class="adminStatistics">
         <h3 class="title">Statistiques d'utilisation de la plateforme</h3>
         <div class="adminStatisticsData">
-            <div class="adminStatisticsFirstRow">
-                <div class=""></div>
-                <p class="adminNumberVisitors">12578</p>
-                <div></div>
-                <p class="adminTotalVisitors">Visiteurs</p>
-                <div></div>
-                <p class="adminNumberMembers">2483</p>
-                <div></div>
-                <p class="adminTotalMembers">Adherents</p>
-                <div></div>
+            <div class="adminStatisticsFirstColumn">
+                <div class="adminStatisticsTopLeft">
+                    <p class="adminNumberVisitors">12578</p>
+                    <p class="adminTotalVisitors">Visiteurs</p>
+                </div>
+                <div class="adminStatisticsBottomLeft">
+                    <p class="adminNumberPremiums">548</p>
+                    <p class="adminTotalPremiums">Premium</p>
+                </div>
             </div>
-            <div class="adminStatisticsSecondRow">
-                <div class=""></div>
-                <p class="adminNumberPremiums">548</p>
-                <div></div>
-                <p class="adminTotalPremiums">Premium</p>
-                <div></div>
-                <p class="adminNumberEvents">1042</p>
-                <div></div>
-                <p class="adminTotalEvents">Evenements</p>
-                <div></div>
+            <div class="adminStatisticsSecondColumn">
+                <div class="adminStatisticsTopRight">
+                    <p class="adminNumberMembers">2483</p>
+                    <p class="adminTotalMembers">Adherents</p>
+                </div>
+                <div class="adminStatisticsBottomRight">
+                    <p class="adminNumberEvents">1042</p>
+                    <p class="adminTotalEvents">Evenements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="adminFinancialStatistics">
+        <h3 class="title">Donnees financieres</h3>
+        <div class="adminFinancialData">
+            <div class="adminFinancialPremium">
+                <div class="adminFinancialPremiumLabel">
+                    <img src="~/images/iconeStar.png" alt="Icone Profil" class="icone">
+                    <div class="adminFinancialNumber">
+                        <p>chiffre d'affaire realise sur la vente d'abonnements premium</p>
+                        <p>nombre d'adherents premium</p> 
+                        @* @Model. *@
+                    </div>
+                </div>
+                <div class="adminFinancialTotal">
+					<p>Total<p>
+					<p>12.000e</p>
+                    @* @Model. *@
+                </div>
+            </div>
+            <div class="adminFinancialTickets">
+            </div>
+        </div>
+        <div class="adminFinancialData">
+            <div class="adminFinancialPremium">
+                <div class="adminFinancialPremiumLabel">
+                    <img src="~/images/iconeTicket.png" alt="Icone Profil" class="icone">
+                    <div class="adminFinancialNumber">
+                        <p>commissions prelevees sur la vente de billets</p>
+						<div class="adminFinancialDetails">
+                            <div>
+							    <p>nombre de billets vendus</p>
+							    <p>Model.</p>
+						    </div>
+                            <div>
+                                <p>CA Realises</p>
+                                <p>Model.</p>
+                            </div>
+                            <div>
+                                <p>Commissions</p>
+                                <p>Model.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="adminFinancialTotal">
+                    <p>Total<p>
+                    <p>12.000e</p>
+                    @* @Model. *@
+                </div>
+            </div>
+            <div class="adminFinancialTickets">
+            </div>
+        </div>
+        <div class="adminCA">
+            <div class="adminCATotal">
+                <div class="adminFinancialTotalLabel">
+                    <div>
+                        <p>CA Total</p>
+                    </div>
+                    <div>
+                            <p>24.000e</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
