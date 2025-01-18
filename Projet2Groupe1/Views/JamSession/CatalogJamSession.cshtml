@@ -7,36 +7,48 @@
 }
 
 
-<main class="events-container">
-    <h2>Catalogue des Jam Sessions</h2>
 
-    @foreach (var JamSession in Model)
-    {
-        <div class="event-card">
-            <section class="left-section">
-                <div class="event-card-picture">
 
-                    @{
-                        String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@JamSession.Photo) + "";
+<head>
+    <meta name="viewport" content="width=device-width" />
 
-                        <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
+    <link href="~/css/DeleteJamSession.css" rel="stylesheet" />
+</head>
 
-                    }
-                </div>
+<h2 class="page-title">Retrouvez ici toutes les sessions de jam</h2>
+<form id="sessionForm" method="post" action="@Url.Action("DeleteJamSessions", "JamSession")">
+    <input type="hidden" id="sessionId" name="JamSession.Id" />
+    <table id="jamSession" class="session-table">
+        <thead>
+            <tr class="session-header-row">
+                <th class="session-header">Image</th>
+                <th class="session-header">Titre de la session </th>
+                <th class="session-header">Date de début de la session </th>
+                <th class="session-header">Date de fin de la  session</th>
 
-                <div class="info-event">
-                    <h2 class="event-card-title">@JamSession.Title </h2>
-                    <p class="event-card-date">@JamSession.StartSession.ToString("dd/MM/yyyy") - @JamSession.EndSession.ToString("dd/MM/yyyy")</p>
-                    <p class="event-card-location">@JamSession.Description</p>
-                    <p class="event-card-location">@JamSession.Instruments</p>
-                    <p class="event-card-location">@JamSession.Adress.City</p>
-                    <p class="event-card-location">@JamSession.Adress.ZipCode</p>
-                    <p class="event-card-location">@JamSession.Adress.StreetName</p>
-                    <p class="event-card-location">@JamSession.Adress.StreetNumber</p>
-                </div>
-            </section>
-           
-        </div>
-    }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="session-row" data-id="@item.Id">
+                    <td class="session-photo">
+                        @{
+                            String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.Photo) + "";
 
-</main>
+
+                            <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
+
+                        }
+                    </td>
+                    <td session-cell session-name>@item.Title</td>
+                    <td session-cell session-start>@item.StartSession</td>
+                    <td session-cell session-start>@item.EndSession</td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+</form>

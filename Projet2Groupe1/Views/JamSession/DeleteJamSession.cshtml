@@ -7,48 +7,30 @@
 
 
 
-<h2>Manage Event</h2>
 <head>
-    <style>
-        table {
-            width: 60%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
+    <meta name="viewport" content="width=device-width" />
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        tr.selected {
-            background-color: #f0f8ff;
-        }
-
-        button {
-            padding: 5px 10px;
-        }
-    </style>
+    <link href="~/css/DeleteJamSession.css" rel="stylesheet" />
 </head>
+
+<h2 class="page-title">Vos sessions</h2>
 <form id="sessionForm" method="post" action="@Url.Action("DeleteJamSessions", "JamSession")">
     <input type="hidden" id="sessionId" name="JamSession.Id" />
-    <table id="jamSession">
+    <table id="jamSession" class="session-table">
         <thead>
-            <tr>
-                <th>Image</th>
-                <th>Titre de la session </th>
-               
-                <th>Date de début de la session </th>
-                 <th>Date de fin de la  session</th>
+            <tr class="session-header-row">
+                <th class="session-header">Image</th>
+                <th class="session-header">Titre de la session </th>
+                <th class="session-header">Date de début de la session </th>
+                <th class="session-header">Date de fin de la  session</th>
                 
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.JamSessions)
             {
-                <tr data-id="@item.Id">
-                    <td>
+                <tr class="session-row"  data-id="@item.Id">
+                    <td class="session-photo">
                         @{
                             String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.Photo) + "";
 
@@ -57,17 +39,17 @@
 
                         }
                     </td>
-                    <td>@item.Title</td>
-                    <td>@item.StartSession</td>
-                    <td>@item.EndSession</td>
+                    <td session-cell session-name>@item.Title</td>
+                    <td session-cell session-start>@item.StartSession</td>
+                    <td session-cell session-start>@item.EndSession</td>
                     
 
                 </tr>
             }
         </tbody>
     </table>
-    <div style="text-align: center; margin-top: 20px;">
-        <button type="button" id="deleteButton">Supprimer une session</button>
+    <div>
+        <button type="button" id="deleteButton" class="action-button">Supprimer une session</button>
     </div>
 </form>
 
