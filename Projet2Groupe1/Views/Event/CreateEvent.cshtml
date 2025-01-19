@@ -10,103 +10,100 @@
 	<link href="~/css/CreatEvent.css" rel="stylesheet" />
 </head>
 
-
-
-
-
 <div>
 
 	<section id="FormEvent">
 		<h2 id="title">Créer votre événement</h2>
 		<div id="centralColumn">
-			
+
 			@using (Html.BeginForm())
 			{
+				<div class="FormCreateEvent">
+					<div id="FirstRow">
+						<div id="NameEvent">
+							@Html.LabelFor(m => Model.Event.NameEvent, "Nom de l'événement")
+							@Html.TextBoxFor(m => Model.Event.NameEvent)
+							@Html.ValidationMessageFor(m => Model.Event.NameEvent)
+						</div>
 
-				<div id="FirstRow">
-					<div id="NameEvent">
-						@Html.LabelFor(m => Model.Event.NameEvent, "Nom de l'événement")
-						@Html.TextBoxFor(m => Model.Event.NameEvent)
-						@Html.ValidationMessageFor(m => Model.Event.NameEvent)
+						<div id="TypeEvent">
+							@Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement")
+							@Html.DropDownListFor(
+													m => Model.Event.TypeEvent,
+													new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))),
+													"Sélectionnez un type"
+													)
+							@Html.ValidationMessageFor(m => Model.Event.TypeEvent)
+						</div>
 					</div>
+					<div id="SecondRow">
+						<div id="StartEvent">
+							@Html.LabelFor(m => Model.Event.StartEvent, "Date et Heure de début")
+							@Html.TextBoxFor(m => Model.Event.StartEvent, new { Type = "datetime-local", })
+							@Html.ValidationMessageFor(m => Model.Event.StartEvent)
+						</div>
 
-					<div id="TypeEvent">
-						@Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement")
-						@Html.DropDownListFor(
-												m => Model.Event.TypeEvent,
-												new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))),
-												"Sélectionnez un type"
-												)
-						@Html.ValidationMessageFor(m => Model.Event.TypeEvent)
+						<div id="EndEvent">
+							@Html.LabelFor(m => Model.Event.EndEvent, "Date et Heure de fin")
+							@Html.TextBoxFor(m => Model.Event.EndEvent, new { Type = "datetime-local" })
+							@Html.ValidationMessageFor(m => Model.Event.EndEvent)
+						</div>
 					</div>
-				</div>
-				<div id="SecondRow">
-					<div id="StartEvent">
-						@Html.LabelFor(m => Model.Event.StartEvent, "Date et Heure de début")
-						@Html.TextBoxFor(m => Model.Event.StartEvent, new { Type = "datetime-local", })
-						@Html.ValidationMessageFor(m => Model.Event.StartEvent)
-					</div>
+					<div id="ThirdRow">
 
-					<div id="EndEvent">
-						@Html.LabelFor(m => Model.Event.EndEvent, "Date et Heure de fin")
-						@Html.TextBoxFor(m => Model.Event.EndEvent, new { Type = "datetime-local" })
-						@Html.ValidationMessageFor(m => Model.Event.EndEvent)
-					</div>
-				</div>
-				<div id="ThirdRow">
+						<div id="StreetNumber">
+							@Html.LabelFor(m => Model.Event.Adress.StreetNumber, "Numéro de rue")
+							@Html.TextBoxFor(m => Model.Event.Adress.StreetNumber)
+							@Html.ValidationMessageFor(m => Model.Event.Adress.StreetNumber)
+						</div>
 
-					<div id="StreetNumber">
-						@Html.LabelFor(m => Model.Event.Adress.StreetNumber, "Numéro de rue")
-						@Html.TextBoxFor(m => Model.Event.Adress.StreetNumber)
-						@Html.ValidationMessageFor(m => Model.Event.Adress.StreetNumber)
+						<div id="StreetName">
+							@Html.LabelFor(m => Model.Event.Adress.StreetName, "Nom de voie")
+							@Html.TextBoxFor(m => Model.Event.Adress.StreetName)
+							@Html.ValidationMessageFor(m => Model.Event.Adress.StreetName)
+						</div>
 					</div>
+					<div id="FourthRow">
+						<div id="City">
+							@Html.LabelFor(m => Model.Event.Adress.City, "Ville")
+							@Html.TextBoxFor(m => Model.Event.Adress.City)
+							@Html.ValidationMessageFor(m => Model.Event.Adress.City)
+						</div>
 
-					<div id="StreetName">
-						@Html.LabelFor(m => Model.Event.Adress.StreetName, "Nom de voie")
-						@Html.TextBoxFor(m => Model.Event.Adress.StreetName)
-						@Html.ValidationMessageFor(m => Model.Event.Adress.StreetName)
+						<div id="ZipCode">
+							@Html.LabelFor(m => Model.Event.Adress.ZipCode, "Code postal")
+							@Html.TextBoxFor(m => Model.Event.Adress.ZipCode)
+							@Html.ValidationMessageFor(m => Model.Event.Adress.ZipCode)
+						</div>
 					</div>
-				</div>
-				<div id="FourthRow">
-					<div id="City">
-						@Html.LabelFor(m => Model.Event.Adress.City, "Ville")
-						@Html.TextBoxFor(m => Model.Event.Adress.City)
-						@Html.ValidationMessageFor(m => Model.Event.Adress.City)
-					</div>
+					<div id="FifthRow">
+						<div id="Artist">
+							@Html.LabelFor(m => Model.Event.Artist.NickNameArtist, "Artiste(s)")
+							@Html.TextBoxFor(m => Model.Event.Artist.NickNameArtist)
+							@Html.ValidationMessageFor(m => Model.Event.Artist.NickNameArtist)
+						</div>
 
-					<div id="ZipCode">
-						@Html.LabelFor(m => Model.Event.Adress.ZipCode, "Code postal")
-						@Html.TextBoxFor(m => Model.Event.Adress.ZipCode)
-						@Html.ValidationMessageFor(m => Model.Event.Adress.ZipCode)
+						<div id="TicketNumber">
+							@Html.LabelFor(m => Model.Event.Billetterie.NumberTotalTicket, "Nombre total de billets à vendre")
+							@Html.TextBoxFor(m => Model.Event.Billetterie.NumberTotalTicket)
+							@Html.ValidationMessageFor(m => Model.Event.Billetterie.NumberTotalTicket)
+						</div>
 					</div>
-				</div>
-				<div id="FifthRow">
-					<div id="Artist">
-						@Html.LabelFor(m => Model.Event.Artist.NickNameArtist, "Artiste(s)")
-						@Html.TextBoxFor(m => Model.Event.Artist.NickNameArtist)
-						@Html.ValidationMessageFor(m => Model.Event.Artist.NickNameArtist)
+					<div id="SixthRow">
+						<div id="TicketType">
+							@Html.LabelFor(m => Model.Event.Billetterie.Category, "Catégorie de billet")
+							@Html.TextBoxFor(m => Model.Event.Billetterie.Category)
+							@Html.ValidationMessageFor(m => Model.Event.Billetterie.Category)
+						</div>
+						<div id="TicketPrice">
+							@Html.LabelFor(m => Model.Event.Billetterie.UnitPriceTicket, "Prix unitaire")
+							@Html.TextBoxFor(m => Model.Event.Billetterie.UnitPriceTicket)
+							@Html.ValidationMessageFor(m => Model.Event.Billetterie.UnitPriceTicket)
+						</div>
 					</div>
-
-					<div id="TicketNumber">
-						@Html.LabelFor(m => Model.Event.Billetterie.NumberTotalTicket, "Nombre total de billets à vendre")
-						@Html.TextBoxFor(m => Model.Event.Billetterie.NumberTotalTicket)
-						@Html.ValidationMessageFor(m => Model.Event.Billetterie.NumberTotalTicket)
+					<div id="finalBlock">
+						<input id="btn" type="submit" value="Je crée mon événement" />
 					</div>
-				</div>
-				<div id="SixthRow">
-					<div id="TicketType">
-						@Html.LabelFor(m => Model.Event.Billetterie.Category, "Catégorie de billet")
-						@Html.TextBoxFor(m => Model.Event.Billetterie.Category)
-						@Html.ValidationMessageFor(m => Model.Event.Billetterie.Category)
-					</div>
-					<div id="TicketPrice">
-						@Html.LabelFor(m => Model.Event.Billetterie.UnitPriceTicket, "Prix unitaire")
-						@Html.TextBoxFor(m => Model.Event.Billetterie.UnitPriceTicket)
-						@Html.ValidationMessageFor(m => Model.Event.Billetterie.UnitPriceTicket)
-					</div>
-				</div>
-				<div id="finalBlock">
-					<input id="btn" type="submit" value="Je crée mon événement" />
 				</div>
 			}
 		</div>

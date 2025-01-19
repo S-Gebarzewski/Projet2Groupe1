@@ -45,7 +45,7 @@ label {
 
 #SecondRow {
     height: inherit;
-    width: inherit;
+    width: 100%;
 }
 
 #FirstRow, #SecondRow, #ThirdRow, #FourthRow, #FifthRow, #SixthRow {
@@ -75,7 +75,7 @@ label {
 }
 
 #StartSession, #EndSession {
-    width: 18.5vw;
+    width: 100%;
 }
 
 

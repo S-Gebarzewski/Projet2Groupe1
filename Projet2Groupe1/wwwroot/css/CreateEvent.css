@@ -10,15 +10,15 @@
     padding: 20px;
 }
 
-    #FormEvent #leftColumn, #rightColumn {
-        flex: 0.17;
-        padding: 10px
-    }
+#FormEvent #leftColumn, #rightColumn {
+    flex: 0.17;
+    padding: 10px
+}
 
-    #FormEvent #centralColumn {
-        border: solid, 1px, white;
-        padding: 10px
-    }
+#FormEvent #centralColumn {
+    border: solid, 1px, white;
+    padding: 10px
+}
 
 label {
     font-size: 16px
@@ -37,19 +37,26 @@ label {
     gap: 20px;
 }
 
+.FormCreateEvent{
+    display:flex;
+    flex-direction:column;
+    gap:1vh;
+}
+
 #FormEvent input {
     border-radius: 12px;
     border: solid black 3px;
-    height: 40px;
+    height: 35px;
 }
 #SecondRow {
     height: inherit;
-    width: inherit;
+    width: 100%;
 }
 
 #FirstRow, #SecondRow, #ThirdRow, #FourthRow, #FifthRow, #SixthRow {
     display: flex;
     flex-direction: row;
+    gap:3vw;
 }
 
 
@@ -66,16 +73,22 @@ label {
 
 #title {
     text-align: center;
-
     width: 100%; 
 }
 
-#NameEvent, #StartEvent, #Artist, #TicketNumber, #TicketType, #TicketPrice, #StreetNumber, #City {
-    margin-right: 3vw;
-}
+
 
 #StartEvent, #EndEvent {
-    width: 18.5vw;
+    width: 100%;
+    padding: 1px 0px;
+}
+
+#StartEvent > input, #EndEvent > input {
+    padding: 1px 10px;
+}
+
+#TypeEvent {
+    width:50%;
 }
 
 
@@ -104,8 +117,8 @@ label {
 #FormEvent select {
     border-radius: 12px; 
     border: solid black 3px;
-    height: 40px; 
-    width : 18.5vw;
+    height: 43px; 
+    width : 100%;
     padding: 0 10px;
     font-size: 16px; 
     background-color: white; 

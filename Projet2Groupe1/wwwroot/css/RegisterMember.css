@@ -39,27 +39,36 @@ label {
     flex-direction: column;
     gap:20px;
 }
-/*  refair edeux colonnes dedans avec le dsiplay flex
-    pour accoler les inputs  */
+
 
 #FormMember input {
     border-radius: 12px;
     border: solid black 3px;
-    height: 40px;
+    height: 43px;
+    padding: 1px 10px;
 }
 
 #FirstRow, #SecondRow, #ThirdRow, #FourthRow {
     display: flex;
     flex-direction: row;
+    gap:3vw;
 }
 
-#FirstRow > *,
-#SecondRow > *,
-#ThirdRow > *,
-#FourthRow > * {
-    display:flex;
-    flex-direction: column;
+#IsPremiumCheckbox, #NewsletterCheckBox {
+    margin:0 1vw;
 }
+
+#IsPremium input, #Newsletter > input {
+    height: 25px;
+}
+
+    #FirstRow > *,
+    #SecondRow > *,
+    #ThirdRow > *,
+    #FourthRow > * {
+        display: flex;
+        flex-direction: column;
+    }
 
 #IsPremium, #Newsletter {
     display: flex;
@@ -71,23 +80,21 @@ label {
     margin-bottom:35px;
 }
 
-#FirstName,#Age,#Mail,#City{
-    margin-right: 3vw;
-}
+
 
 #finalBlock {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    margin-top: 3vw;
-    font-size : 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+    font-size: 16px;
 }
 
 #FormMember #btn {
     display: block;
-    margin: 0px 10px 10px 10px;
+    margin: 3%;
     height: 40px;
     width: 150px;
     border-radius: 12px;
