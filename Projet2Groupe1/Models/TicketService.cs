@@ -66,6 +66,8 @@ namespace Projet2Groupe1.Models
             return _dbContext.UserTickets
                  .Include(t => t.Event)
                  .ThenInclude(e => e.Artist)  // Pour avoir accès à NickNameArtist
+                 .Include(t => t.Event)               // Inclut l'événement lié au ticket
+                 .ThenInclude(e => e.Adress)
                  .Include(t => t.Event)
                  .ThenInclude(e => e.Billetterie)  // Pour avoir accès à UnitPriceTicket et NumberTotalTicket
                  .Where(t => t.UserId == userID).ToList();

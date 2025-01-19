@@ -84,6 +84,34 @@ namespace Projet2Groupe1.Controllers
             }
             
         }
+        
+
+        [HttpPost]
+        public IActionResult SuccessPurchaseTickets(PaymentViewModel PaymentViewModel) 
+        {
+            Console.WriteLine("Je suis dans SuccessPurchaseTickets");
+            if (!ModelState.IsValid)
+            {
+                foreach (var key in ModelState.Keys)
+                {
+                    var state = ModelState[key];
+                    foreach (var error in state.Errors)
+                    {
+                        Console.WriteLine($"Clé : {key}, Erreur : {error.ErrorMessage}");
+                    }
+                }
+                return RedirectToAction("Error", "Error", new { errorCode = 6, Message = "Le paiement n'a pas ete valide. Veuillez recommencer le paiement." });
+            }
+            else
+            {
+                ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
+                ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                string actionPath = "Dashboard" + ViewData["Role"];
+                return RedirectToAction(actionPath, "Login");
+            }
+        }
+
+
         public IActionResult PurchaseHistory()
         {
             using (ITicketService its = new TicketService(new DataBaseContext()))
@@ -108,31 +136,6 @@ namespace Projet2Groupe1.Controllers
                 {
                     return RedirectToAction("Error", "Error", new { errorCode = 7, Message = "L'evenement que vous avez choisi n'est plus disponible." });
                 }
-            }
-        }
-
-        [HttpPost]
-        public IActionResult SuccessPurchaseTickets(PaymentViewModel PaymentViewModel) 
-        {
-            Console.WriteLine("Je suis dans SuccessPurchaseTickets");
-            if (!ModelState.IsValid)
-            {
-                foreach (var key in ModelState.Keys)
-                {
-                    var state = ModelState[key];
-                    foreach (var error in state.Errors)
-                    {
-                        Console.WriteLine($"Clé : {key}, Erreur : {error.ErrorMessage}");
-                    }
-                }
-                return RedirectToAction("Error", "Error", new { errorCode = 6, Message = "Le paiement n'a pas ete valide. Veuillez recommencer le paiement." });
-            }
-            else
-            {
-                ViewData["IsAuthenticated"] = HttpContext.User.Identity.IsAuthenticated;
-                ViewData["Role"] = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-                string actionPath = "Dashboard" + ViewData["Role"];
-                return RedirectToAction(actionPath, "Login");
             }
         }
     }

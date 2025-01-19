@@ -69,7 +69,6 @@
     font-weight: 700;
     margin: 0 auto;
     width: 460px;
-    ;
 }
 
 #buttonPayment hover {
@@ -195,3 +194,119 @@
     display: block;
 }
 
+/* Styles Purchasse History */
+.PurchaseHsitoryTitle {
+    margin:2vw;
+}
+
+.PurchaseHistoryTicketCenter {
+    width:100%;
+    display:flex;
+    justify-content:center
+}
+
+.PurchaseHistoryInformationDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    width: 90%;
+}
+
+.PurchaseHistoryInformationDisplay p {
+    margin:0;
+}
+
+.PurchaseHistoryInformationPlace {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    gap:80px;
+}
+
+.PurchaseHistoryInfoSupp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 150px;
+}
+
+.PurchaseHistoryDate {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align:center;
+}
+
+.PurchaseHistoryDate > p:first-child {
+    font-size:30px;
+}
+
+.PurchaseHistoryDate > p:last-child {
+    font-size:60px;
+}
+
+.PurchaseHistoryPlace {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.PurchaseHistoryAdress {
+    display: flex;
+    flex-direction: row;
+}
+
+.PurchaseHistoryTotal {
+    display:flex;
+    flex-direction:row;
+}
+
+.PurchaseHistoryImg {
+    display:flex;
+    flex-direction:row;
+}
+
+.PurchaseHistoryImg img {
+    min-height: 100px;
+    max-width: 80px;
+    max-height: 120px;
+}
+
+.PurchaseHistoryQuantityPrice {
+    display:flex;
+    flex-direction:row;
+    gap:70px;
+}
+
+.PurchaseHistoryPriceTicketLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.PurchaseHistoryPriceTicketData {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.PurchaseHistoryTotal {
+    justify-content: space-between;
+    width: 15vw;
+    font-size: 35px;
+}
+
+.PurchaseHistoryIcon {
+    width: 18px;
+    height:18px;
+}
+
+.PurhcaseHistoryIconName, .PurhcaseHistoryIconAdress {
+    display:flex;
+    flex-direction:row;
+    gap:3px
+}
