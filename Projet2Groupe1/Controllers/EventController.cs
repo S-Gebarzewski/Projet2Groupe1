@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Projet2Groupe1.Models;
 using Projet2Groupe1.ViewModels;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Security.Claims;
 
 
@@ -86,6 +88,8 @@ namespace Projet2Groupe1.Controllers
                 return View();
             }
         }
+
+      
 
         //get pour afficher l'événement et le formulaire d'upload
         public IActionResult DetailsEvent(int id) //route GET pour ajouter un User avec une image

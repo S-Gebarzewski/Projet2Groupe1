@@ -1,5 +1,7 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.Net.Sockets;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 namespace Projet2Groupe1.Models
@@ -60,6 +62,12 @@ namespace Projet2Groupe1.Models
             return newEvent.Id;
         }
 
+        public string GetDisplayName(Enum value)
+        {
+            var EnumName = value.GetType().GetField(value.ToString());
+            var AttributeDisplay = EnumName.GetCustomAttribute<DisplayAttribute>();
+            return AttributeDisplay.Name;
+        }
 
         //public int CreateEvent(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? Adress, Artist? Artist, Billeterie? Ticket, Service? Service, int userId, statusRegistration StatusRegistration)
         //{
