@@ -44,6 +44,7 @@ label {
     border-radius: 12px;
     border: solid black 3px;
     height: 40px;
+    padding: 1px 10px;
 }
 
 #radioButtons,#FirstRow, #SecondRow, #ThirdRow, #FourthRow ,#FifthRow,#SixthRow,#SeventhRow{
@@ -55,6 +56,12 @@ label {
     align-items: center; 
     align-self: center;
 }
+
+#FormOrganizer #Newsletter input {
+    height: 25px;
+    margin: 0 1vw;
+}
+
 
 #FirstRow > *,
 #SecondRow > *,
@@ -93,7 +100,7 @@ label {
 
 #FormOrganizer #btn {
     display: block;
-    margin: 0px 10px 10px 10px;
+    margin: 3%;
     height: 40px;
     width: 150px;
     border-radius: 12px;

@@ -29,52 +29,52 @@
             {
                 <div id="Input">
                     <div id="FirstRow">
-                        <div id="FirstName">
+                        <div id="MemberRegistrationFirstName">
                             @Html.LabelFor(m => Model.User.FirstName, "votre prenom")
                             @Html.TextBoxFor(m => Model.User.FirstName)
                             @Html.ValidationMessageFor(m => Model.User.FirstName)
                         </div>
 
-                        <div id="LastName">
+                        <div id="MemberRegistrationLastName">
                             @Html.LabelFor(m => Model.User.LastName, "votre nom")
                             @Html.TextBoxFor(m => Model.User.LastName)
                             @Html.ValidationMessageFor(m => Model.User.LastName)
                         </div>
                     </div>
                     <div id="SecondRow">
-                        <div id="Age">
+                        <div id="MemberRegistrationAge">
                             @Html.LabelFor(m => Model.Member.Age, "votre age")
                             @Html.TextBoxFor(m => Model.Member.Age)
                             @Html.ValidationMessageFor(m => Model.Member.Age)
                         </div>
 
-                        <div id="Phone">
+                        <div id="MemberRegistrationPhone">
                             @Html.LabelFor(m => Model.User.Phone, "votre numero de telephone")
                             @Html.TextBoxFor(m => Model.User.Phone)
                             @Html.ValidationMessageFor(m => Model.User.Phone)
                         </div>
                     </div>
                     <div id="ThirdRow">
-                        <div id="Mail">
+                        <div id="MemberRegistrationMail">
                             @Html.LabelFor(m => Model.User.Mail, "votre adresse mail")
                             @Html.TextBoxFor(m => Model.User.Mail)
                             @Html.ValidationMessageFor(m => Model.User.Mail)
                         </div>
 
-                        <div id="Password">
+                        <div id="MemberRegistrationPassword">
                             @Html.LabelFor(m => Model.User.Password, "mot de passe")
                             @Html.PasswordFor(m => Model.User.Password)
                             @Html.ValidationMessageFor(m => Model.User.Password)
                         </div>
                     </div>
                     <div id="FourthRow">
-                        <div id="City">
+                        <div id="MemberRegistrationCity">
                             @Html.LabelFor(m => Model.Member.City, "votre ville")
                             @Html.TextBoxFor(m => Model.Member.City)
                             @Html.ValidationMessageFor(m => Model.Member.City)
                         </div>
 
-                        <div id="ZipCode">
+                        <div id="MemberRegistrationZipCode">
                             @Html.LabelFor(m => Model.Member.ZipCode, "votre code postal")
                             @Html.TextBoxFor(m => Model.Member.ZipCode)
                             @Html.ValidationMessageFor(m => Model.Member.ZipCode)
@@ -84,12 +84,12 @@
                 </div>
                 <div id="finalBlock">
                     <div id="IsPremium">
-                        @Html.CheckBoxFor(m => Model.Member.IsPremium, new { id = "IsPremiumCheckbox"} )
+                        @Html.CheckBoxFor(m => Model.Member.IsPremium, new { id = "IsPremiumCheckbox"}  )
                         @Html.LabelFor(m => Model.Member.IsPremium, "Activer le mode Premium pour plus  de fonctionnalités")
                     </div>
 
                     <div id="Newsletter">
-                        @Html.CheckBoxFor(m => Model.User.Newsletter)
+                        @Html.CheckBoxFor(m => Model.User.Newsletter, new { id = "NewsletterCheckBox" })
                         @Html.LabelFor(m => Model.User.Newsletter, "J'accepte de recevoir des offres de Soundtogether")
                     </div>
                     <input id="btn" type="submit" value="Je m'inscris" />

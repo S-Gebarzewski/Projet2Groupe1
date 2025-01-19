@@ -12,36 +12,30 @@
 
 
 <div>
-
 	<section id="FormSession">
 		<h2 id="title">Créer votre session de jam</h2>
 		<div id="centralColumn">
 
 			@using (Html.BeginForm())
 			{
-
 				<div id="FirstRow">
 					<div id="NameSession">
 						@Html.LabelFor(m => Model.JamSession.Title, "Titre de la session") 
 						@Html.TextBoxFor(m => Model.JamSession.Title)
 						@Html.ValidationMessageFor(m => Model.JamSession.Title)
 					</div>
-
-					
-						<div id="Description">
-							@Html.LabelFor(m => Model.JamSession.Description, "Description") 
-							@Html.TextBoxFor(m => Model.JamSession.Description)
-							@Html.ValidationMessageFor(m => Model.JamSession.Description)
-						</div>
-					
+					<div id="Description">
+						@Html.LabelFor(m => Model.JamSession.Description, "Description") 
+						@Html.TextBoxFor(m => Model.JamSession.Description)
+						@Html.ValidationMessageFor(m => Model.JamSession.Description)
+					</div>	
 				</div>
-
 
 				<div id="SecondRow">
 					<div id="StartSession">
-					@Html.LabelFor(m => Model.JamSession.StartSession, "Heure et date de début") 
-					@Html.TextBoxFor(m => Model.JamSession.StartSession, new { Type = "datetime-local", })
-					@Html.ValidationMessageFor(m => Model.JamSession.StartSession)
+						@Html.LabelFor(m => Model.JamSession.StartSession, "Heure et date de début") 
+						@Html.TextBoxFor(m => Model.JamSession.StartSession, new { Type = "datetime-local", })
+						@Html.ValidationMessageFor(m => Model.JamSession.StartSession)
 					</div>
 					<div id="EndSession">
 						@Html.LabelFor(m => Model.JamSession.EndSession, "Heure et date de fin") 
