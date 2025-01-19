@@ -172,7 +172,7 @@
 }
 
 .purchase-ticket-submit {
-    width: 100%;
+    width: 30%;
     padding: 1rem;
     background-color: #ff8500;
     color: white;
@@ -183,9 +183,15 @@
     transition: background-color 0.2s ease;
 }
 
-    .purchase-ticket-submit:hover {
-        background-color: #ff5533;
-    }
+.purchase-ticket-submit:hover {
+    background-color: #ff5533;
+}
+
+.purchase-ticket-div-btn {
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
 
 .field-validation-error {
     color: #dc3545;
@@ -202,7 +208,9 @@
 .PurchaseHistoryTicketCenter {
     width:100%;
     display:flex;
-    justify-content:center
+    justify-content:center;
+    flex-direction:column;
+    gap: 3vh;
 }
 
 .PurchaseHistoryInformationDisplay {
