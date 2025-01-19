@@ -28,7 +28,10 @@ a {
     display: flex;
 }
 
-
+#dashNav ul li {
+    display:flex;
+    justify-content: center;
+}
 
 /*styles applicables au header =============================================================================================================================*/
 #mainHeader {
