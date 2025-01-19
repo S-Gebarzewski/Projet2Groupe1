@@ -79,21 +79,56 @@
 
 
 /* start purchaseTickets */
-.purchase-ticket-wrapper {
-    width:50%;
-    padding: 3rem 3rem;
-    box-sizing: border-box;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.RenderSectionPurchaseTicket {
+    display: flex;
+    flex-direction: row;
 }
 
+.PurchaseTicketLeftCol {
+    flex:1;
+}
+
+.PurchaseTicketRightCol {
+    flex: 1;
+}
+
+.purchase-ticket-wrapper {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;    
+    flex:2;
+    width: 50%;
+    margin: 2vw;
+    padding: 3vw;
+}
+
+
+
+
+
+.PurchaseTicketInfoGlobalImg {
+    display:flex;
+    flex-direction:row;
+    gap: 2vw;
+}
+
+.PurchaseTicketInfoGlobal {
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+
 ﻿.purchase-ticket-container {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 90%;
     margin: 2rem auto;
     padding: 1.5rem;
     background-color: #ffffff;
     border-radius: 8px;
-   /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
     box-sizing: border-box;
 }
 
@@ -130,12 +165,17 @@
 .purchase-ticket-number {
     color: #ff8500;
 }
+
 .purchase-ticket-price-info {
-    width: 300px;
+    width: 100%;
     background-color: #f8f9fa;
     padding: 2rem;
     border-radius: 8px;
 }
+
+
+
+
 .quantity-total-row {
     display: flex;
     align-items: center;

@@ -2,16 +2,19 @@
 .subscriptionContent {
     display: grid;
     flex-direction: row;
-    height: 100vh; /* Utiliser toute la hauteur de la fenêtre */
+    height: 85vh; 
     color: #191d37;
     padding-top: 30px;
+    justify-content: space-around;
     grid-template-rows: 80px auto 30px; /* Définit la hauteur de chaque ligne */
 }
 
-    .subscriptionContent h2 {
-        font-size: 1em;
-        font-weight: 700;
-    }
+
+
+.subscriptionContent h2 {
+    font-size: 1em;
+    font-weight: 700;
+}
 
     .subscriptionContent h3 {
         font-size: 0.7em;
@@ -45,6 +48,7 @@
     .switch a {
         text-decoration: none;
         padding: 8px 18px;
+        color: black;
     }
 
 #particularButton {
@@ -62,6 +66,9 @@
 }
 
 .profileBanner {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     justify-items: center;
     padding: 30px;
     margin: 30px;
@@ -90,6 +97,7 @@
     .profileBanners a {
         text-decoration: none;
         padding: 8px 18px;
+        color: black;
     }
 
 .profileBanner p {
@@ -116,3 +124,4 @@
     background-color: #1a6ee8;
     font-size: 0.9em;
 }
+
