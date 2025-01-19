@@ -13,6 +13,8 @@
         public Event UpdateEventStatus(Event UpdatingEvent);
         public List<Event> GetFilteredEvents(string category = null, string city = null, string search = null);
 
+        public string GetDisplayName(Enum value);
+
 
         //pensez à ajouter le depot d'image =================================================================================================================
     }

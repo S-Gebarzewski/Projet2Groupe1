@@ -1,4 +1,5 @@
 ﻿@model Projet2Groupe1.ViewModels.EventViewModel
+@using Projet2Groupe1.Models;
 
 @{
 	Layout = "_LayoutDashboard";
@@ -20,6 +21,8 @@
 		<h2 id="title">Créer votre événement</h2>
 		<div id="centralColumn">
 			
+			@using(IEventService iev = new EventService(new DataBaseContext()))
+			{
 			@using (Html.BeginForm())
 			{
 
@@ -34,9 +37,12 @@
 						@Html.LabelFor(m => Model.Event.TypeEvent, "Type de l'événement")
 						@Html.DropDownListFor(
 												m => Model.Event.TypeEvent,
-												new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))),
-												"Sélectionnez un type"
-												)
+												new SelectList(Enum.GetValues(typeof(Projet2Groupe1.Models.TypeEvent))
+												.Cast<Projet2Groupe1.Models.TypeEvent>()
+												.Select(e => new { Value = e, Text = iev.GetDisplayName(e) }),
+												"Value",
+												"Text"), "Selectionner un type")
+
 						@Html.ValidationMessageFor(m => Model.Event.TypeEvent)
 					</div>
 				</div>
@@ -108,6 +114,7 @@
 				<div id="finalBlock">
 					<input id="btn" type="submit" value="Je crée mon événement" />
 				</div>
+			}
 			}
 		</div>
 
