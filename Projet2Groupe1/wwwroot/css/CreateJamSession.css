@@ -4,9 +4,9 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
     padding: 20px;
 }
 

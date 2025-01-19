@@ -184,12 +184,16 @@ ul.listDashboard {
     justify-content: center;
 }
 
-    #mainFooter ul {
-        display: flex;
-    }
+#mainFooter ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
-    #mainFooter li {
-        font-size: 20px;
-        font-weight: 500;
-        padding: 20px;
-    }
+#mainFooter li {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 20px;
+
+}
