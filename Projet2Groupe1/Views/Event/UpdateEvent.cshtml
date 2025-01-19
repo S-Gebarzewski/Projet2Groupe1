@@ -41,10 +41,14 @@
             {
                 <tr class="event-row" data-id="@item.Id">
                     <td class="event-photo">
-                        @{
+                        @if(item.PhotoData!=null)
+                        {
                             string srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.PhotoData);
+                            <img id="imgViewer" width="150" height="150" style="border:1px solid #000000" src=@srcValue />
+                        }else{
+							<img id="default-image" src="@Url.Action("GetDefaultImage", "Event", new { type = item.TypeEvent })" />
                         }
-                        <img id="imgViewer" width="150" height="150" style="border:1px solid #000000" src=@srcValue />
+                       
                     </td>
                     <td class="event-cell event-name">@item.NameEvent</td>
                     <td class="event-cell event-type">@item.TypeEvent</td>

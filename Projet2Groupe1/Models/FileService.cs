@@ -89,13 +89,17 @@ namespace Projet2Groupe1.Models
         {
             if (type == TypeEvent.CONCERT)
             {
-                return "images/default-concert.jpg";
+                return "images/concert.png";
             }
 
+            else if (type == TypeEvent.FESTIVAL)
+            {
+                return "images/festival.png";
+            }
             else
             {
 
-                return "images/default-festival.jpg";
+                return "images/dedicace.png";
             }  
            
         }
