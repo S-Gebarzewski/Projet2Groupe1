@@ -13,6 +13,7 @@
     decimal total = Model.TicketQuantityAvailable * Model.Billetterie.UnitPriceTicket;
 }
 
+<div class="purchase-ticket-wrapper">
 <div class="purchase-ticket-container">
   <div class="purchase-ticket-event-image">
 
@@ -43,21 +44,23 @@
             <p>Prix unitaire : <span id="unitPrice"> @Model.Billetterie.UnitPriceTicket</span> €</p>
 
          <div class="quantity-total-row">
-            @Html.LabelFor(m => Model.TicketQuantityAvailable, "Nombres billets :") 
+            @Html.LabelFor(m => Model.TicketQuantityAvailable, "Nombre billets ") 
             @Html.TextBoxFor(m => Model.TicketQuantityAvailable, new { type = "number", min = "1", id = "purchase-ticket-quantity" })
             @Html.ValidationMessageFor(m => Model.TicketQuantityAvailable)
 		 </div>
             <p>Total : <span id="total"> @total</span>  €</p>
+
             <div class="purchase-ticket-div-btn">
-                <button type="submit" class="purchase-ticket-submit">Acheter les billets</button>
+                <button type="submit" class="purchase-ticket-submit">Acheter le(s) billet(s)</button>
             </div>
-        </div>
+			</div>
 
 }
 </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const quantityInput = document.getElementById('quantity');
+        const quantityInput = document.getElementById('purchase-ticket-quantity');
         const unitPrice = parseFloat(document.getElementById('unitPrice').textContent);
         const totalSpan = document.getElementById('total');
 
