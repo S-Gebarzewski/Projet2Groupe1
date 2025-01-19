@@ -145,7 +145,7 @@ namespace Projet2Groupe1.Models
 
             // Création des événements
             _eventService.CreateEvent(
-                TypeEvent.CONCERT,
+                TypeEvent.SIGNINGSESSION,
                 "Orelsan - Civilization Tour",
                 DateTime.Parse("2025-03-15 20:00"),
                 DateTime.Parse("2025-03-15 23:30"),
@@ -153,7 +153,7 @@ namespace Projet2Groupe1.Models
                 orelsan,
                 ticketConcertStandard,
 
-                statusRegistration.PENDING,
+                statusRegistration.ACCEPTED,
                 TypeService.FOOD,
                 2,
                 0
