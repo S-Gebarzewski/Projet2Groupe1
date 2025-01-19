@@ -11,13 +11,6 @@
     box-sizing: inherit;
 }
 
-img {
-    max-width: 100%; /*permet que les images ne dépassent jamais leur conteneur*/
-    height: auto;
-/*    width: 100%;*/
-}
-
-
 body {
     font-family: "Urbanist";
     font-size: 1rem;
@@ -52,7 +45,15 @@ body {
 
 #rightCol {
     width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+    #rightCol .img {
+        width: 100%;
+        height: auto;
+    }
 
 .form {
     margin-top: 20px;
@@ -79,3 +80,35 @@ input {
     border-color: #191D37;
     margin-left: 40px;
 }
+
+.forgotPassword {
+    font-size: 0.8rem;
+    margin-left: 200px;
+    display: block;
+    margin-top: 10px;
+    color: #191D37;
+    text-decoration: none;
+}
+
+    .forgotPassword:hover {
+        text-decoration: none;
+    }
+
+.registerLink {
+    position: absolute; 
+    bottom: 10px; 
+    left: 10px;
+    font-size: 0.9rem;
+    color: #191D37; 
+    text-decoration: none; 
+}
+
+    .registerLink:hover {
+        text-decoration: none;
+    }
+
+/* Assurez que #leftCol a position: relative pour permettre le positionnement absolu */
+#leftCol {
+    position: relative;
+}
+
