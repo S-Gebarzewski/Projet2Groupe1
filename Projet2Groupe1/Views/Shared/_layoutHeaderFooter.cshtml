@@ -5,57 +5,61 @@
 
 
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="~/css/normalize.css" rel="stylesheet" />
-    <link href="~/css/LayoutHeaderFooter.css" rel="stylesheet" />
-    <link href="~/css/RegisterOrganizerForm.css" rel="stylesheet" />
-    <link href="~/css/VisitorViews.css" rel="stylesheet" />
-    <link href="~/css/SubscriptionSheet.css" rel="stylesheet" />
-    <link href="~/css/Catalog.css" rel="stylesheet" />
-    <link href="~/css/Error.css" rel="stylesheet" />
-    <link href="~/css/PaymentSheet.css" rel="stylesheet" />
-    <link href="~/css/Tickets.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+	<link href="~/css/normalize.css" rel="stylesheet" />
+	<link href="~/css/LayoutHeaderFooter.css" rel="stylesheet" />
+	<link href="~/css/RegisterOrganizerForm.css" rel="stylesheet" />
+	<link href="~/css/VisitorViews.css" rel="stylesheet" />
+	<link href="~/css/SubscriptionSheet.css" rel="stylesheet" />
+	<link href="~/css/Catalog.css" rel="stylesheet" />
+	<link href="~/css/Error.css" rel="stylesheet" />
+	<link href="~/css/PaymentSheet.css" rel="stylesheet" />
+	<link href="~/css/Tickets.css" rel="stylesheet" />
 
 
 </head>
 
 <body>
-    <div id="header" class="@ViewData["Role"]">
-        <!-- barre -->
-        <div class="header-container"> <!-- contenu de la barre -->
+	<div id="header" class="@ViewData["Role"]">
+		<!-- barre -->
+		<div class="header-container">
+			<!-- contenu de la barre -->
 			<a href="@Url.Action("Index", "Home")" class="left-section">
-                <img src="~/images/logoSoundTogetherH.svg" alt="Logo de la plateforme" class="logo-img">
-            </a>
-			<nav class="nav-menu">				<!-- menu -->
-                <div class="nav-links">
-                @Html.ActionLink("Catalogue", "Catalog", "Event")
-                @Html.ActionLink("S'inscrire", "IndividualRegistration", "Registration")
-                @Html.ActionLink("Se Connecter", "Connection", "Login")
-                </div>
-            </nav>
-        </div>
-    </div>
-   
+				<img src="~/images/logoSoundTogetherH.svg" alt="Logo de la plateforme" class="logo-img">
+			</a>
+			<nav class="nav-menu">
+				<!-- menu -->
+				<div class="nav-links">
+					@Html.ActionLink("Catalogue", "Catalog", "Event")
+					@Html.ActionLink("S'inscrire", "IndividualRegistration", "Registration")
+					@Html.ActionLink("Se Connecter", "Connection", "Login")
+				</div>
+			</nav>
+		</div>
+	</div>
 
-    <div id="main">
-        <div id="menu">
-            @*  @RenderSection("Menu") *@
-        </div>
 
-        <div id="contenu">
-            @RenderBody()
-        </div>
-    </div>
+	<div id="main">
+		<div id="menu">
+			@*  @RenderSection("Menu") *@
+		</div>
 
-    <div id="footer">
-        <div class="footer-container">
-           @Html.ActionLink("Mentions légales","Legal", "Home")
-            <p><span class="bold">SOUND</span>TOGETHER © @DateTime.Now.Year</p>
-            @Html.ActionLink("Contact","Contact", "Home",null, new { @class = "footer-link" })
-        </div>
-    </div>
+		<div id="contenu">
+			@RenderBody()
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="footer-container">
+			@Html.ActionLink("Mentions légales", "Legal", "Home")
+			<p><span class="bold">SOUND</span>TOGETHER © @DateTime.Now.Year</p>
+			@Html.Raw("<a href='mailto:admin@soundtogether.com', class='footer-link'>Contact</a>")
+		</div>
+
+
+	</div>
 
 </body>
 
