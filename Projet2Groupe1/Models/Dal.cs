@@ -189,7 +189,7 @@ namespace Projet2Groupe1.Models
                 },
                 iggyPop,
                 ticketFestival,
-                statusRegistration.PENDING,
+                statusRegistration.ACCEPTED,
                 TypeService.FOOD,
                 2,
                 0
@@ -224,7 +224,7 @@ namespace Projet2Groupe1.Models
                 zenithAddress,
                 indochine,
                 ticketConcertStandard,
-                statusRegistration.PENDING,
+                statusRegistration.ACCEPTED,
                 TypeService.FOOD,
                 2,
                 0
