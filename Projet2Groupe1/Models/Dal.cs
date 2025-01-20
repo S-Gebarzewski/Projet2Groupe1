@@ -306,19 +306,10 @@ namespace Projet2Groupe1.Models
                 StreetComplement = "Near the pyramid"
             };
 
-            _jamService.CreateJamSession("Jam session : Jazz sous les étoiles", DateTime.Parse("2025-01-20 19:00"), DateTime.Parse("2025-01-20 23:00"), "Parc Montmarte", 20, "Saxophone",adress1,0);
-            _jamService.CreateJamSession("Jam session : Blues au bord du lac", DateTime.Parse("2025-02-04 20:00"), DateTime.Parse("2025-02-04 22:00"), "Chemain dulac bleu", 25, "Guitare électrique", adress2, 0);
-            _jamService.CreateJamSession("Jam session : Club de Groove", DateTime.Parse("2025-03-25 18:00"), DateTime.Parse("2025-03-25 20:00"), "Chemain dulac bleu", 35, "Basse", adress3, 0);
-            _jamService.CreateJamSession("Jam session : Café Bohème", DateTime.Parse("2025-05-22 19:00"), DateTime.Parse("2025-05-22 22:00"), "Rue des Poètes", 15, "Guitare acoustique", adress4, 0);
-
-            _dbContext.Sessions.Find(1).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
-            _dbContext.Sessions.Find(2).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
-            _dbContext.Sessions.Find(3).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
-            _dbContext.Sessions.Find(4).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
-
-
-
-
+            _jamService.CreateJamSession("Jam session : Jazz sous les étoiles", DateTime.Parse("2025-01-20 19:00"), DateTime.Parse("2025-01-20 23:00"), "Parc Montmarte", 20, "Saxophone",adress1, File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg"), 1);
+            _jamService.CreateJamSession("Jam session : Blues au bord du lac", DateTime.Parse("2025-02-04 20:00"), DateTime.Parse("2025-02-04 22:00"), "Chemain dulac bleu", 25, "Guitare électrique", adress2, File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg"),2 );
+            _jamService.CreateJamSession("Jam session : Club de Groove", DateTime.Parse("2025-03-25 18:00"), DateTime.Parse("2025-03-25 20:00"), "Chemain dulac bleu", 35, "Basse", adress3, File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg"), 3);
+            _jamService.CreateJamSession("Jam session : Café Bohème", DateTime.Parse("2025-05-22 19:00"), DateTime.Parse("2025-05-22 22:00"), "Rue des Poètes", 15, "Guitare acoustique", adress4, File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg"), 4);
 
             //(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration, TypeService TypeService, int QuantityService, int userId)
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, statusRegistration.ACCEPTED, TypeService.SECURITY, 1, 0);

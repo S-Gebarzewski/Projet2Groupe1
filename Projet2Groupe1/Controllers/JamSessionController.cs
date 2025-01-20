@@ -27,7 +27,7 @@ namespace Projet2Groupe1.Controllers
                     var fileService = new FileService();
                     string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/defaut-sessionJam.jpg");
                     byte[] fileByteArray = System.IO.File.ReadAllBytes(imagePath);
-                    int jamSessionId = ijs.CreateJamSession(jamSessionViewModel.JamSession.Title, jamSessionViewModel.JamSession.StartSession, jamSessionViewModel.JamSession.EndSession, jamSessionViewModel.JamSession.Description, jamSessionViewModel.JamSession.NumberPlaces, jamSessionViewModel.JamSession.Instruments, jamSessionViewModel.JamSession.Adress, int.Parse(userId));
+                    int jamSessionId = ijs.CreateJamSession(jamSessionViewModel.JamSession.Title, jamSessionViewModel.JamSession.StartSession, jamSessionViewModel.JamSession.EndSession, jamSessionViewModel.JamSession.Description, jamSessionViewModel.JamSession.NumberPlaces, jamSessionViewModel.JamSession.Instruments, jamSessionViewModel.JamSession.Adress, fileByteArray, int.Parse(userId));
                         Console.WriteLine("Création" + jamSessionViewModel.JamSession.ToString());
 
                         return RedirectToAction("CatalogJamSession", new { id = jamSessionId });

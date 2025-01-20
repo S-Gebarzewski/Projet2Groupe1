@@ -34,7 +34,7 @@
                 <tr class="session-row" data-id="@item.Id">
                     <td class="session-photo">
                         @{
-                            String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(@item.Photo) + "";
+                            String srcValue = "data:image.jpg;base64," + Convert.ToBase64String(item.Photo) + "";
 
 
                             <img id="imgViewer" width="200" height="200" style="border:1px solid #000000" src=@srcValue />
