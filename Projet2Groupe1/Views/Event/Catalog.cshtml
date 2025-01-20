@@ -22,10 +22,14 @@
 
 <section class="search-section-catalog">
  @*    Méthode Get pour renvoyer les info nécessaires au tri géré par controller et service *@
+		@using (IEventService iev = new EventService(new DataBaseContext()))
+        {
     @using (Html.BeginForm("Catalog", "Event", FormMethod.Get))
 	{
         <nav class="filters-wrapper-catalog">
-            @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))),
+            @Html.DropDownList("category", new SelectList(Enum.GetValues(typeof(TypeEvent))
+                            .Cast<TypeEvent>()
+                             .Select(e => new { Value = e, Text = iev.GetDisplayName(e) }), "Value", "Text"),
 						        "Catégories",
                                 new { onchange = "this.Form.submit()" })
             @Html.DropDownList("city", new SelectList(Model.Select(e => e.Adress.City).Distinct()),
@@ -38,6 +42,7 @@
                 <button type="submit" class="search-icon-catalog"></button>
              </div>
          </nav>
+    }
     }
 </section>
 
@@ -90,6 +95,7 @@
             </section>
         </article>
         }
+        
     </section>
     </div>
 	
