@@ -107,7 +107,7 @@ namespace Projet2Groupe1.Models
             {
                 FirstNameArtist = "Paul",
                 LastNameArtist = "Van Haver",
-                NickNameArtist = "Stromae"
+                NickNameArtist = "SSSSSSrr"
             };
 
             var indochine = new Artist
@@ -148,7 +148,7 @@ namespace Projet2Groupe1.Models
 
             // Création des événements
             _eventService.CreateEvent(
-                TypeEvent.SIGNINGSESSION,
+                TypeEvent.CONCERT,
                 "Orelsan - Civilization Tour",
                 DateTime.Parse("2025-03-15 20:00"),
                 DateTime.Parse("2025-03-15 23:30"),
@@ -165,7 +165,7 @@ namespace Projet2Groupe1.Models
 
             _eventService.CreateEvent(
                 TypeEvent.CONCERT,
-                "Stromae - Multitude Tour",
+                "sdfgho hjgf",
                 DateTime.Parse("2025-04-20 20:00"),
                 DateTime.Parse("2025-04-20 23:00"),
                 olympiaAddress,
@@ -198,7 +198,7 @@ namespace Projet2Groupe1.Models
                 0
             );
 
-            _eventService.CreateEvent(
+        /*    _eventService.CreateEvent(
                 TypeEvent.CONCERT,
                 "Return of Bowie",
                 DateTime.Parse("2025-06-28 14:00"),
@@ -217,7 +217,7 @@ namespace Projet2Groupe1.Models
                 TypeService.FOOD,
                 2,
                 0
-            );
+            );*/
 
             _eventService.CreateEvent(
                 TypeEvent.CONCERT,
@@ -314,9 +314,9 @@ namespace Projet2Groupe1.Models
             //(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration, TypeService TypeService, int QuantityService, int userId)
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Linkin Park", DateTime.Now, DateTime.Now.AddHours(3), adress, artist, ticket, statusRegistration.ACCEPTED, TypeService.SECURITY, 1, 0);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Metallica", DateTime.Now.AddDays(1), DateTime.Now.AddDays(1).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.FOOD, 1, 0);
-            _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.FOOD, 1, 0);
+     /*       _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Khaled", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.FOOD, 1, 0);
             _eventService.CreateEvent(TypeEvent.CONCERT, "Concert Snake", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), adress, artist, ticket, statusRegistration.PENDING, TypeService.SECURITY, 1, 0);
-            _ticketService.CreateTicket(1, 1, 1, 1);
+            _ticketService.CreateTicket(1, 1, 1, 1);*/
 
 
             //Ajout de contenu pour présentation ============================================================================================================================================================================================================================
@@ -1091,7 +1091,7 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 300,
             UnitPriceTicket = 30
         },
-        NameEvent = "Aurora Signing Session",
+        NameEvent = "Aurora Séance de dédicace",
         StartDate = DateTime.Parse("2025-08-01 15:00"),
         EndDate = DateTime.Parse("2025-08-01 18:00"),
         StatusRegistration = statusRegistration.ACCEPTED,
@@ -1123,7 +1123,7 @@ namespace Projet2Groupe1.Models
         NameEvent = "Shadow Meet & Greet",
         StartDate = DateTime.Parse("2025-08-05 14:00"),
         EndDate = DateTime.Parse("2025-08-05 17:00"),
-        StatusRegistration = statusRegistration.PENDING,
+        StatusRegistration = statusRegistration.ACCEPTED,
         TypeService = TypeService.FOOD,
         QuantityService = 0
     },
@@ -1178,7 +1178,7 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 500,
             UnitPriceTicket = 40
         },
-        NameEvent = "BrightWords Signing Session",
+        NameEvent = "BrightWords Séance de dédicace",
         StartDate = DateTime.Parse("2025-08-15 14:00"),
         EndDate = DateTime.Parse("2025-08-15 17:00"),
         StatusRegistration = statusRegistration.ACCEPTED,
@@ -1207,10 +1207,10 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 350,
             UnitPriceTicket = 30
         },
-        NameEvent = "MoonScribe Signing Session",
+        NameEvent = "MoonScribe Séance de dédicace",
         StartDate = DateTime.Parse("2025-08-20 15:00"),
         EndDate = DateTime.Parse("2025-08-20 18:00"),
-        StatusRegistration = statusRegistration.PENDING,
+        StatusRegistration = statusRegistration.ACCEPTED,
         TypeService = TypeService.FOOD,
         QuantityService = 0
     },
@@ -1238,7 +1238,7 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 400,
             UnitPriceTicket = 35
         },
-        NameEvent = "InkPulse Autograph Session",
+        NameEvent = "InkPulse Séance de dédicace",
         StartDate = DateTime.Parse("2025-09-01 15:00"),
         EndDate = DateTime.Parse("2025-09-01 18:00"),
         StatusRegistration = statusRegistration.ACCEPTED,
@@ -1270,7 +1270,7 @@ namespace Projet2Groupe1.Models
         NameEvent = "StarLine Meet & Greet",
         StartDate = DateTime.Parse("2025-09-05 14:00"),
         EndDate = DateTime.Parse("2025-09-05 17:00"),
-        StatusRegistration = statusRegistration.PENDING,
+        StatusRegistration = statusRegistration.ACCEPTED,
         TypeService = TypeService.FOOD,
         QuantityService = 0
     },
@@ -1296,7 +1296,7 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 500,
             UnitPriceTicket = 40
         },
-        NameEvent = "LunaVerse Signing Session",
+        NameEvent = "LunaVerse Séance de dédicace",
         StartDate = DateTime.Parse("2025-09-10 16:00"),
         EndDate = DateTime.Parse("2025-09-10 18:00"),
         StatusRegistration = statusRegistration.ACCEPTED,
@@ -1354,10 +1354,10 @@ namespace Projet2Groupe1.Models
             NumberTotalTicket = 350,
             UnitPriceTicket = 33
         },
-        NameEvent = "StarEcho Signing Session",
+        NameEvent = "StarEcho Séance de dédicace",
         StartDate = DateTime.Parse("2025-09-20 15:00"),
         EndDate = DateTime.Parse("2025-09-20 18:00"),
-        StatusRegistration = statusRegistration.PENDING,
+        StatusRegistration = statusRegistration.ACCEPTED,
         TypeService = TypeService.FOOD,
         QuantityService = 0
     }
