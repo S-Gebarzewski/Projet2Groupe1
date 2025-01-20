@@ -10,7 +10,7 @@ namespace Projet2Groupe1.Models
         {
             this._dbContext = _dbContext;
         }
-        public int CreateJamSession(string Title, DateTime StartSession, DateTime EndSession, string Description, int NumberPlaces, string Instruments,Adress Adress,byte[] Photo, int userId)
+        public int CreateJamSession(string Title, DateTime StartSession, DateTime EndSession, string Description, int NumberPlaces, string Instruments,Adress Adress, int userId)
         {
             JamSession NewJamSession = new JamSession()
             {
@@ -21,7 +21,7 @@ namespace Projet2Groupe1.Models
                 NumberPlaces = NumberPlaces,
                 Instruments = Instruments,
                 Adress = Adress,    
-                Photo = Photo,    
+                  
                 userId = userId
 
 

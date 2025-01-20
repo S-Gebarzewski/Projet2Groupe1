@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Projet2Groupe1.Models
 {
@@ -12,6 +13,7 @@ namespace Projet2Groupe1.Models
         private MemberService _memberService;     
         private EventService _eventService;
         private TicketService _ticketService;
+        private JamService _jamService;
 
         public Dal () 
         {
@@ -24,6 +26,7 @@ namespace Projet2Groupe1.Models
             _eventService = new EventService(_dbContext);
             _ticketService = new TicketService(_dbContext);
             _memberService = new MemberService(_dbContext);
+            _jamService  = new JamService(_dbContext);
 
         }
 
@@ -264,6 +267,57 @@ namespace Projet2Groupe1.Models
                 PriceService = 100,
                 UserId = 5
             };
+
+            Adress adress1 = new Adress
+            {
+                ZipCode = 75018,
+                City = "Paris",
+                StreetNumber = 12,
+                StreetName = "Rue des Artistes",
+                NamedPlace = "Louvre Museum",
+                StreetComplement = "Near the pyramid"
+            };
+
+            Adress adress2 = new Adress
+            {
+                ZipCode = 74000,
+                City = "Annecy",
+                StreetNumber = 45,
+                StreetName = "Chemin du lac bleu",
+                NamedPlace = "Louvre Museum",
+                StreetComplement = "Near the pyramid"
+            };
+            Adress adress3 = new Adress
+            {
+                ZipCode =69001,
+                City = "Lyon",
+                StreetNumber = 7,
+                StreetName = "Avenue des champs",
+                NamedPlace = "Louvre Museum",
+                StreetComplement = "Near the pyramid"
+            };
+            Adress adress4 = new Adress
+            {
+                ZipCode = 69001,
+                City = "Lyon",
+                StreetNumber = 7,
+                StreetName = "Avenue des champs",
+                NamedPlace = "Louvre Museum",
+                StreetComplement = "Near the pyramid"
+            };
+
+            _jamService.CreateJamSession("Jam session : Jazz sous les étoiles", DateTime.Parse("2025-01-20 19:00"), DateTime.Parse("2025-01-20 23:00"), "Parc Montmarte", 20, "Saxophone",adress1,0);
+            _jamService.CreateJamSession("Jam session : Blues au bord du lac", DateTime.Parse("2025-02-04 20:00"), DateTime.Parse("2025-02-04 22:00"), "Chemain dulac bleu", 25, "Guitare électrique", adress2, 0);
+            _jamService.CreateJamSession("Jam session : Club de Groove", DateTime.Parse("2025-03-25 18:00"), DateTime.Parse("2025-03-25 20:00"), "Chemain dulac bleu", 35, "Basse", adress3, 0);
+            _jamService.CreateJamSession("Jam session : Café Bohème", DateTime.Parse("2025-05-22 19:00"), DateTime.Parse("2025-05-22 22:00"), "Rue des Poètes", 15, "Guitare acoustique", adress4, 0);
+
+            _dbContext.Sessions.Find(1).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
+            _dbContext.Sessions.Find(2).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
+            _dbContext.Sessions.Find(3).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
+            _dbContext.Sessions.Find(4).Photo = File.ReadAllBytes("wwwroot/images/defaut-sessionJam.jpg");
+
+
+
 
 
             //(TypeEvent TypeEvent, string NameEvent, DateTime StartEvent, DateTime EndEvent, Adress? AdressData, Artist? Artist, Billeterie? billeterie, statusRegistration StatusRegistration, TypeService TypeService, int QuantityService, int userId)
