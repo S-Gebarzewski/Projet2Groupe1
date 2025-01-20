@@ -17,7 +17,7 @@ namespace Projet2Groupe1.Models
       
         public string? Instruments { get; set; } 
         public  Adress? Adress { get; set; }
-        public byte[] Photo{ get; set; }
+        public byte[]? Photo{ get; set; }
 
         public int userId{ get; set; }
             
