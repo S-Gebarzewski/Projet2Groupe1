@@ -2,8 +2,6 @@
 
 Ce projet a été réalisé dans le cadre d'un second projet d'étude en groupe. Il s'agit d'une application web de gestion d'événements musicaux avec différents niveaux d'accès utilisateur.
 
-## Équipe
-- Groupe 1 (Merci d'ajouter les noms des membres)
 
 ## Technologies utilisées
 - **Backend** : C# (.NET Core MVC)
